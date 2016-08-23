@@ -23,9 +23,9 @@
     }
   },
   "defaults": {
-    "prefix": "app",
+    "prefix": "hsr",
     "sourceDir": "src",
-    "styleExt": "css",
+    "styleExt": "scss",
     "prefixInterfaces": false,
     "lazyRoutePrefix": "+"
   }
