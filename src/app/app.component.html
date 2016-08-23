@@ -1,3 +1,17 @@
-<h1>
-  {{title | async | json}}
-</h1>
+<md-toolbar color="primary">
+  <a class="app-icon-button" [routerLink]="''">
+      home
+    </a>
+    <a class="app-icon-button" [routerLink]="'test2'">
+      test2
+    </a>
+   HSR
+    <span class="app-toolbar-filler"></span>
+    <a class="app-icon-button" [routerLink]="'register'">
+      rgister
+    </a>
+  </md-toolbar>
+
+<router-outlet></router-outlet>
+
+

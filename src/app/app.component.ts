@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { FirebaseDatabaseService } from './firebase-database.service';
-import { FirebaseListObservable } from 'angularfire2';
 
 @Component({
   selector: 'app-root',
@@ -9,9 +8,7 @@ import { FirebaseListObservable } from 'angularfire2';
   providers: [FirebaseDatabaseService]
 })
 export class AppComponent {
-  title: FirebaseListObservable<any>;
 
-  constructor(private firebaseDatabseService: FirebaseDatabaseService) {
-    this.title = firebaseDatabseService.getItems();
+  constructor() {
   }
 }

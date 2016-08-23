@@ -22,6 +22,9 @@ import { MdButtonToggleModule } from '@angular2-material/button-toggle';
 import { MdGridListModule } from '@angular2-material/grid-list';
 import { MdProgressBarModule } from '@angular2-material/progress-bar';
 import { MdProgressCircleModule } from '@angular2-material/progress-circle';
+import { Test1Component } from './test1/test1.component';
+import { Test2Component } from './test2/test2.component';
+import { RegisterComponent } from './register/register.component';
 
 export const FIREBASE_CONFIG = {
   apiKey: 'AIzaSyADJKKoXeEe7_E4i2HLWB_eAZ7R9Vd-KbI',
@@ -31,12 +34,17 @@ export const FIREBASE_CONFIG = {
 };
 
 export const APP_ROUTES = [
-  {patch: '', component: AppComponent}
+  {path: '', component: Test1Component},
+  {path: 'test2', component: Test2Component},
+  {path: 'register', component: RegisterComponent}
 ];
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    Test1Component,
+    Test2Component,
+    RegisterComponent
   ],
   imports: [
     RouterModule.forRoot(APP_ROUTES),
