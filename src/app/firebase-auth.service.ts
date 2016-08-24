@@ -6,6 +6,7 @@ import User = firebase.User;
 export class FirebaseAuthService {
 
   googleProvider;
+  facebookProvider;
 
   currentUser: User;
   accessToken: string;
@@ -14,6 +15,7 @@ export class FirebaseAuthService {
 
   constructor(private angularFire: AngularFire) {
     this.googleProvider = new firebase.auth.GoogleAuthProvider();
+    this.facebookProvider = new firebase.auth.FacebookAuthProvider();
 
     this.angularFire.auth.subscribe(authState => {
       this.authState = authState;
@@ -41,6 +43,17 @@ export class FirebaseAuthService {
 
   registerWithGoogle() {
     firebase.auth().signInWithPopup(this.googleProvider).then(result => {
+      // This gives you a Google Access Token. You can use it to access the Google API.
+      this.accessToken = result.credential['accessToken'];
+      // The signed-in user info.
+      this.currentUser = result.user;
+    }).catch(function (error) {
+      console.log(error);
+    });
+  }
+
+  registerWithFacebook() {
+    firebase.auth().signInWithPopup(this.facebookProvider).then(result => {
       // This gives you a Google Access Token. You can use it to access the Google API.
       this.accessToken = result.credential['accessToken'];
       // The signed-in user info.

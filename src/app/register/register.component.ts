@@ -27,4 +27,8 @@ export class RegisterComponent implements OnInit {
   onGoogle() {
     this.firebaseAuthService.registerWithGoogle();
   }
+
+  onFacebook() {
+    this.firebaseAuthService.registerWithFacebook();
+  }
 }
