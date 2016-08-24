@@ -1,6 +1,6 @@
 <md-card class="app-input-section">
 
-  <form #registerForm="ngForm" (ngSubmit)="onRegister()">
+  <form #registerForm="ngForm" (ngSubmit)="onLogin()">
 
     <md-input ngControl="email" [(ngModel)]="user.email" required type="email" id="email" name="email" placeholder="E-Mail">
     <span md-prefix>
@@ -16,9 +16,9 @@
         </span>
     </md-input>
 
-    <button type="submit">Registrieren</button>
+    <button type="submit">login</button>
 
   </form>
 
-  <button (click)="onGoogle()">Mit Google regisstrieren</button>
+  <button (click)="onGoogle()">Mit Google einloggen</button>
 </md-card>

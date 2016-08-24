@@ -1,17 +1,10 @@
 <md-toolbar color="primary">
-  <a class="app-icon-button" [routerLink]="''">
-      home
-    </a>
-    <a class="app-icon-button" [routerLink]="'test2'">
-      test2
-    </a>
-   HSR
-    <span class="app-toolbar-filler"></span>
-    <a class="app-icon-button" [routerLink]="'register'">
-      rgister
-    </a>
-  </md-toolbar>
+  HSR <a [routerLink]="''"> home </a> <a [routerLink]="'test2'"> test2 </a> <a [routerLink]="'register'"> rgister </a> <a [routerLink]="'login'"> login </a> <a (click)="onLogout()"> logout </a>
+
+</md-toolbar>
 
 <router-outlet></router-outlet>
+
+<md-card>{{getAuthState()| json}}</md-card>
 
 

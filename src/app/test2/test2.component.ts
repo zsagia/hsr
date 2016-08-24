@@ -1,19 +1,34 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { AngularFire, FirebaseObjectObservable } from 'angularfire2';
 
 @Component({
   selector: 'hsr-test2',
   template: `
-    <p>
-      test2 Works!
-    </p>
+  <h1>{{ item | async | json }}</h1>
+  <input type="text" #newname placeholder="Name" />
+  <input type="text" #newsize placeholder="Size" />
+  <br />
+  <button (click)="save(newname.value)">Set Name</button>
+  <button (click)="update(newsize.value)">Update Size</button>
+  <button (click)="delete()">Delete</button>
   `,
-  styles: []
 })
-export class Test2Component implements OnInit {
+export class Test2Component {
+  item: FirebaseObjectObservable<any>;
 
-  constructor() { }
-
-  ngOnInit() {
+  constructor(af: AngularFire) {
+    this.item = af.database.object('/item');
   }
 
+  save(newName: string) {
+    this.item.set({name: newName});
+  }
+
+  update(newSize: string) {
+    this.item.update({size: newSize});
+  }
+
+  delete() {
+    this.item.remove();
+  }
 }

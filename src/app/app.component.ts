@@ -1,14 +1,22 @@
 import { Component } from '@angular/core';
-import { FirebaseDatabaseService } from './firebase-database.service';
+import { FirebaseAuthService } from './firebase-auth.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
-  providers: [FirebaseDatabaseService]
+  providers: [FirebaseAuthService]
 })
 export class AppComponent {
 
-  constructor() {
+  constructor(private firebaseAuthService: FirebaseAuthService) {
+  }
+
+  getAuthState() {
+    return this.firebaseAuthService.authState;
+  }
+
+  onLogout() {
+    this.firebaseAuthService.logout();
   }
 }

@@ -25,6 +25,8 @@ import { MdProgressCircleModule } from '@angular2-material/progress-circle';
 import { Test1Component } from './test1/test1.component';
 import { Test2Component } from './test2/test2.component';
 import { RegisterComponent } from './register/register.component';
+import { Test11Component } from './test11/test11.component';
+import { LoginComponent } from './login/login.component';
 
 export const FIREBASE_CONFIG = {
   apiKey: 'AIzaSyADJKKoXeEe7_E4i2HLWB_eAZ7R9Vd-KbI',
@@ -35,8 +37,10 @@ export const FIREBASE_CONFIG = {
 
 export const APP_ROUTES = [
   {path: '', component: Test1Component},
+  {path: 'test11/:id', component: Test11Component},
   {path: 'test2', component: Test2Component},
-  {path: 'register', component: RegisterComponent}
+  {path: 'register', component: RegisterComponent},
+  {path: 'login', component: LoginComponent}
 ];
 
 @NgModule({
@@ -44,7 +48,9 @@ export const APP_ROUTES = [
     AppComponent,
     Test1Component,
     Test2Component,
-    RegisterComponent
+    RegisterComponent,
+    Test11Component,
+    LoginComponent
   ],
   imports: [
     RouterModule.forRoot(APP_ROUTES),

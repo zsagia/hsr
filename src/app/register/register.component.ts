@@ -1,20 +1,30 @@
 import { Component, OnInit } from '@angular/core';
+import { FirebaseAuthService } from '../firebase-auth.service';
 
 @Component({
   selector: 'hsr-register',
   templateUrl: 'register.component.html',
-  styles: []
+  providers: [FirebaseAuthService],
+  styles: [`
+.ng-invalid {
+border: 1px solid red;
+}
+`]
 })
 export class RegisterComponent implements OnInit {
+  user = {email: undefined, password: undefined};
 
-  constructor() {
+  constructor(private firebaseAuthService: FirebaseAuthService) {
   }
 
   ngOnInit() {
   }
 
   onRegister() {
-
+    this.firebaseAuthService.register(this.user);
   }
 
+  onGoogle() {
+    this.firebaseAuthService.registerWithGoogle();
+  }
 }

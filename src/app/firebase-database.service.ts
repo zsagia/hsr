@@ -1,16 +1,19 @@
 import { Injectable } from '@angular/core';
-import { AngularFire, FirebaseListObservable } from 'angularfire2';
+import { AngularFire, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
 
 @Injectable()
 export class FirebaseDatabaseService {
   items: FirebaseListObservable<any>;
 
   constructor(private angularFire: AngularFire) {
-    this.items = angularFire.database.list('employee');
   }
 
   getItems(): FirebaseListObservable<any> {
-    return this.items;
+    return this.angularFire.database.list('employee');
+  }
+
+  getItem(id: number): FirebaseObjectObservable<any> {
+    return this.angularFire.database.object('employee/' + (id - 1));
   }
 
 }
