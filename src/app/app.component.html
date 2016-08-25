@@ -1,9 +1,9 @@
 <md-toolbar color="primary" class="toolbar">
-  <img routerLink="" src="assets/hsr_banner2.png" alt="HSR" style="height: 100%; width: auto;"/>
+  <img class="logo" routerLink="" src="assets/hsr_banner2.png" alt="HSR"/>
 
   <template ngFor let-route [ngForOf]="routes">
     <button md-button
-            *ngIf="route.text"
+            *ngIf="route.text && (af.auth | async)"
             [routerLink]="route.path"
             routerLinkActive="active-route"
             [routerLinkActiveOptions]="{exact: true}">

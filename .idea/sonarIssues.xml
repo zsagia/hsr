@@ -78,6 +78,16 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/app/favicon/browserconfig.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/app/favicon/manifest.json">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/app/firebase-auth.service.ts">
           <value>
             <set />
@@ -139,6 +149,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/app/routes.ts">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/app/shared/firebase-auth.service.ts">
           <value>
             <set />
           </value>

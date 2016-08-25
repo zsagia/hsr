@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFire, AuthMethods, AuthProviders } from 'angularfire2';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import User = firebase.User;
+import Auth = firebase.auth.Auth;
 
 @Injectable()
 export class FirebaseAuthService implements CanActivate {
@@ -19,9 +20,9 @@ export class FirebaseAuthService implements CanActivate {
     this.googleProvider = new firebase.auth.GoogleAuthProvider();
     this.facebookProvider = new firebase.auth.FacebookAuthProvider();
 
-    this.angularFire.auth.subscribe(auth => {
-      this.authState = auth;
-      console.log('FIREBASE_AUTH_STATE:\n' + auth);
+    Auth.onAuthStateChanged(data => {
+      this.authState = data;
+      console.log('FIREBASE_AUTH_STATE:\n' + data);
     });
   }
 
