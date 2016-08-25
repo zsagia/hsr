@@ -18,6 +18,16 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/.idea/sonarIssues.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/.idea/workspace.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/angular-cli.json">
           <value>
             <set />
@@ -89,6 +99,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/app/components/home/home.component.ts">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/app/components/index.ts">
           <value>
             <set />
           </value>
