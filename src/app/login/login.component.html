@@ -1,24 +1,25 @@
 <md-card class="app-input-section">
-
-  <form #registerForm="ngForm" (ngSubmit)="onLogin()">
-
-    <md-input ngControl="email" [(ngModel)]="user.email" required type="email" id="email" name="email" placeholder="E-Mail">
+  <h1>Login</h1>
+  <form #registerForm="ngForm" (ngSubmit)="onLogin()" layout="column">
+    <div style="display:flex;flex-direction:column;">
+      <md-input ngControl="email" [(ngModel)]="user.email" required type="email" id="email" name="email" placeholder="E-Mail">
     <span md-prefix>
           <i class="material-icons app-input-icon">mail</i>
           &nbsp;
         </span>
-    </md-input>
+      </md-input>
 
-    <md-input ngControl="password" [(ngModel)]="user.password" required type="password" id="password" name="password" placeholder="Passwort">
+      <md-input ngControl="password" [(ngModel)]="user.password" required type="password" id="password" name="password" placeholder="Passwort">
     <span md-prefix>
           <i class="material-icons app-input-icon">vpn_key</i>
           &nbsp;
         </span>
-    </md-input>
-
-    <button type="submit">login</button>
+      </md-input>
+    </div>
+    <button type="submit">Einloggen</button>
 
   </form>
 
   <button (click)="onGoogle()">Mit Google einloggen</button>
+  <button (click)="onFacebook()">Mit Facebook einloggen</button>
 </md-card>

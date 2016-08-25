@@ -21,7 +21,7 @@ export class RegisterComponent implements OnInit {
   }
 
   onRegister() {
-    this.firebaseAuthService.register(this.user);
+    this.firebaseAuthService.registerWithEmailAndPassword(this.user);
   }
 
   onGoogle() {

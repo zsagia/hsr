@@ -1,43 +1,60 @@
 import { Injectable } from '@angular/core';
-import { AngularFire, FirebaseAuthState, AuthMethods, AuthProviders } from 'angularfire2';
+import { AngularFire, AuthMethods, AuthProviders } from 'angularfire2';
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import User = firebase.User;
 
 @Injectable()
-export class FirebaseAuthService {
+export class FirebaseAuthService implements CanActivate {
 
   googleProvider;
   facebookProvider;
 
-  currentUser: User;
-  accessToken: string;
+  authState;
 
-  authState: FirebaseAuthState;
+  currentUser: User;
+
+  accessToken: string;
 
   constructor(private angularFire: AngularFire) {
     this.googleProvider = new firebase.auth.GoogleAuthProvider();
     this.facebookProvider = new firebase.auth.FacebookAuthProvider();
 
-    this.angularFire.auth.subscribe(authState => {
-      this.authState = authState;
+    this.angularFire.auth.subscribe(auth => {
+      this.authState = auth;
+      console.log('FIREBASE_AUTH_STATE:\n' + auth);
     });
+  }
+
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+    return this.loggedIn();
   }
 
   logout() {
     this.angularFire.auth.logout();
   }
 
-  register(user) {
-    this.angularFire.auth.createUser({email: user.email, password: user.password}).then(result => {
-      this.authState = result;
-    });
+  registerWithEmailAndPassword(user) {
+    this.angularFire.auth.createUser({email: user.email, password: user.password});
   }
 
-  login(user) {
+  loginWithEmailAndPassword(user) {
     this.angularFire.auth.login(user, {
       method: AuthMethods.Password,
       provider: AuthProviders.Password
-    }).then(result => {
-      this.authState = result;
+    });
+  }
+
+  loginWithGoogle() {
+    this.angularFire.auth.login({
+      method: AuthMethods.Popup,
+      provider: AuthProviders.Google
+    });
+  }
+
+  loginWithFacebook() {
+    this.angularFire.auth.login({
+      method: AuthMethods.Popup,
+      provider: AuthProviders.Facebook
     });
   }
 
@@ -61,5 +78,9 @@ export class FirebaseAuthService {
     }).catch(function (error) {
       console.log(error);
     });
+  }
+
+  loggedIn(): boolean {
+    return this.authState !== null;
   }
 }

@@ -1,1 +1,1 @@
-export * from '../../shared/register.type'
+export * from '../../shared/registerWithEmailAndPassword.type'

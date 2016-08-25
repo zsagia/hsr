@@ -16,7 +16,15 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin() {
-    this.firebaseAuthService.login(this.user);
+    this.firebaseAuthService.loginWithEmailAndPassword(this.user);
+  }
+
+  onGoogle() {
+    this.firebaseAuthService.loginWithGoogle();
+  }
+
+  onFacebook() {
+    this.firebaseAuthService.loginWithFacebook();
   }
 
 }

@@ -1,10 +1,17 @@
 <md-toolbar color="primary">
-  HSR <a [routerLink]="''"> home </a> <a [routerLink]="'test2'"> test2 </a> <a [routerLink]="'register'"> rgister </a> <a [routerLink]="'login'"> login </a> <a (click)="onLogout()"> logout </a>
+  <img src="assets/hsr_hirsch.jpg" alt="HSR" style="height: 100%; width: auto;"/>
+  <template ngFor let-route [ngForOf]="routes">
+    <div class="nav-button" *ngIf="route.text">
+      <a [routerLink]="route.path" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">{{route.text}}</a>
+    </div>
+  </template>
 
+  <div>
+    <span *ngIf="af.auth | async">{{(af.auth | async)?.auth.email}}</span>
+    <div class="nav-button"><a (click)="onLogout()"> logout</a></div>
+  </div>
 </md-toolbar>
 
 <router-outlet></router-outlet>
-
-<md-card>{{getAuthState()| json}}</md-card>
 
 

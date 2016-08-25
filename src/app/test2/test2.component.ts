@@ -4,7 +4,8 @@ import { AngularFire, FirebaseObjectObservable } from 'angularfire2';
 @Component({
   selector: 'hsr-test2',
   template: `
-  <h1>{{ item | async | json }}</h1>
+  <h1>Test2</h1>
+  <code>{{ item | async | json }}</code>
   <input type="text" #newname placeholder="Name" />
   <input type="text" #newsize placeholder="Size" />
   <br />

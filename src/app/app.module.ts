@@ -27,21 +27,12 @@ import { Test2Component } from './test2/test2.component';
 import { RegisterComponent } from './register/register.component';
 import { Test11Component } from './test11/test11.component';
 import { LoginComponent } from './login/login.component';
-
-export const FIREBASE_CONFIG = {
-  apiKey: 'AIzaSyADJKKoXeEe7_E4i2HLWB_eAZ7R9Vd-KbI',
-  authDomain: 'hsr-site.firebaseapp.com',
-  databaseURL: 'https://hsr-site.firebaseio.com',
-  storageBucket: 'hsr-site.appspot.com',
-};
-
-export const APP_ROUTES = [
-  {path: '', component: Test1Component},
-  {path: 'test11/:id', component: Test11Component},
-  {path: 'test2', component: Test2Component},
-  {path: 'register', component: RegisterComponent},
-  {path: 'login', component: LoginComponent}
-];
+import { ROUTES_CONFIG } from './routes.config';
+import { FIREBASE_CONFIG } from './firebase.config';
+import { FirebaseAuthService } from './firebase-auth.service';
+import { FirebaseDatabaseService } from './firebase-database.service';
+import { HomeComponent } from './home/home.component';
+import { BlogComponent } from './blog/blog.component';
 
 @NgModule({
   declarations: [
@@ -50,10 +41,12 @@ export const APP_ROUTES = [
     Test2Component,
     RegisterComponent,
     Test11Component,
-    LoginComponent
+    LoginComponent,
+    HomeComponent,
+    BlogComponent
   ],
   imports: [
-    RouterModule.forRoot(APP_ROUTES),
+    RouterModule.forRoot(ROUTES_CONFIG),
     BrowserModule,
     CommonModule,
     FormsModule,
@@ -78,7 +71,7 @@ export const APP_ROUTES = [
     MdProgressBarModule,
     MdProgressCircleModule
   ],
-  providers: [],
+  providers: [FirebaseAuthService, FirebaseDatabaseService],
   entryComponents: [AppComponent],
   bootstrap: [AppComponent]
 })
