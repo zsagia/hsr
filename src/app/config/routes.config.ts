@@ -6,6 +6,8 @@ import { LoginComponent } from '../login/login.component';
 import { FirebaseAuthService } from '../firebase-auth.service';
 import { HomeComponent } from '../home/home.component';
 import { BlogComponent } from '../blog/blog.component';
+import { FotosComponent } from '../fotos/fotos.component';
+import { FlyerComponent } from '../flyer/flyer.component';
 
 export const ROUTES_CONFIG = [
   {path: '', component: HomeComponent},
@@ -15,4 +17,6 @@ export const ROUTES_CONFIG = [
   {path: 'test11/:id', component: Test11Component, canActivate: [FirebaseAuthService]},
   {path: 'test2', component: Test2Component, text: 'TEST2', canActivate: [FirebaseAuthService]},
   {path: 'blog', component: BlogComponent, text: 'Blog', canActivate: [FirebaseAuthService]},
+  {path: 'fotos', component: FotosComponent, text: 'Fotos', canActivate: [FirebaseAuthService]},
+  {path: 'flyer', component: FlyerComponent, text: 'Flyer', canActivate: [FirebaseAuthService]}
 ];

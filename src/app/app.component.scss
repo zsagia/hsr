@@ -6,23 +6,11 @@ a {
   }
 }
 
-.nav-button {
-  margin: 2px;
-  padding: 2px;
-  width: 64px;
-  cursor: pointer;
-}
-
-.active {
-  color: white;
-}
-
-.info-text {
-  font-size: xx-small;
+.active-route {
+  color: blueviolet;
 }
 
 .toolbar {
-  padding-left: 0;
   background-color: black;
   cursor: pointer;
 }

@@ -4,6 +4,7 @@ import { AngularFire, FirebaseObjectObservable } from 'angularfire2';
 @Component({
   selector: 'hsr-test2',
   template: `
+<md-card>
   <h1>Test2</h1>
   <code>{{ item | async | json }}</code>
   <input type="text" #newname placeholder="Name" />
@@ -12,6 +13,7 @@ import { AngularFire, FirebaseObjectObservable } from 'angularfire2';
   <button (click)="save(newname.value)">Set Name</button>
   <button (click)="update(newsize.value)">Update Size</button>
   <button (click)="delete()">Delete</button>
+  </md-card>
   `,
 })
 export class Test2Component {

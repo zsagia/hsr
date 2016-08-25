@@ -33,6 +33,8 @@ import { FirebaseAuthService } from './firebase-auth.service';
 import { FirebaseDatabaseService } from './firebase-database.service';
 import { HomeComponent } from './home/home.component';
 import { BlogComponent } from './blog/blog.component';
+import { FotosComponent } from './fotos/fotos.component';
+import { FlyerComponent } from './flyer/flyer.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,9 @@ import { BlogComponent } from './blog/blog.component';
     Test11Component,
     LoginComponent,
     HomeComponent,
-    BlogComponent
+    BlogComponent,
+    FotosComponent,
+    FlyerComponent
   ],
   imports: [
     RouterModule.forRoot(ROUTES_CONFIG),

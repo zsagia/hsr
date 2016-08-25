@@ -1,25 +1,28 @@
 <md-toolbar color="primary" class="toolbar">
-
-  <img routerLink="" src="assets/hsr_banner2.jpg" alt="HSR" style="height: 100%; width: auto; margin-right: 16px;"/>
+  <img routerLink="" src="assets/hsr_banner2.png" alt="HSR" style="height: 100%; width: auto;"/>
 
   <template ngFor let-route [ngForOf]="routes">
-    <div class="nav-button" *ngIf="route.text">
-      <a [routerLink]="route.path" routerLinkActive="active" [routerLinkActiveOptions]="{exact: false}">{{route.text}}</a>
-    </div>
+    <button md-button
+            *ngIf="route.text"
+            [routerLink]="route.path"
+            routerLinkActive="active-route"
+            [routerLinkActiveOptions]="{exact: true}">
+      {{route.text}}
+    </button>
   </template>
 
   <div style="flex:1;"></div>
 
   <div *ngIf="af.auth | async" style="height: 100%; display: flex;flex-direction: column; justify-content: center;">
-    <a (click)="onLogout()">Logout</a> <span *ngIf="(af.auth | async)?.auth.email" style="font-size: small;">{{(af.auth | async)?.auth.email}}</span> <span
-    *ngIf="!((af.auth | async)?.auth.email)"
-    style="font-size: small;">{{(af.auth | async)?.auth.displayName}}</span>
+    <a (click)="onLogout()">Logout</a>
+    <span *ngIf="(af.auth | async)?.auth.email" style="font-size: small;">{{(af.auth | async)?.auth.email}}</span>
+    <span *ngIf="!((af.auth | async)?.auth.email)"
+          style="font-size: small;">{{(af.auth | async)?.auth.displayName}}</span>
   </div>
 
   <div *ngIf="!(af.auth | async)" style="height: 100%; display: flex;flex-direction: column; justify-content: center;">
     <a routerLink="login">Login</a> <a routerLink="register">Registrieren</a>
   </div>
-
 </md-toolbar>
 
 <router-outlet></router-outlet>
