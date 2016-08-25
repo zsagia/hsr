@@ -4,7 +4,6 @@ import { FirebaseListObservable } from 'angularfire2';
 
 @Component({
   selector: 'hsr-test1',
-  providers: [FirebaseDatabaseService],
   template: `
  <md-card>
  <hi>Test1</hi>

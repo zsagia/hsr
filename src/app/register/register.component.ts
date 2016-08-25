@@ -4,7 +4,6 @@ import { FirebaseAuthService } from '../firebase-auth.service';
 @Component({
   selector: 'hsr-register',
   templateUrl: 'register.component.html',
-  providers: [FirebaseAuthService],
   styles: [`
 .ng-invalid {
 border: 1px solid red;

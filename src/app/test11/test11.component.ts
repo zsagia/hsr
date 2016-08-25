@@ -4,7 +4,6 @@ import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'hsr-test11',
-  providers: [FirebaseDatabaseService],
   template: `
    <img [src]="photo"/>
   `,
