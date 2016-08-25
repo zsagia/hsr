@@ -1,14 +1,28 @@
+a {
+  color: white;
+  text-decoration: none;
+  &:hover {
+    color: blueviolet;
+  }
+}
+
 .nav-button {
-  display: inline-block;
-  border: 1px solid black;
   margin: 2px;
   padding: 2px;
+  width: 64px;
+  cursor: pointer;
 }
 
 .active {
-  background-color: red;
+  color: white;
 }
 
 .info-text {
   font-size: xx-small;
+}
+
+.toolbar {
+  padding-left: 0;
+  background-color: black;
+  cursor: pointer;
 }

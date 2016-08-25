@@ -8,9 +8,9 @@ import { HomeComponent } from './home/home.component';
 import { BlogComponent } from './blog/blog.component';
 
 export const ROUTES_CONFIG = [
-  {path: '', component: HomeComponent, text: 'Home'},
-  {path: 'register', component: RegisterComponent, text: 'Registrieren'},
-  {path: 'login', component: LoginComponent, text: 'Login'},
+  {path: '', component: HomeComponent},
+  {path: 'register', component: RegisterComponent},
+  {path: 'login', component: LoginComponent},
   {path: 'test1', component: Test1Component, text: 'TEST1', canActivate: [FirebaseAuthService]},
   {path: 'test11/:id', component: Test11Component, canActivate: [FirebaseAuthService]},
   {path: 'test2', component: Test2Component, text: 'TEST2', canActivate: [FirebaseAuthService]},

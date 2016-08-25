@@ -17,6 +17,6 @@ export class AppComponent {
 
   onLogout() {
     this.firebaseAuthService.logout();
-    this.router.navigate(['login']);
+    this.router.navigate(['']);
   }
 }
