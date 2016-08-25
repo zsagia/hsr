@@ -1,11 +1,11 @@
-import { Test1Component } from './test1/test1.component';
-import { Test11Component } from './test11/test11.component';
-import { Test2Component } from './test2/test2.component';
-import { RegisterComponent } from './register/register.component';
-import { LoginComponent } from './login/login.component';
-import { FirebaseAuthService } from './firebase-auth.service';
-import { HomeComponent } from './home/home.component';
-import { BlogComponent } from './blog/blog.component';
+import { Test1Component } from '../test1/test1.component';
+import { Test11Component } from '../test11/test11.component';
+import { Test2Component } from '../test2/test2.component';
+import { RegisterComponent } from '../register/register.component';
+import { LoginComponent } from '../login/login.component';
+import { FirebaseAuthService } from '../firebase-auth.service';
+import { HomeComponent } from '../home/home.component';
+import { BlogComponent } from '../blog/blog.component';
 
 export const ROUTES_CONFIG = [
   {path: '', component: HomeComponent},
