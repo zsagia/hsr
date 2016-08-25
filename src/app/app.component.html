@@ -2,13 +2,11 @@
   <img class="logo" routerLink="" src="assets/hsr_banner2.png" alt="HSR"/>
 
   <template ngFor let-route [ngForOf]="routes">
-    <button md-button
-            *ngIf="route.text && (af.auth | async)"
-            [routerLink]="route.path"
-            routerLinkActive="active-route"
-            [routerLinkActiveOptions]="{exact: true}">
-      {{route.text}}
-    </button>
+    <a md-button
+       *ngIf="route.text && (af.auth | async)"
+       [routerLink]="route.path"
+       routerLinkActive="active-route"
+       [routerLinkActiveOptions]="{exact: true}">{{route.text}}</a>
   </template>
 
   <div style="flex:1;"></div>

@@ -1,0 +1,17 @@
+<form [formGroup]="modelForm" (ngSubmit)="onSubmitModelForm(modelForm)">
+  <h1>Model-Driven</h1>
+  <div>
+    <label for="field-title">Title : </label>
+    <input type="text" id="field-title" formControlName="title"/>
+    <p *ngIf="modelForm.controls.title.errors">This field is required!</p>
+  </div>
+  <div>
+    <label>Content : </label>
+    <ckeditor formControlName="content"></ckeditor>
+    <p *ngIf="modelForm.controls.content.errors">This field is required!</p>
+  </div>
+  <div>
+    <button type="submit">Send</button>
+  </div>
+</form>
+<pre>{{modelForm.value | json}}</pre>

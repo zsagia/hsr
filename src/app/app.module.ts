@@ -1,8 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { AppComponent } from './app.component';
+import { FormsModule, FormBuilder } from '@angular/forms';
 import { AngularFireModule } from 'angularfire2';
 import { RouterModule } from '@angular/router';
 import { MdCardModule } from '@angular2-material/card';
@@ -22,19 +21,20 @@ import { MdButtonToggleModule } from '@angular2-material/button-toggle';
 import { MdGridListModule } from '@angular2-material/grid-list';
 import { MdProgressBarModule } from '@angular2-material/progress-bar';
 import { MdProgressCircleModule } from '@angular2-material/progress-circle';
-import { Test1Component } from './test1/test1.component';
-import { Test2Component } from './test2/test2.component';
-import { RegisterComponent } from './register/register.component';
-import { Test11Component } from './test11/test11.component';
-import { LoginComponent } from './login/login.component';
+import { AppComponent } from './app.component';
+import { Test1Component } from './components/test1/test1.component';
+import { Test2Component } from './components/test2/test2.component';
+import { RegisterComponent } from './components/register/register.component';
+import { Test11Component } from './components/test11/test11.component';
+import { LoginComponent } from './components/login/login.component';
 import { ROUTES_CONFIG } from './config/routes.config';
 import { FIREBASE_CONFIG } from './config/firebase.config';
 import { FirebaseAuthService } from './shared/firebase-auth.service';
 import { FirebaseDatabaseService } from './shared/firebase-database.service';
-import { HomeComponent } from './home/home.component';
-import { BlogComponent } from './blog/blog.component';
-import { FotosComponent } from './fotos/fotos.component';
-import { FlyerComponent } from './flyer/flyer.component';
+import { HomeComponent } from './components/home/home.component';
+import { BlogComponent } from './components/blog/blog.component';
+import { FotosComponent } from './components/fotos/fotos.component';
+import { FlyerComponent } from './components/flyer/flyer.component';
 
 @NgModule({
   declarations: [
@@ -75,7 +75,7 @@ import { FlyerComponent } from './flyer/flyer.component';
     MdProgressBarModule,
     MdProgressCircleModule
   ],
-  providers: [FirebaseAuthService, FirebaseDatabaseService],
+  providers: [FirebaseAuthService, FirebaseDatabaseService, FormBuilder],
   entryComponents: [AppComponent],
   bootstrap: [AppComponent]
 })

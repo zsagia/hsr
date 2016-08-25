@@ -1,16 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'hsr-flyer',
   templateUrl: 'flyer.component.html',
   styleUrls: ['flyer.component.scss']
 })
-export class FlyerComponent implements OnInit {
+export class FlyerComponent {
 
   constructor() {
-  }
-
-  ngOnInit() {
   }
 
 }

@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FirebaseAuthService } from '../shared/firebase-auth.service';
+import { Component } from '@angular/core';
+import { FirebaseAuthService } from '../../shared/firebase-auth.service';
 
 @Component({
   selector: 'hsr-register',
@@ -10,13 +10,10 @@ border: 1px solid red;
 }
 `]
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent {
   user = {email: undefined, password: undefined};
 
   constructor(private firebaseAuthService: FirebaseAuthService) {
-  }
-
-  ngOnInit() {
   }
 
   onRegister() {

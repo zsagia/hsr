@@ -1,13 +1,13 @@
-import { Test1Component } from '../test1/test1.component';
-import { Test11Component } from '../test11/test11.component';
-import { Test2Component } from '../test2/test2.component';
-import { RegisterComponent } from '../register/register.component';
-import { LoginComponent } from '../login/login.component';
+import { Test1Component } from '../components/test1/test1.component';
+import { Test11Component } from '../components/test11/test11.component';
+import { Test2Component } from '../components/test2/test2.component';
+import { RegisterComponent } from '../components/register/register.component';
+import { LoginComponent } from '../components/login/login.component';
 import { FirebaseAuthService } from '../shared/firebase-auth.service';
-import { HomeComponent } from '../home/home.component';
-import { BlogComponent } from '../blog/blog.component';
-import { FotosComponent } from '../fotos/fotos.component';
-import { FlyerComponent } from '../flyer/flyer.component';
+import { HomeComponent } from '../components/home/home.component';
+import { BlogComponent } from '../components/blog/blog.component';
+import { FotosComponent } from '../components/fotos/fotos.component';
+import { FlyerComponent } from '../components/flyer/flyer.component';
 
 export const ROUTES_CONFIG = [
   {path: '', component: HomeComponent},
