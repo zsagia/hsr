@@ -19,6 +19,11 @@
     "types": [
       "jasmine",
       "hammerjs"
+    ],
+    "filesGlob": [
+      "**/*.ts",
+      "!node_modules/**/*",
+      "firebase3.d.ts"
     ]
   }
 }
