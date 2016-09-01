@@ -1,28 +1,32 @@
-import { Component, OnInit } from '@angular/core';
-import { REACTIVE_FORM_DIRECTIVES, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component } from '@angular/core';
 import { CKEditor } from 'ng2-ckeditor';
 
 @Component({
   selector: 'hsr-blog',
   templateUrl: 'blog.component.html',
   styleUrls: ['blog.component.scss'],
-  directives: [REACTIVE_FORM_DIRECTIVES, CKEditor],
+  directives: [CKEditor],
 })
-export class BlogComponent implements OnInit {
+export class BlogComponent {
 
-  modelForm: FormGroup;
+  inContent: string = '<h1>BLA</h1>';
+  outContent: string = 'test';
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor() {
   }
 
-  ngOnInit() {
-    this.modelForm = this.formBuilder.group({
-      title: ['', Validators.required],
-      content: ['', Validators.required],
-    });
+  onCkEditorChange(content) {
+    console.log(content);
+    this.inContent = content;
   }
 
-  onSubmitModelForm(form) {
-    console.log(form);
+  onTinyMceChange(content) {
+    console.log(content);
+    this.outContent = content;
   }
+
+  getContent() {
+    return this.outContent;
+  }
+
 }

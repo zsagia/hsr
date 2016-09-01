@@ -35,6 +35,7 @@ import { HomeComponent } from './components/home/home.component';
 import { BlogComponent } from './components/blog/blog.component';
 import { FotosComponent } from './components/fotos/fotos.component';
 import { FlyerComponent } from './components/flyer/flyer.component';
+import { TinyMceComponent } from './tinymce/tinymce.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { FlyerComponent } from './components/flyer/flyer.component';
     HomeComponent,
     BlogComponent,
     FotosComponent,
-    FlyerComponent
+    FlyerComponent,
+    TinyMceComponent
   ],
   imports: [
     RouterModule.forRoot(ROUTES_CONFIG),
