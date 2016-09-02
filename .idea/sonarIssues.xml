@@ -18,6 +18,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/.idea/checkstyle-idea.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/.idea/sonarIssues.xml">
           <value>
             <set />
@@ -228,6 +233,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/app/shared/firebase-database.service.ts">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/app/shared/register.type.ts">
           <value>
             <set />
@@ -244,6 +254,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/app/test2/test2.component.ts">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/app/tinymce/tinymce.component.ts">
           <value>
             <set />
           </value>
