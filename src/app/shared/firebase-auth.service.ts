@@ -21,8 +21,15 @@ export class FirebaseAuthService implements CanActivate {
 
     this.angularFire.auth.subscribe(auth => {
       this.authState = auth;
-      console.log('FIREBASE_AUTH_STATE:\n' + auth);
+      console.log('AUTH STATE:');
+      console.log(auth);
+      console.log('CURRENT USER:');
+      console.log(firebase.auth().currentUser);
     });
+  }
+
+  getCurrentUser() {
+    return firebase.auth().currentUser;
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {

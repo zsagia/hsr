@@ -1,5 +1,17 @@
-<!--<ckeditor [value]="outContent" (change)="onCkEditorChange($event)"></ckeditor>-->
+<form>
+  <md-input type="text"
+            placeholder="Titel"
+            id="title"
+            name="title"
+            required
+            [(ngModel)]="currentEntry.title"></md-input>
+  <hsr-tinymce [htmlContent]="inContent"></hsr-tinymce>
+  <button md-raised-button (click)="saveEntry(currentEntry)">Speichern</button>
+  <button md-raised-button (click)="uploadImages()">Image-Upload</button>
+</form>
 
-<hsr-tinymce [htmlContent]="inContent" (contentChanged)="onTinyMceChange($event)"></hsr-tinymce>
-<div>{{getContent()}}</div>
-
+<md-card *ngFor="let blog of blogEntries | async" style="margin: 16px;">
+  <h1>{{blog.title}}</h1>
+  <h5>{{blog.author}}</h5>
+  <div [innerHTML]="blog.content"></div>
+</md-card>

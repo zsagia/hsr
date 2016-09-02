@@ -8,6 +8,14 @@ export class FirebaseDatabaseService {
   constructor(private angularFire: AngularFire) {
   }
 
+  getBlogEntries(): FirebaseListObservable<any> {
+    return this.angularFire.database.list('blog');
+  }
+
+  getBlogEntry(id: number) {
+    return this.angularFire.database.object('blog/' + (id - 1));
+  }
+
   getItems(): FirebaseListObservable<any> {
     return this.angularFire.database.list('employee');
   }
