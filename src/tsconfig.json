@@ -20,10 +20,8 @@
       "jasmine",
       "hammerjs"
     ],
-    "filesGlob": [
-      "**/*.ts",
-      "!node_modules/**/*",
-      "firebase3.d.ts"
+    "files": [
+      "node_modules/angularfire2/firebase3.d.ts"
     ]
   }
 }
