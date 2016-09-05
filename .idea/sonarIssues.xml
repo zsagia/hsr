@@ -118,6 +118,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/app/components/platten/platten.component.ts">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/app/components/register/register.component.html">
           <value>
             <set />
@@ -184,6 +189,21 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/app/login/login.component.ts">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/app/pipes/orderBy.pipe.ts">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/app/pipes/reverse.pipe.ts">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/app/pipes/sort.pipe.ts">
           <value>
             <set />
           </value>
@@ -279,6 +299,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/typings.d.ts">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/tslint.json">
           <value>
             <set />
           </value>

@@ -37,7 +37,7 @@ export class TinyMceComponent implements AfterViewInit, OnDestroy {
       {
         mode: 'exact',
         schema: 'html5',
-        height: 400,
+        height: 200,
         theme: 'modern',
         plugins: 'advlist autolink lists link image imagetools charmap preview code media table contextmenu paste code colorpicker emoticons tabfocus textcolor',
         toolbar: 'code | insertfile undo redo | styleselect | textcolor | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | emoticons media link image',

@@ -8,15 +8,17 @@ import { HomeComponent } from '../components/home/home.component';
 import { BlogComponent } from '../components/blog/blog.component';
 import { FotosComponent } from '../components/fotos/fotos.component';
 import { FlyerComponent } from '../components/flyer/flyer.component';
+import { PlattenComponent } from '../components/platten/platten.component';
 
 export const ROUTES_CONFIG = [
   {path: '', component: HomeComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'test1', component: Test1Component, text: 'TEST1', canActivate: [FirebaseAuthService]},
+  {path: 'test1', component: Test1Component, canActivate: [FirebaseAuthService]},
   {path: 'test11/:id', component: Test11Component, canActivate: [FirebaseAuthService]},
-  {path: 'test2', component: Test2Component, text: 'TEST2', canActivate: [FirebaseAuthService]},
+  {path: 'test2', component: Test2Component, canActivate: [FirebaseAuthService]},
   {path: 'blog', component: BlogComponent, text: 'Blog', canActivate: [FirebaseAuthService]},
   {path: 'fotos', component: FotosComponent, text: 'Fotos', canActivate: [FirebaseAuthService]},
-  {path: 'flyer', component: FlyerComponent, text: 'Flyer', canActivate: [FirebaseAuthService]}
+  {path: 'flyer', component: FlyerComponent, text: 'Flyer', canActivate: [FirebaseAuthService]},
+  {path: 'platten', component: PlattenComponent, text: 'Platten', canActivate: [FirebaseAuthService]}
 ];

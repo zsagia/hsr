@@ -36,6 +36,7 @@ import { BlogComponent } from './components/blog/blog.component';
 import { FotosComponent } from './components/fotos/fotos.component';
 import { FlyerComponent } from './components/flyer/flyer.component';
 import { TinyMceComponent } from './tinymce/tinymce.component';
+import { PlattenComponent } from './components/platten/platten.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { TinyMceComponent } from './tinymce/tinymce.component';
     BlogComponent,
     FotosComponent,
     FlyerComponent,
-    TinyMceComponent
+    TinyMceComponent,
+    PlattenComponent
   ],
   imports: [
     RouterModule.forRoot(ROUTES_CONFIG),

@@ -9,7 +9,11 @@ export class FirebaseDatabaseService {
   }
 
   getBlogEntries(): FirebaseListObservable<any> {
-    return this.angularFire.database.list('blog');
+    return this.angularFire.database.list('blog', {
+      query: {
+        orderByChild: 'reverseDate'
+      }
+    });
   }
 
   getBlogEntry(id: number) {
