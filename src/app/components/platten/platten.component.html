@@ -1,2 +1,31 @@
-<p>
-  platten works! </p>
+<md-card style="height: 270px; width: 100%;">
+  <form [formGroup]="platteForm" (submit)="onSubmit($event)" style="height: 100%;display:flex; flex-direction:column; flex-wrap:wrap;">
+    <md-input [type]="text" formControlName="name" placeholder="Name"></md-input>
+    <md-input [type]="text" formControlName="kurzbezeichnung" placeholder="Kurzbezeichnung"></md-input>
+    <md-input [type]="text" formControlName="label" placeholder="Label"></md-input>
+    <md-input [type]="text" formControlName="sideA" placeholder="Side A"></md-input>
+    <md-input [type]="text" formControlName="sideB" placeholder="Side B"></md-input>
+    <md-input [type]="text" formControlName="genre" placeholder="Genre"></md-input>
+    <md-input [type]="date" formControlName="year" placeholder="Erscheinungsjahr"></md-input>
+    <md-input [type]="text" formControlName="cover" placeholder="Cover"></md-input>
+    <button md-button [type]="submit" [disabled]="!platteForm.valid">Speichern</button>
+  </form>
+
+</md-card>
+
+<div style="width: 100%; height: 100%;padding: 16px;">
+  <md-grid-list cols="3" rowHeight="1:1" gutterSize="8px">
+    <md-grid-tile *ngFor="let platte of platten | async">
+      <div style="height: 100%; width: 100%;background-size:contain;background-repeat: no-repeat;" [ngStyle]="{'background-image': 'url(' + platte.cover + ')'}">
+        <div style="background-color: rgba(0,0,0,0.7);color:white;">
+          <h3>{{platte.name}}</h3>
+          <p>{{platte.label}} ({{platte.kurzbezeichnung}})</p>
+          <p>Side A: {{platte.sideA}}</p>
+          <p>Side B: {{platte.sideB}}</p>
+          <p>Genre: {{platte.genre}}</p>
+          <p>Erscheinungsjahr: {{platte.year}}</p>
+        </div>
+      </div>
+    </md-grid-tile>
+  </md-grid-list>
+</div>

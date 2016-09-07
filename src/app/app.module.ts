@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, FormBuilder } from '@angular/forms';
+import { FormsModule, FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { AngularFireModule } from 'angularfire2';
 import { RouterModule } from '@angular/router';
 import { MdCardModule } from '@angular2-material/card';
@@ -23,7 +23,6 @@ import { MdProgressBarModule } from '@angular2-material/progress-bar';
 import { MdProgressCircleModule } from '@angular2-material/progress-circle';
 import { AppComponent } from './app.component';
 import { Test1Component } from './components/test1/test1.component';
-import { Test2Component } from './components/test2/test2.component';
 import { RegisterComponent } from './components/register/register.component';
 import { Test11Component } from './components/test11/test11.component';
 import { LoginComponent } from './components/login/login.component';
@@ -37,12 +36,13 @@ import { FotosComponent } from './components/fotos/fotos.component';
 import { FlyerComponent } from './components/flyer/flyer.component';
 import { TinyMceComponent } from './tinymce/tinymce.component';
 import { PlattenComponent } from './components/platten/platten.component';
+import { PlattenCardComponent } from './components/platten/platten-card/platten-card.component';
+import { HttpModule, JsonpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
     AppComponent,
     Test1Component,
-    Test2Component,
     RegisterComponent,
     Test11Component,
     LoginComponent,
@@ -51,14 +51,25 @@ import { PlattenComponent } from './components/platten/platten.component';
     FotosComponent,
     FlyerComponent,
     TinyMceComponent,
-    PlattenComponent
+    PlattenComponent,
+    PlattenCardComponent
   ],
   imports: [
+    // Router
     RouterModule.forRoot(ROUTES_CONFIG),
+    // Browser
     BrowserModule,
+    // Common
     CommonModule,
+    // AJAX
+    HttpModule,
+    JsonpModule,
+    // Forms
     FormsModule,
+    ReactiveFormsModule,
+    // AngularFire2
     AngularFireModule.initializeApp(FIREBASE_CONFIG),
+    // Material Design
     MdCardModule,
     MdListModule,
     MdButtonModule,
@@ -79,7 +90,11 @@ import { PlattenComponent } from './components/platten/platten.component';
     MdProgressBarModule,
     MdProgressCircleModule
   ],
-  providers: [FirebaseAuthService, FirebaseDatabaseService, FormBuilder],
+  providers: [
+    FirebaseAuthService,
+    FirebaseDatabaseService,
+    FormBuilder
+  ],
   entryComponents: [AppComponent],
   bootstrap: [AppComponent]
 })

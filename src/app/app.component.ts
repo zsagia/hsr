@@ -11,8 +11,10 @@ import { AngularFire } from 'angularfire2';
 })
 export class AppComponent {
   routes = ROUTES_CONFIG;
+  auth;
 
   constructor(private firebaseAuthService: FirebaseAuthService, private af: AngularFire, private router: Router) {
+    af.auth.subscribe(auth => this.auth = auth);
   }
 
   onLogout() {

@@ -16,6 +16,14 @@ export class FirebaseDatabaseService {
     });
   }
 
+  getPlatten(): FirebaseListObservable<any> {
+    return this.angularFire.database.list('platten');
+  }
+
+  getPlatte(id: number): FirebaseObjectObservable<any> {
+    return this.angularFire.database.object('platten/' + (id - 1));
+  }
+
   getBlogEntry(id: number) {
     return this.angularFire.database.object('blog/' + (id - 1));
   }

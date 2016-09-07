@@ -35,6 +35,7 @@
           <option name="XML_LEGACY_SETTINGS_IMPORTED" value="true" />
         </XML>
         <codeStyleSettings language="HTML">
+          <option name="RIGHT_MARGIN" value="180" />
           <option name="WRAP_ON_TYPING" value="0" />
           <indentOptions>
             <option name="CONTINUATION_INDENT_SIZE" value="2" />

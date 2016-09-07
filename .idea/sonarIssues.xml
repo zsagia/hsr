@@ -48,6 +48,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/node_modules/@angular2-material/button/package.json">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/node_modules/@types/hammerjs/README.md">
           <value>
             <set />
@@ -118,7 +123,37 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/app/components/platten/platten-card/platten-card.component.html">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/app/components/platten/platten-card/platten-card.component.scss">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/app/components/platten/platten-card/platten-card.component.ts">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/app/components/platten/platten.component.html">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/app/components/platten/platten.component.scss">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/app/components/platten/platten.component.ts">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/app/components/platten/shared/platte.type.ts">
           <value>
             <set />
           </value>
@@ -244,6 +279,21 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/app/routes.ts">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/app/shared/cors-browser-xhr.service.ts">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/app/shared/cors-browser-xhr.ts">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/app/shared/discogs.service.ts">
           <value>
             <set />
           </value>
