@@ -14,8 +14,6 @@
 *.launch
 .settings/
 
-
-
 # misc
 /.sass-cache
 /connect.lock

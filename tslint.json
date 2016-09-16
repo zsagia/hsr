@@ -92,7 +92,14 @@
       "check-separator",
       "check-type"
     ],
-
+    "directive-selector-prefix": [
+      true,
+      "hsr"
+    ],
+    "component-selector-prefix": [
+      true,
+      "hsr"
+    ],
     "directive-selector-name": [true, "camelCase"],
     "component-selector-name": [true, "kebab-case"],
     "directive-selector-type": [true, "attribute"],
