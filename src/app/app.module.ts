@@ -38,6 +38,7 @@ import { TinyMceComponent } from './tinymce/tinymce.component';
 import { PlattenComponent } from './components/platten/platten.component';
 import { PlattenCardComponent } from './components/platten/platten-card/platten-card.component';
 import { HttpModule, JsonpModule } from '@angular/http';
+import { SafePipe } from './pipes/safe.pipe';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { HttpModule, JsonpModule } from '@angular/http';
     FlyerComponent,
     TinyMceComponent,
     PlattenComponent,
-    PlattenCardComponent
+    PlattenCardComponent,
+    SafePipe
   ],
   imports: [
     // Router

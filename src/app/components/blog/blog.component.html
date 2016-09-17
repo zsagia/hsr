@@ -14,5 +14,5 @@
 <md-card *ngFor="let blog of blogEntries | async" style="margin: 16px;">
   <h1>{{blog.title}}</h1>
   <h5>{{blog.author}}</h5>
-  <div [innerHTML]="blog.content"></div>
+  <div [innerHTML]="blog.content | safe"></div>
 </md-card>

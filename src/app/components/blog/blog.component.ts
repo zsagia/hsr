@@ -3,7 +3,6 @@ import { TinyMceComponent } from '../../tinymce/tinymce.component';
 import { FirebaseListObservable } from 'angularfire2';
 import { FirebaseDatabaseService } from '../../shared/firebase-database.service';
 import { FirebaseAuthService } from '../../shared/firebase-auth.service';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
   selector: 'hsr-blog',
@@ -25,7 +24,7 @@ export class BlogComponent {
 
   blogEntries: FirebaseListObservable<any>;
 
-  constructor(private firebaseDatabaseService: FirebaseDatabaseService, private firebaseAuthService: FirebaseAuthService, private sanitizer: DomSanitizer) {
+  constructor(private firebaseDatabaseService: FirebaseDatabaseService, private firebaseAuthService: FirebaseAuthService) {
     this.blogEntries = firebaseDatabaseService.getBlogEntries();
   }
 
@@ -43,12 +42,6 @@ export class BlogComponent {
   uploadImages() {
     this.tinyMce.uploadImages();
   }
-
-  // TODO: make unsafe html output work
-  unsafe(htmlString: string): SafeHtml {
-    return this.sanitizer.bypassSecurityTrustHtml(htmlString);
-  }
-
 }
 
 export interface BlogEntry {
