@@ -39,6 +39,10 @@ export class BlogComponent {
     this.blogEntries.push(content);
   }
 
+  deleteEntry(key) {
+    this.blogEntries.remove(key);
+  }
+
   uploadImages() {
     this.tinyMce.uploadImages();
   }
