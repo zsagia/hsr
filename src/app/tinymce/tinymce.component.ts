@@ -1,7 +1,5 @@
 import { Component, ElementRef, EventEmitter, Inject, Output, Input, AfterViewInit, OnDestroy } from '@angular/core';
 
-declare var tinymce: any;
-
 @Component({
   selector: 'hsr-tinymce',
   template: `
