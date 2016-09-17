@@ -15,6 +15,15 @@
     "target": "es5",
     "typeRoots": [
       "../node_modules/@types"
+    ],
+    "types": [
+      "jasmine",
+      "hammerjs"
+    ],
+    "filesGlob": [
+      "typings/index.d.ts",
+      "!node_modules/**/*",
+      "firebase3.d.ts"
     ]
   }
 }

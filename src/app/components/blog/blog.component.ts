@@ -3,14 +3,12 @@ import { TinyMceComponent } from '../../tinymce/tinymce.component';
 import { FirebaseListObservable } from 'angularfire2';
 import { FirebaseDatabaseService } from '../../shared/firebase-database.service';
 import { FirebaseAuthService } from '../../shared/firebase-auth.service';
-import { ReversePipe } from '../../pipes/reverse.pipe';
-import { DomSanitizationService, SafeHtml } from '@angular/platform-browser';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
   selector: 'hsr-blog',
   templateUrl: 'blog.component.html',
-  styleUrls: ['blog.component.scss'],
-  pipes: [ReversePipe]
+  styleUrls: ['blog.component.scss']
 })
 export class BlogComponent {
   @ViewChild(TinyMceComponent) tinyMce: TinyMceComponent;
@@ -27,7 +25,7 @@ export class BlogComponent {
 
   blogEntries: FirebaseListObservable<any>;
 
-  constructor(private firebaseDatabaseService: FirebaseDatabaseService, private firebaseAuthService: FirebaseAuthService, private sanitizer: DomSanitizationService) {
+  constructor(private firebaseDatabaseService: FirebaseDatabaseService, private firebaseAuthService: FirebaseAuthService, private sanitizer: DomSanitizer) {
     this.blogEntries = firebaseDatabaseService.getBlogEntries();
   }
 

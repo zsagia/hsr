@@ -5,7 +5,7 @@ import { ROUTES_CONFIG } from './config/routes.config.ts';
 import { AngularFire } from 'angularfire2';
 
 @Component({
-  selector: 'app-root',
+  selector: 'hsr-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss']
 })

@@ -6,7 +6,7 @@ import { FirebaseListObservable } from 'angularfire2';
   selector: 'hsr-test1',
   template: `
  <md-card>
- <hi>Test1</hi>
+ <h1>Test1</h1>
       <md-list class="app-list">
         <md-list-item  *ngFor="let item of items | async" [routerLink]="['/test11', item.id]">
           <h3 md-line>{{item.firstName}} {{item.lastName}}</h3>

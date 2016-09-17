@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFire, AuthMethods, AuthProviders } from 'angularfire2';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-import User = firebase.User;
 
 @Injectable()
 export class FirebaseAuthService implements CanActivate {
@@ -10,8 +9,6 @@ export class FirebaseAuthService implements CanActivate {
   facebookProvider;
 
   authState;
-
-  currentUser: User;
 
   accessToken: string;
 
@@ -69,8 +66,6 @@ export class FirebaseAuthService implements CanActivate {
     firebase.auth().signInWithPopup(this.googleProvider).then(result => {
       // This gives you a Google Access Token. You can use it to access the Google API.
       this.accessToken = result.credential['accessToken'];
-      // The signed-in user info.
-      this.currentUser = result.user;
     }).catch(function (error) {
       console.log(error);
     });
@@ -80,8 +75,6 @@ export class FirebaseAuthService implements CanActivate {
     firebase.auth().signInWithPopup(this.facebookProvider).then(result => {
       // This gives you a Google Access Token. You can use it to access the Google API.
       this.accessToken = result.credential['accessToken'];
-      // The signed-in user info.
-      this.currentUser = result.user;
     }).catch(function (error) {
       console.log(error);
     });
