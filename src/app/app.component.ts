@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FirebaseAuthService } from './shared/firebase-auth.service';
 import { Router } from '@angular/router';
-import { ROUTES_CONFIG } from './config/routes.config.ts';
+import { ROUTES_CONFIG } from './config/routes.config';
 import { AngularFire } from 'angularfire2';
 
 @Component({
