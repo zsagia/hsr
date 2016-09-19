@@ -42,10 +42,6 @@ export class BlogComponent {
   deleteEntry(key) {
     this.blogEntries.remove(key);
   }
-
-  uploadImages() {
-    this.tinyMce.uploadImages();
-  }
 }
 
 export interface BlogEntry {
