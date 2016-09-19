@@ -28,8 +28,8 @@ import { Test11Component } from './components/test11/test11.component';
 import { LoginComponent } from './components/login/login.component';
 import { ROUTES_CONFIG } from './config/routes.config';
 import { FIREBASE_CONFIG } from './config/firebase.config';
-import { FirebaseAuthService } from './shared/firebase-auth.service';
-import { FirebaseDatabaseService } from './shared/firebase-database.service';
+import { FirebaseAuthService } from './services/firebase-auth.service';
+import { FirebaseDatabaseService } from './services/firebase-database.service';
 import { HomeComponent } from './components/home/home.component';
 import { BlogComponent } from './components/blog/blog.component';
 import { FotosComponent } from './components/fotos/fotos.component';
@@ -39,6 +39,9 @@ import { PlattenComponent } from './components/platten/platten.component';
 import { PlattenCardComponent } from './components/platten/platten-card/platten-card.component';
 import { HttpModule, JsonpModule } from '@angular/http';
 import { SafePipe } from './pipes/safe.pipe';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { FileDropDirective } from 'angular2-file-drop';
+import { FirebaseStorageService } from './services/firebase-storage.service';
 
 @NgModule({
   declarations: [
@@ -54,7 +57,9 @@ import { SafePipe } from './pipes/safe.pipe';
     TinyMceComponent,
     PlattenComponent,
     PlattenCardComponent,
-    SafePipe
+    SafePipe,
+    PageNotFoundComponent,
+    FileDropDirective
   ],
   imports: [
     // Router
@@ -95,6 +100,7 @@ import { SafePipe } from './pipes/safe.pipe';
   providers: [
     FirebaseAuthService,
     FirebaseDatabaseService,
+    FirebaseStorageService,
     FormBuilder
   ],
   entryComponents: [AppComponent],

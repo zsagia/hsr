@@ -12,6 +12,8 @@ import { Component, ElementRef, EventEmitter, Inject, Output, Input, AfterViewIn
 })
 export class TinyMceComponent implements AfterViewInit, OnDestroy {
 
+  // TODO: http://blog.thoughtram.io/angular/2016/07/27/custom-form-controls-in-angular-2.html
+
   elementId: string;
   @Input() htmlContent: string;
   @Output() contentChanged: EventEmitter<any>;

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { FirebaseDatabaseService } from '../../shared/firebase-database.service';
+import { FirebaseDatabaseService } from '../../services/firebase-database.service';
 import { FirebaseListObservable } from 'angularfire2';
 
 @Component({

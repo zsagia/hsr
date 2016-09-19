@@ -1,8 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import { TinyMceComponent } from '../../tinymce/tinymce.component';
 import { FirebaseListObservable } from 'angularfire2';
-import { FirebaseDatabaseService } from '../../shared/firebase-database.service';
-import { FirebaseAuthService } from '../../shared/firebase-auth.service';
+import { FirebaseDatabaseService } from '../../services/firebase-database.service';
+import { FirebaseAuthService } from '../../services/firebase-auth.service';
 
 @Component({
   selector: 'hsr-blog',

@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'hsr-home',
   template: `
     <h1>
-     Your at home Baby!
+     H0ch5chwabrebe11en
     </h1>
   `,
   styles: []

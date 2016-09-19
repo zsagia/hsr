@@ -16,6 +16,10 @@ export class FirebaseDatabaseService {
     });
   }
 
+  getBlogEntry(id: number) {
+    return this.angularFire.database.object('blog/' + (id - 1));
+  }
+
   getPlatten(): FirebaseListObservable<any> {
     return this.angularFire.database.list('platten');
   }
@@ -24,8 +28,8 @@ export class FirebaseDatabaseService {
     return this.angularFire.database.object('platten/' + (id - 1));
   }
 
-  getBlogEntry(id: number) {
-    return this.angularFire.database.object('blog/' + (id - 1));
+  getFlyer(): FirebaseListObservable<any> {
+    return this.angularFire.database.list('flyer');
   }
 
   getItems(): FirebaseListObservable<any> {
