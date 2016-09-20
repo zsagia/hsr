@@ -22,9 +22,7 @@ import { MdGridListModule } from '@angular2-material/grid-list';
 import { MdProgressBarModule } from '@angular2-material/progress-bar';
 import { MdProgressCircleModule } from '@angular2-material/progress-circle';
 import { AppComponent } from './app.component';
-import { Test1Component } from './components/test1/test1.component';
 import { RegisterComponent } from './components/register/register.component';
-import { Test11Component } from './components/test11/test11.component';
 import { LoginComponent } from './components/login/login.component';
 import { ROUTES_CONFIG } from './config/routes.config';
 import { FIREBASE_CONFIG } from './config/firebase.config';
@@ -36,19 +34,19 @@ import { FotosComponent } from './components/fotos/fotos.component';
 import { FlyerComponent } from './components/flyer/flyer.component';
 import { TinyMceComponent } from './tinymce/tinymce.component';
 import { PlattenComponent } from './components/platten/platten.component';
-import { PlattenCardComponent } from './components/platten/platten-card/platten-card.component';
 import { HttpModule, JsonpModule } from '@angular/http';
 import { SafePipe } from './pipes/safe.pipe';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { FileDropDirective } from 'angular2-file-drop';
 import { FirebaseStorageService } from './services/firebase-storage.service';
+import { FILE_UPLOAD_DIRECTIVES } from 'ng2-file-upload';
+import { LinkAccountComponent } from './components/link-account/link-account.component';
+import { FileInputDirective } from './file-input/file-input.directive';
+import { PlattenDetailsComponent } from './components/platten/platten-details/platten-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    Test1Component,
     RegisterComponent,
-    Test11Component,
     LoginComponent,
     HomeComponent,
     BlogComponent,
@@ -56,10 +54,12 @@ import { FirebaseStorageService } from './services/firebase-storage.service';
     FlyerComponent,
     TinyMceComponent,
     PlattenComponent,
-    PlattenCardComponent,
+    PlattenDetailsComponent,
     SafePipe,
     PageNotFoundComponent,
-    FileDropDirective
+    LinkAccountComponent,
+    FileInputDirective,
+    FILE_UPLOAD_DIRECTIVES
   ],
   imports: [
     // Router

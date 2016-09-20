@@ -1,11 +1,13 @@
 <!doctype html>
-<html style="margin:0; height: 100%;max-width: 100%;">
+<html>
 <head>
   <meta charset="utf-8">
   <title>Hsr</title>
   <base href="/">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Google-Font: Special Elite -->
+  <link href="https://fonts.googleapis.com/css?family=Special+Elite" rel="stylesheet">
   <!-- Favicons -->
   <link rel="apple-touch-icon" sizes="57x57" href="assets/favicon/apple-icon-57x57.png">
   <link rel="apple-touch-icon" sizes="60x60" href="assets/favicon/apple-icon-60x60.png">
@@ -24,14 +26,23 @@
   <meta name="msapplication-TileColor" content="#000000">
   <meta name="msapplication-TileImage" content="assets/favicon/ms-icon-144x144.png">
   <meta name="theme-color" content="#000000">
+  <!-- Google Meta-Tags-->
+  <meta name="google-signin-client_id" content="222824394735-h0lnic97vab85ofmd58q95qpa4m1fcuq.apps.googleusercontent.com">
 
   <!-- Material Icons Font -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <!-- TinyMCE TODO: use npm package -->
   <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+  <!--Google-API-->
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
 
 </head>
-<body style="margin:0; height: 100%;max-width: 100%; background-color: lightgrey">
-<hsr-root>Loading...</hsr-root>
+<body>
+<hsr-root>
+  <div class="loading-screen">
+    <img src="assets/hsr_hirsch.jpg" style="width: 300px;height: auto;">
+    <div style="color: white;">Loading...</div>
+  </div>
+</hsr-root>
 </body>
 </html>

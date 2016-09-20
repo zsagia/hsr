@@ -13,18 +13,18 @@ border: 1px solid red;
 export class RegisterComponent {
   user = {email: undefined, password: undefined};
 
-  constructor(private firebaseAuthService: FirebaseAuthService) {
+  constructor(private auth: FirebaseAuthService) {
   }
 
   onRegister() {
-    this.firebaseAuthService.registerWithEmailAndPassword(this.user);
+    this.auth.registerWithEmailAndPassword(this.user);
   }
 
   onGoogle() {
-    this.firebaseAuthService.registerWithGoogle();
+    this.auth.registerWithGoogle();
   }
 
   onFacebook() {
-    this.firebaseAuthService.registerWithFacebook();
+    this.auth.registerWithFacebook();
   }
 }

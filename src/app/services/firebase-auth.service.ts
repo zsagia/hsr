@@ -71,6 +71,16 @@ export class FirebaseAuthService implements CanActivate {
     });
   }
 
+  linkWithGoogle() {
+    firebase.auth().signInWithPopup(this.googleProvider).then(result => {
+      // This gives you a Google Access Token. You can use it to access the Google API.
+      console.log(result.credential);
+      console.log(result.user);
+    }).catch(function (error) {
+      console.log(error);
+    });
+  }
+
   registerWithFacebook() {
     firebase.auth().signInWithPopup(this.facebookProvider).then(result => {
       // This gives you a Google Access Token. You can use it to access the Google API.
