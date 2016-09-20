@@ -1,8 +1,8 @@
-<md-toolbar color="primary" class="toolbar" style="position: fixed;top: 0; left: 0;z-index: 99;">
+<md-toolbar color="primary" class="toolbar">
 
   <img class="logo" routerLink="" src="assets/hsr_banner2.png" alt="HSR"/>
 
-  <div style="flex: 1 1 auto;"></div>
+  <span style="flex: 1 1 auto;"></span>
 
   <div *ngIf="auth" class="toolbar-right">
     <a (click)="onLogout()">Logout</a>
@@ -16,13 +16,18 @@
 
   <md-toolbar-row *ngIf="auth">
     <template ngFor let-route [ngForOf]="routes" class="navigation">
-      <a md-button class="nav-item" *ngIf="route.text" [routerLink]="route.path" routerLinkActive="active-route" [routerLinkActiveOptions]="{exact: true}">{{route.text}}</a>
+      <a md-button
+         class="nav-item"
+         *ngIf="route.text"
+         [routerLink]="route.path"
+         routerLinkActive="active-route"
+         [routerLinkActiveOptions]="{exact: true}">{{route.text}}</a>
     </template>
   </md-toolbar-row>
 
 </md-toolbar>
 
-<div style="margin-top: 128px;">
+<div style="max-width: 100%;">
   <router-outlet></router-outlet>
 </div>
 

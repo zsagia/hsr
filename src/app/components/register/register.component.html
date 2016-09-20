@@ -2,36 +2,25 @@
   <h1>Registrieren</h1>
   <form #registerForm="ngForm" (ngSubmit)="onRegister()">
 
-    <md-input ngControl="email"
-              [(ngModel)]="user.email"
-              required
-              type="email"
-              id="email"
-              name="email"
-              placeholder="E-Mail">
+    <md-input ngControl="email" [(ngModel)]="user.email" required type="email" id="email" name="email" placeholder="E-Mail">
     <span md-prefix>
           <i class="material-icons app-input-icon">mail</i>
           &nbsp;
         </span>
     </md-input>
 
-    <md-input ngControl="password"
-              [(ngModel)]="user.password"
-              required
-              type="password"
-              id="password"
-              name="password"
-              placeholder="Passwort">
+    <md-input ngControl="password" [(ngModel)]="user.password" required type="password" id="password" name="password" placeholder="Passwort">
     <span md-prefix>
           <i class="material-icons app-input-icon">vpn_key</i>
           &nbsp;
         </span>
     </md-input>
-
-    <button type="submit">Registrieren</button>
-
+    <div style="display: flex; flex-direction: row; align-items: flex-end; justify-content: flex-end">
+      <button md-raised-button type="submit">Registrieren</button>
+    </div>
   </form>
-
-  <button (click)="onGoogle()">Mit Google registrieren</button>
-  <button (click)="onFacebook()">Mit Facebook registrieren</button>
+  <!--TODO: enable when linking possible-->
+  <!--
+    <button (click)="onGoogle()">Mit Google registrieren</button>
+    <button (click)="onFacebook()">Mit Facebook registrieren</button>-->
 </md-card>

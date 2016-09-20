@@ -78,6 +78,56 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/node_modules/ng2-file-upload/.config/bundle-system.js">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/node_modules/ng2-file-upload/.editorconfig">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/node_modules/ng2-file-upload/.travis.yml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/node_modules/ng2-file-upload/CHANGELOG.md">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/node_modules/ng2-file-upload/LICENSE">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/node_modules/ng2-file-upload/components/file-upload/readme.md">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/node_modules/ng2-file-upload/package.json">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/node_modules/ng2-file-upload/spec-bundle.js">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/node_modules/ng2-file-upload/tsconfig.publish.json">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/node_modules/ng2-file-upload/typings.json">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/package.json">
           <value>
             <set />
@@ -133,12 +183,37 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/app/components/home/home.component.html">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/app/components/home/home.component.ts">
           <value>
             <set />
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/app/components/index.ts">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/app/components/link-account/index.ts">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/app/components/link-account/link-account.component.html">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/app/components/link-account/link-account.component.ts">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/app/components/login/login.component.html">
           <value>
             <set />
           </value>
@@ -159,6 +234,16 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/app/components/platten/platten-card/platten-card.component.ts">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/app/components/platten/platten-details/platten-details.component.html">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/app/components/platten/platten-details/platten-details.component.ts">
           <value>
             <set />
           </value>
@@ -234,6 +319,21 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/app/favicon/manifest.json">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/app/file-input/file-input.component.ts">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/app/file-input/file-input.directive.ts">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/app/file-input/single-file-input.component.ts">
           <value>
             <set />
           </value>
@@ -319,6 +419,16 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/app/routes.ts">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/app/services/firebase-auth.service.ts">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/app/services/firebase-database.service.ts">
           <value>
             <set />
           </value>

@@ -9,21 +9,21 @@ import { Router } from '@angular/router';
 export class LoginComponent {
   user = {email: undefined, password: undefined};
 
-  constructor(private firebaseAuthService: FirebaseAuthService, private router: Router) {
+  constructor(private auth: FirebaseAuthService, private router: Router) {
   }
 
   onLogin() {
-    this.firebaseAuthService.loginWithEmailAndPassword(this.user);
+    this.auth.loginWithEmailAndPassword(this.user);
     this.toHome();
   }
 
   onGoogle() {
-    this.firebaseAuthService.loginWithGoogle();
+    this.auth.loginWithGoogle();
     this.toHome();
   }
 
   onFacebook() {
-    this.firebaseAuthService.loginWithFacebook();
+    this.auth.loginWithFacebook();
     this.toHome();
   }
 

@@ -1,12 +1,12 @@
-<div style="width:400px; height: 120px; background-color: #FFDD33"
-     fileDrop
-     [ngClass]="{'file-is-over': fileIsOver}"
-     [options]="options"
-     (fileOver)="fileOver($event)"
-     (onFileDrop)="onFileDrop($event)">
-  Drop file here
+<input hsrFileInput (onSelected)="onFileDrop($event)" type="file" multiple/>
+
+<div ng2FileDrop class="file-drop" [ngClass]="{'file-drop-active': fileIsOver}"
+     (fileOver)="fileOver($event)" (onFileDrop)="onFileDrop($event)" [uploader]="uploader">
+  <div class="file-drop-text">Flyer hier droppen!!!</div>
 </div>
 
-<div *ngFor="let flyer of flyersList | async">
-  <img [src]="flyer.url">
+<div *ngFor="let flyer of flyersList | async" style="padding:16px;">
+  <md-card style="padding: 0; width: 600px;">
+    <img style="width: 600px; height: auto;" [src]="flyer.url">
+  </md-card>
 </div>

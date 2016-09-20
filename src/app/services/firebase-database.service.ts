@@ -24,12 +24,16 @@ export class FirebaseDatabaseService {
     return this.angularFire.database.list('platten');
   }
 
-  getPlatte(id: number): FirebaseObjectObservable<any> {
-    return this.angularFire.database.object('platten/' + (id - 1));
+  getPlatte(key: number): FirebaseObjectObservable<any> {
+    return this.angularFire.database.object('platten/' + key);
   }
 
-  getFlyer(): FirebaseListObservable<any> {
-    return this.angularFire.database.list('flyer');
+  getFlyers(): FirebaseListObservable<any> {
+    return this.angularFire.database.list('flyer', {
+      query: {
+        orderByChild: 'reverseDate'
+      }
+    });
   }
 
   getItems(): FirebaseListObservable<any> {
