@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { FirebaseListObservable } from 'angularfire2';
+import { FirebaseDatabaseService } from '../../services/firebase-database.service';
 
 @Component({
   selector: 'hsr-home',
@@ -6,7 +8,9 @@ import { Component } from '@angular/core';
   styles: []
 })
 export class HomeComponent {
+  blogEntries: FirebaseListObservable<any>;
 
-  constructor() {
+  constructor(private database: FirebaseDatabaseService) {
+    this.blogEntries = database.getBlogEntries();
   }
 }

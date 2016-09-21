@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { AngularFire, AuthMethods, AuthProviders } from 'angularfire2';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { AngularFire, AuthMethods, AuthProviders, FirebaseAuthState } from 'angularfire2';
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 
 @Injectable()
 export class FirebaseAuthService implements CanActivate {
@@ -12,7 +12,7 @@ export class FirebaseAuthService implements CanActivate {
 
   accessToken: string;
 
-  constructor(private angularFire: AngularFire) {
+  constructor(private angularFire: AngularFire, private router: Router) {
     this.googleProvider = new firebase.auth.GoogleAuthProvider();
     this.facebookProvider = new firebase.auth.FacebookAuthProvider();
 
@@ -35,10 +35,20 @@ export class FirebaseAuthService implements CanActivate {
 
   logout() {
     this.angularFire.auth.logout();
+    this.loginAnonymously().then(() => {
+      this.router.navigate(['']);
+    });
   }
 
   registerWithEmailAndPassword(user) {
     this.angularFire.auth.createUser({email: user.email, password: user.password});
+  }
+
+  loginAnonymously(): firebase.Promise<FirebaseAuthState> {
+    return this.angularFire.auth.login({
+      method: AuthMethods.Anonymous,
+      provider: AuthProviders.Anonymous
+    });
   }
 
   loginWithEmailAndPassword(user) {
@@ -91,6 +101,14 @@ export class FirebaseAuthService implements CanActivate {
   }
 
   loggedIn(): boolean {
-    return this.authState !== null;
+    if (this.authState) {
+      return !this.authState.auth.isAnonymous;
+    } else {
+      return false;
+    }
+  }
+
+  getUserData() {
+    return this.authState.auth;
   }
 }

@@ -1,6 +1,10 @@
 <md-card>
   <form>
     <md-input type="text" placeholder="Titel" id="title" name="title" required [(ngModel)]="currentEntry.title"></md-input>
+    <div>
+      <label for="showPublic">Öffentlich</label>
+      <md-checkbox id="showPublic" name="showPublic" [(ngModel)]="currentEntry.showPublic"></md-checkbox>
+    </div>
     <hsr-tinymce [htmlContent]="inContent"></hsr-tinymce>
 
     <div style="display: flex; flex-direction: row; align-items: flex-end; justify-content: flex-end">

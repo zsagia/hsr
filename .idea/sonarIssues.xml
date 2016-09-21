@@ -328,6 +328,16 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/app/dropzone/dropzone.component.html">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/app/dropzone/dropzone.component.scss">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/app/dropzone/dropzone.component.ts">
           <value>
             <set />

@@ -19,16 +19,14 @@
       </div>
     </div>
 
-    <div style="display: flex; flex-direction: column; align-items: flex-end; justify-content: flex-end">
+    <md-card-actions align="end">
       <button md-raised-button [type]="submit" [disabled]="!manualForm.valid">Speichern</button>
-    </div>
+    </md-card-actions>
   </form>
 </md-card>
 
-<div style="padding:16px;">
-  <md-card style="padding: 0; width: 600px; margin: 8px;" *ngFor="let manual of manualsList | async">
-    <h3>{{manual.title}}</h3>
-    <a [href]="manual.url" target="_blank">Handbuch öffnen >></a>
-    <pre>{{manual | json}}</pre>
+<md-nav-list>
+  <md-card style="padding: 0;">
+    <a md-list-item [href]="manual.url" target="_blank" *ngFor="let manual of manualsList | async">{{manual.title}}</a>
   </md-card>
-</div>
+</md-nav-list>

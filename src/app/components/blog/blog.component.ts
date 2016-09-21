@@ -16,6 +16,7 @@ export class BlogComponent {
 
   currentEntry: BlogEntry = {
     title: undefined,
+    showPublic: false,
     author: undefined,
     content: undefined,
     date: undefined,
@@ -24,14 +25,14 @@ export class BlogComponent {
 
   blogEntries: FirebaseListObservable<any>;
 
-  constructor(private firebaseDatabaseService: FirebaseDatabaseService, private firebaseAuthService: FirebaseAuthService) {
-    this.blogEntries = firebaseDatabaseService.getBlogEntries();
+  constructor(private database: FirebaseDatabaseService, private auth: FirebaseAuthService) {
+    this.blogEntries = database.getBlogEntries();
   }
 
   saveEntry(content: BlogEntry) {
     let now = Date.now();
 
-    content.author = this.firebaseAuthService.getCurrentUser().displayName || this.firebaseAuthService.getCurrentUser().email;
+    content.author = this.auth.getCurrentUser().displayName || this.auth.getCurrentUser().email;
     content.content = this.tinyMce.getContent();
     content.date = now;
     content.reverseDate = 0 - now;
@@ -46,6 +47,7 @@ export class BlogComponent {
 
 export interface BlogEntry {
   title: string;
+  showPublic: boolean;
   author: string;
   content: string;
   date: number;

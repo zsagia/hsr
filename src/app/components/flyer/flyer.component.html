@@ -14,8 +14,8 @@
    </div>-->
 
   <div *ngFor="let flyer of flyersList | async" style="padding:16px;">
-    <md-card style="padding: 0; width: 600px;">
-      <img style="width: 600px;max-width: 100%; height: auto;" [src]="flyer.url">
+    <md-card style="padding: 0;max-width: 100%;">
+      <img md-card-img [src]="flyer.url">
     </md-card>
   </div>
 </div>

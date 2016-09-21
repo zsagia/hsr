@@ -6,25 +6,8 @@ let Dropzone = require('../../../node_modules/dropzone/dist/dropzone-amd-module'
 
 @Component({
   selector: 'hsr-dropzone',
-  template: `
-
- <md-card>
- <div class="file-drop" id="my_dropzone"></div>
-  <button md-raised-button (click)="upload()">Hochladen!!!</button>
-  </md-card>
-`,
-  styles: [`
-.file-drop {
-  width: 100%;
-  min-height: 120px;
-  border: dashed 2px black;
-display: flex;
-flex-direction: row;
-align-items: center;
-justify-content: space-around;
-flex-wrap: wrap;
-}
-`]
+  templateUrl: 'dropzone.component.html',
+  styleUrls: ['dropzone.component.scss']
 })
 export class DropzoneComponent implements AfterViewInit {
   @Output() filesUploading: EventEmitter<File[]> = new EventEmitter<File[]>();

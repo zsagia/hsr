@@ -4,17 +4,17 @@
 
   <span style="flex: 1 1 auto;"></span>
 
-  <div *ngIf="auth" class="toolbar-right">
-    <a (click)="onLogout()">Logout</a>
-    <span *ngIf="auth.auth.email" style="font-size: small;">{{auth.auth.email}}</span>
-    <span *ngIf="!auth.auth.email" style="font-size: small;">{{auth.auth.displayName}}</span>
+  <div *ngIf="isLoggedIn()" class="toolbar-right">
+    <a style="cursor: pointer;" (click)="onLogout()">Logout</a>
+    <span *ngIf="authState.auth.email" style="font-size: small;">{{authState.auth.email}}</span>
+    <span *ngIf="!authState.auth.email" style="font-size: small;">{{authState.auth.displayName}}</span>
   </div>
 
-  <div *ngIf="!auth" class="toolbar-right">
+  <div *ngIf="!isLoggedIn()" class="toolbar-right">
     <a routerLink="login">Login</a> <a routerLink="register">Registrieren</a>
   </div>
 
-  <md-toolbar-row *ngIf="auth">
+  <md-toolbar-row *ngIf="isLoggedIn()">
     <template ngFor let-route [ngForOf]="routes" class="navigation">
       <a md-button
          class="nav-item"
