@@ -1,18 +1,23 @@
+<hsr-dropzone class="file-drop" (filesUploading)="onFileDrop($event)"></hsr-dropzone>
 <div style="display: flex;flex-direction: column; align-items: center;">
-  <input hsrFileInput (onSelected)="onFileDrop($event)" type="file" multiple/>
 
-  <div ng2FileDrop
-       class="file-drop"
-       [ngClass]="{'file-drop-active': fileIsOver}"
-       (fileOver)="fileOver($event)"
-       (onFileDrop)="onFileDrop($event)"
-       [uploader]="uploader">
-    <div class="file-drop-text">Flyer hier droppen!!!</div>
-  </div>
+  <!--TODO: remove unneeded input and drop-->
+  <!-- <input hsrFileInput (onSelected)="onFileDrop($event)" type="file" multiple/>
+
+   <div ng2FileDrop
+        class="file-drop"
+        [ngClass]="{'file-drop-active': fileIsOver}"
+        (fileOver)="fileOver($event)"
+        (onFileDrop)="onFileDrop($event)"
+        [uploader]="uploader">
+     <div class="file-drop-text">Flyer hier droppen!!!</div>
+   </div>-->
 
   <div *ngFor="let flyer of flyersList | async" style="padding:16px;">
     <md-card style="padding: 0; width: 600px;">
-      <img style="width: 600px; height: auto;" [src]="flyer.url">
+      <img style="width: 600px;max-width: 100%; height: auto;" [src]="flyer.url">
     </md-card>
   </div>
 </div>
+
+

@@ -43,6 +43,7 @@ import { LinkAccountComponent } from './components/link-account/link-account.com
 import { FileInputDirective } from './file-input/file-input.directive';
 import { PlattenDetailsComponent } from './components/platten/platten-details/platten-details.component';
 import { ManualsComponent } from './components/manuals/manuals.component';
+import { DropzoneComponent } from './dropzone/dropzone.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { ManualsComponent } from './components/manuals/manuals.component';
     PageNotFoundComponent,
     LinkAccountComponent,
     FileInputDirective,
+    DropzoneComponent,
     FILE_UPLOAD_DIRECTIVES
   ],
   imports: [
