@@ -1,3 +1,4 @@
+/// <reference path="../../../typings/index.d.ts"/>
 import { Component, AfterViewInit, EventEmitter } from '@angular/core';
 import { Output } from '@angular/core/src/metadata/directives';
 

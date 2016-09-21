@@ -2,6 +2,7 @@
   "name": "hsr",
   "dependencies": {},
   "globalDependencies": {
+    "dropzone": "registry:dt/dropzone#4.3.0+20160920054854",
     "jquery": "registry:dt/jquery#1.10.0+20160908203239"
   }
 }
