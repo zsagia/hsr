@@ -42,6 +42,7 @@ import { FILE_UPLOAD_DIRECTIVES } from 'ng2-file-upload';
 import { LinkAccountComponent } from './components/link-account/link-account.component';
 import { FileInputDirective } from './file-input/file-input.directive';
 import { PlattenDetailsComponent } from './components/platten/platten-details/platten-details.component';
+import { ManualsComponent } from './components/manuals/manuals.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { PlattenDetailsComponent } from './components/platten/platten-details/pl
     BlogComponent,
     FotosComponent,
     FlyerComponent,
+    ManualsComponent,
     TinyMceComponent,
     PlattenComponent,
     PlattenDetailsComponent,

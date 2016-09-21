@@ -40,7 +40,7 @@ export class PlattenComponent implements OnInit, OnDestroy {
     }
   }
 
-  onFileSelected(files: File[]): void {
+  onFileSelected(files: File[]) {
     this.resetFileInput = false;
     this.storage.uploadCover(files[0]).then((snapshot) => {
       let url = snapshot.metadata.downloadURLs[0];

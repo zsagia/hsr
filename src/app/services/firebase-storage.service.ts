@@ -35,6 +35,33 @@ export class FirebaseStorageService {
     }
   }
 
+  uploadManual(file: File, titel: string) {
+    let imageRef = this.storageRef.child('manuals/' + file.name + this.generateRandomId());
+
+    imageRef.put(file).then((snapshot) => {
+      let now = Date.now();
+      let fileRecord = {
+        name: snapshot.metadata.name,
+        url: snapshot.metadata.downloadURLs[0],
+        contentType: 'application/pdf',
+        fullPath: snapshot.metadata.fullPath,
+        timeCreated: snapshot.metadata.timeCreated,
+        size: snapshot.metadata.size,
+        author: this.auth.getCurrentUser().displayName || this.auth.getCurrentUser().email,
+        date: now,
+        reverseDate: 0 - now,
+        title: titel
+      };
+      console.log(fileRecord);
+      this.database.getManuals().push(fileRecord);
+    });
+  }
+
+  deleteManual(fileName: string) {
+    let imageRef = this.storageRef.child('manuals/' + fileName);
+    imageRef.delete();
+  }
+
   uploadCover(file: File): Promise<any> {
     let imageRef = this.storageRef.child('cover/' + file.name + this.generateRandomId());
 

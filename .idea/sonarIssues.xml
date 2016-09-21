@@ -223,6 +223,26 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/app/components/manuals/index.ts">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/app/components/manuals/manuals.component.html">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/app/components/manuals/manuals.component.scss">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/app/components/manuals/manuals.component.ts">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/app/components/platten/platten-card/platten-card.component.html">
           <value>
             <set />

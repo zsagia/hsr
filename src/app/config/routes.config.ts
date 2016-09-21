@@ -9,6 +9,7 @@ import { PlattenComponent } from '../components/platten/platten.component';
 import { PageNotFoundComponent } from '../page-not-found/page-not-found.component';
 import { LinkAccountComponent } from '../components/link-account/link-account.component';
 import { PlattenDetailsComponent } from '../components/platten/platten-details/platten-details.component';
+import { ManualsComponent } from '../components/manuals/manuals.component';
 
 export const ROUTES_CONFIG = [
   {path: '', component: HomeComponent},
@@ -17,6 +18,7 @@ export const ROUTES_CONFIG = [
   {path: 'blog', component: BlogComponent, text: 'Blog', canActivate: [FirebaseAuthService]},
   {path: 'fotos', component: FotosComponent, text: 'Fotos', canActivate: [FirebaseAuthService]},
   {path: 'flyer', component: FlyerComponent, text: 'Flyer', canActivate: [FirebaseAuthService]},
+  {path: 'manual', component: ManualsComponent, text: 'Handbücher', canActivate: [FirebaseAuthService]},
   {path: 'platten', component: PlattenComponent, text: 'Platten', canActivate: [FirebaseAuthService]},
   {path: 'platten/:key', component: PlattenDetailsComponent, canActivate: [FirebaseAuthService]},
   {path: 'link-account', component: LinkAccountComponent, canActivate: [FirebaseAuthService]},

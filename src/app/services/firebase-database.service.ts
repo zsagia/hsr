@@ -16,10 +16,6 @@ export class FirebaseDatabaseService {
     });
   }
 
-  getBlogEntry(id: number) {
-    return this.angularFire.database.object('blog/' + (id - 1));
-  }
-
   getPlatten(): FirebaseListObservable<any> {
     return this.angularFire.database.list('platten');
   }
@@ -36,12 +32,12 @@ export class FirebaseDatabaseService {
     });
   }
 
-  getItems(): FirebaseListObservable<any> {
-    return this.angularFire.database.list('employee');
-  }
-
-  getItem(id: number): FirebaseObjectObservable<any> {
-    return this.angularFire.database.object('employee/' + (id - 1));
+  getManuals(): FirebaseListObservable<any> {
+    return this.angularFire.database.list('manuals', {
+      query: {
+        orderByChild: 'title'
+      }
+    });
   }
 
 }
