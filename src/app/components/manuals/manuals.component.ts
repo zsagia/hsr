@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FirebaseStorageService } from '../../services/firebase-storage.service';
 import { FirebaseListObservable } from 'angularfire2';
 import { FirebaseDatabaseService } from '../../services/firebase-database.service';
@@ -9,12 +9,9 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   templateUrl: 'manuals.component.html',
   styleUrls: ['manuals.component.scss']
 })
-export class ManualsComponent implements OnInit, OnDestroy {
+export class ManualsComponent implements OnInit {
   manualsList: FirebaseListObservable<any>;
   manualForm: FormGroup;
-  manualFileName: string;
-  isSaved: boolean = false;
-  resetFileInput: boolean = false;
   view: string = 'list';
 
   constructor(private formBuilder: FormBuilder, private storage: FirebaseStorageService, private database: FirebaseDatabaseService) {
@@ -22,42 +19,23 @@ export class ManualsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.manualForm = this.formBuilder.group({
-      titel: ['', Validators.required],
-      manual: [''],
+      title: ['', Validators.required]
       // TODO: disable when no title / make validation work for input-file
       // manualFile: [{value: '', disabled: true}, Validators.required]
-      manualFile: ['', Validators.required]
     });
     this.manualsList = this.database.getManuals();
   }
 
-  ngOnDestroy() {
-    if (!this.isSaved && this.manualForm.controls['manual'].touched) {
-      this.storage.deleteManual(this.manualFileName);
-    }
+  onManualAdded(file: File) {
+    this.storage.uploadManual(file, this.manualForm.controls['title'].value);
+    this.manualForm.controls['title'].setValue('');
   }
 
-  onFileSelected(files: File[]) {
-    this.resetFileInput = false;
-    this.storage.uploadManual(files[0], this.manualForm.controls['titel'].value);
-  }
-
-  deleteCover() {
-    this.manualForm.controls['manual'].reset('');
-    this.storage.deleteManual(this.manualFileName);
-    this.resetFileInput = true;
-  }
-
-  onSubmit(event) {
-    this.isSaved = true;
-    this.resetFileInput = true;
+  onManualDeleted(file: File) {
+    this.storage.deleteManual(file);
   }
 
   setView(data) {
     this.view = data.value;
-  }
-
-  getView(): string {
-    return this.view;
   }
 }

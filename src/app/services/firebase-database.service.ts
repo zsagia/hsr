@@ -33,11 +33,5 @@ export class FirebaseDatabaseService {
   }
 
   getManuals(): FirebaseListObservable<any> {
-    return this.angularFire.database.list('manuals', {
-      query: {
-        orderByChild: 'title'
-      }
-    });
+    return this.angularFire.database.list('manuals');
   }
-
-}

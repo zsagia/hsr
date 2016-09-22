@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { AngularFire } from 'angularfire2';
-import { FirebaseDatabaseService } from './firebase-database.service';
 import { FirebaseAuthService } from './firebase-auth.service';
 
 @Injectable()
@@ -8,17 +7,17 @@ export class FirebaseStorageService {
 
   storageRef;
 
-  constructor(private angularFire: AngularFire, private database: FirebaseDatabaseService, private auth: FirebaseAuthService) {
+  constructor(private angularFire: AngularFire, private auth: FirebaseAuthService) {
     this.storageRef = firebase.storage().ref();
   }
 
   uploadFlyers(files: File[]) {
     for (let file of files) {
-      let imageRef = this.storageRef.child('flyer/' + file.name + this.generateRandomId());
+      let flyerStorageRef = this.storageRef.child('flyer/' + file.name + this.generateRandomId());
 
-      imageRef.put(file).then((snapshot) => {
+      flyerStorageRef.put(file).then((snapshot) => {
         let now = Date.now();
-        let fileRecord = {
+        let data = {
           name: snapshot.metadata.name,
           url: snapshot.metadata.downloadURLs[0],
           contentType: snapshot.metadata.contentType,
@@ -29,18 +28,20 @@ export class FirebaseStorageService {
           date: now,
           reverseDate: 0 - now
         };
-        console.log(fileRecord);
-        this.database.getFlyers().push(fileRecord);
+        console.log('flyer saved to database:');
+        console.log(data);
+        this.angularFire.database.list('flyer').push(data);
       });
     }
   }
 
   uploadManual(file: File, titel: string) {
-    let imageRef = this.storageRef.child('manuals/' + file.name + this.generateRandomId());
+    let manualsStorageRef = this.storageRef.child('manuals/' + file.name + this.generateRandomId());
 
-    imageRef.put(file).then((snapshot) => {
+    manualsStorageRef.put(file).then((snapshot) => {
+
       let now = Date.now();
-      let fileRecord = {
+      let data = {
         name: snapshot.metadata.name,
         url: snapshot.metadata.downloadURLs[0],
         contentType: 'application/pdf',
@@ -52,14 +53,23 @@ export class FirebaseStorageService {
         reverseDate: 0 - now,
         title: titel
       };
-      console.log(fileRecord);
-      this.database.getManuals().push(fileRecord);
+
+      console.log('manual saved to database:');
+      console.log(data);
+
+      this.angularFire.database.list('manuals').push(data);
     });
   }
 
-  deleteManual(fileName: string) {
-    let imageRef = this.storageRef.child('manuals/' + fileName);
-    imageRef.delete();
+  deleteManual(file: File) {
+    let manualsStorageRef = this.storageRef.child('manuals/' + file.name);
+    manualsStorageRef.delete();
+    this.angularFire.database.list('manuals', {
+      query: {
+        orderByChild: 'name',
+        equalTo: file.name
+      }
+    }).remove();
   }
 
   uploadCover(file: File): Promise<any> {

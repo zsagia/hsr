@@ -13,7 +13,7 @@
 
 
 <div style="padding-top: 8px;">
-  <md-card *ngFor="let blog of blogEntries | async" style="animation: flyin 0.4s ease;">
+  <md-card *ngFor="let blog of blogEntries | async" style="animation: flyin 0.4s ease; overflow-x: auto;">
     <h1 style="margin-bottom: 0;">{{blog.title}}</h1>
     <h5 style="margin-top: 2px; color: darkgrey;">{{blog.author}}</h5>
     <div [innerHTML]="blog.content | safe"></div>

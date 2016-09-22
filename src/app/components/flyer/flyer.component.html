@@ -1,5 +1,7 @@
-<div style="min-height: 150px;">
-  <hsr-dropzone (filesUploading)="onFileDrop($event)"></hsr-dropzone>
+<div style="min-height: 150px; margin-bottom: 16px;">
+  <hsr-dropzone [acceptedFiles]="'image/*'" [autoUpload]="false" [maxFiles]="3" (filesUploading)="onFileDrop($event)">
+    <i class="fa fa-upload fa-3x"></i>
+    <p style="margin: 6px 0 0 0; font-weight: bold;">Hier klicken oder Dateien ablegen!!!</p></hsr-dropzone>
 </div>
 
 <div style="display: flex;flex-direction: column; align-items: center;">

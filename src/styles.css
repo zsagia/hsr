@@ -6,6 +6,10 @@ html, body {
   padding: 0;
 }
 
+img {
+  display: block;
+}
+
 body {
   background-color: darkgrey;
   position: relative;
@@ -93,31 +97,54 @@ a:hover {
 
 /* Animations */
 
-@keyframes flyin {
-  from {
-    opacity: 0;
-    transform: scale(4);
-    filter: blur(2px);
+@media screen and (min-width: 600px) {
+
+  @keyframes flyin {
+    from {
+      opacity: 0;
+      transform: scale(4);
+      filter: blur(2px);
+    }
+    to {
+      filter: blur(0);
+      transform: scale(1);
+      opacity: 1;
+    }
   }
-  to {
-    filter: blur(0);
-    transform: scale(1);
-    opacity: 1;
-  }
+
 }
 
 /* Dropzone Global Styles*/
 
-.dz-image-preview {
+.dz-preview {
   margin: 6px;
   position: relative;
   animation: flyin 0.4s ease;
-  border: dashed 1px gray;
+  box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 0 rgba(0, 0, 0, 0.12);
+  transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: box-shadow;
+  border-radius: 2px;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background: white;
+  color: black;
+}
+
+.dz-filename {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  word-wrap: break-word;
+  width: 56px;
+  z-index: 5;
 }
 
 .dz-image-preview img {
   width: 56px;
   height: auto;
+  z-index: 6;
 }
 
 /* Not selectable text*/
@@ -133,6 +160,15 @@ a:hover {
   pointer-events: none;
 }
 
+/* Mobile */
+@media screen and (max-width: 599px) {
+
+  .hide-mobile {
+    display: none;
+  }
+
+}
+
 /* md-card*/
 .md-card {
   box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 0 rgba(0, 0, 0, 0.12);
@@ -143,7 +179,6 @@ a:hover {
   background: white;
   color: black;
   max-width: 100%;
-  margin-top: 8px;
 }
 
 .md-card img {

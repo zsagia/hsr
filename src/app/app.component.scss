@@ -14,6 +14,7 @@ a.active-route {
 .toolbar {
   background-color: black;
   padding: 0;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   .toolbar-right {
     padding: 8px;
     display: flex;
@@ -21,6 +22,7 @@ a.active-route {
     height: 100%;
     justify-content: flex-end;
     align-items: flex-end;
+    font-size: 16px;
   }
 }
 

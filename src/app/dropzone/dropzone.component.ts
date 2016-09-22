@@ -1,6 +1,7 @@
-/// <reference path="../../../typings/index.d.ts"/>
 import { Component, AfterViewInit, EventEmitter, OnDestroy } from '@angular/core';
-import { Output } from '@angular/core/src/metadata/directives';
+import { Output, Input } from '@angular/core/src/metadata/directives';
+
+declare var require: any;
 
 let Dropzone = require('../../../node_modules/dropzone/dist/dropzone-amd-module');
 
@@ -11,8 +12,15 @@ let Dropzone = require('../../../node_modules/dropzone/dist/dropzone-amd-module'
 })
 export class DropzoneComponent implements AfterViewInit, OnDestroy {
   @Output() filesUploading: EventEmitter<File[]> = new EventEmitter<File[]>();
-  // TODO: acceptedFiles option as input
+  @Output() fileAdded: EventEmitter<File> = new EventEmitter<File>();
+  @Output() fileRemoved: EventEmitter<File> = new EventEmitter<File>();
 
+  @Input() acceptedFiles: string;
+  @Input() maxFiles: number;
+  @Input() autoUpload: boolean;
+
+  fileLimitReached: boolean = false;
+  fileLimitExceeded: boolean = false;
   dropzone;
 
   constructor() {
@@ -25,40 +33,77 @@ export class DropzoneComponent implements AfterViewInit, OnDestroy {
     return false;
   }
 
+  get countFiles(): number {
+    return this.dropzone.files.length;
+  }
+
   ngAfterViewInit() {
     this.dropzone = new Dropzone('div#my_dropzone', {
-      url: (files) => {
-        this.filesUploading.emit(files);
-      },
-      autoProcessQueue: false,
+      url: '/',
+      autoProcessQueue: this.autoUpload || false,
       uploadMultiple: true,
       parallelUploads: 20,
-      hiddenInputContainer: '#my_dropzone',
+      hiddenInputContainer: '#dropzone-drop-area',
       dictDefaultMessage: '',
-      maxFiles: 20,
-      acceptedFiles: 'image/*',
+      maxFiles: this.maxFiles || 100,
+      acceptedFiles: this.acceptedFiles || 'image/*,application/pdf',
+      clickable: '#dropzone-drop-area',
+      previewsContainer: '#dropzone-drop-area',
       previewTemplate: `
-<div class="dz-preview dz-file-preview">
+<div class="dz-preview dz-file-preview" class="md-card">
   <div class="dz-details">
     <img data-dz-thumbnail/>
+      <div class="dz-filename"><span data-dz-name></span></div>
   </div>
+   <!--<div class="dz-error-message"><span data-dz-errormessage></span></div>-->
 </div>
 `
     });
     this.dropzone.autoDiscover = false;
 
     this.dropzone.on('addedfile', (file) => {
-      /*file.previewElement.addEventListener('click', () => {
-       this.dropzone.removeFile(file);
-       });*/
+      console.log('file added:');
+      console.log(file);
+      this.fileAdded.emit(file);
+
+      // TODO: removing with x button
+      // file.previewElement.addEventListener('click', (e) => {
+      //   e.stopPropagation();
+      //   this.dropzone.removeFile(file);
+      // });
     });
-    this.dropzone.on('completemultiple', (files) => {
-      this.dropzone.removeAllFiles();
+    this.dropzone.on('removedfile', (file) => {
+      if (this.countFiles <= this.maxFiles) {
+        this.fileLimitExceeded = false;
+      }
+      if (this.countFiles < this.maxFiles) {
+        this.fileLimitReached = false;
+      }
+      this.fileRemoved.emit(file);
     });
-    // Listen to the sendingmultiple event. In this case, it's the sendingmultiple event instead
-    // of the sending event because uploadMultiple is set to true.
+
+    this.dropzone.on('maxfilesreached', () => {
+      console.log('file limit reached!!!!')
+      this.fileLimitReached = true;
+    });
+    this.dropzone.on('maxfilesexceeded', () => {
+      console.log('file limit exceeded!!!!')
+      this.fileLimitExceeded = true;
+    });
+
+    this.dropzone.on('processingmultiple', (files) => {
+      console.log('processing!!!!!!!');
+      this.filesUploading.emit(files);
+    });
     this.dropzone.on('sendingmultiple', () => {
       console.log('sending!!!!!!!');
+    });
+    this.dropzone.on('completemultiple', (files) => {
+      if (!this.fileLimitReached) {
+        console.log('completed!!!!!!!');
+        this.dropzone.removeAllFiles();
+        console.log('removed all!!!!!!!');
+      }
     });
   }
 
