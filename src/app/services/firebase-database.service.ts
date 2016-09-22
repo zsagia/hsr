@@ -35,3 +35,4 @@ export class FirebaseDatabaseService {
   getManuals(): FirebaseListObservable<any> {
     return this.angularFire.database.list('manuals');
   }
+}
