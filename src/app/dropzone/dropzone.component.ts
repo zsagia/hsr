@@ -1,5 +1,5 @@
 /// <reference path="../../../typings/index.d.ts"/>
-import { Component, AfterViewInit, EventEmitter } from '@angular/core';
+import { Component, AfterViewInit, EventEmitter, OnDestroy } from '@angular/core';
 import { Output } from '@angular/core/src/metadata/directives';
 
 let Dropzone = require('../../../node_modules/dropzone/dist/dropzone-amd-module');
@@ -9,48 +9,64 @@ let Dropzone = require('../../../node_modules/dropzone/dist/dropzone-amd-module'
   templateUrl: 'dropzone.component.html',
   styleUrls: ['dropzone.component.scss']
 })
-export class DropzoneComponent implements AfterViewInit {
+export class DropzoneComponent implements AfterViewInit, OnDestroy {
   @Output() filesUploading: EventEmitter<File[]> = new EventEmitter<File[]>();
   // TODO: acceptedFiles option as input
 
-  myDropzone;
+  dropzone;
 
   constructor() {
   }
 
+  get fileDropped(): boolean {
+    if (this.dropzone) {
+      return this.dropzone.files.length > 0;
+    }
+    return false;
+  }
+
   ngAfterViewInit() {
-    this.myDropzone = new Dropzone('div#my_dropzone', {
+    this.dropzone = new Dropzone('div#my_dropzone', {
       url: (files) => {
         this.filesUploading.emit(files);
       },
       autoProcessQueue: false,
       uploadMultiple: true,
       parallelUploads: 20,
+      hiddenInputContainer: '#my_dropzone',
+      dictDefaultMessage: '',
       maxFiles: 20,
+      acceptedFiles: 'image/*',
       previewTemplate: `
-<div class="dz-preview dz-file-preview" style="border: solid 0.5px gray;">
-  <div class="dz-details" style="position: relative">
-    <div style="position:absolute; top: 0; left: 0; right: 0;">
-        <div class="dz-filename"><span data-dz-name></span>
-         <div class="dz-size" data-dz-size></div></div>
-    </div>
-    <img data-dz-thumbnail />
+<div class="dz-preview dz-file-preview">
+  <div class="dz-details">
+    <img data-dz-thumbnail/>
   </div>
-  <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
 </div>
 `
     });
-    this.myDropzone.autoDiscover = false;
+    this.dropzone.autoDiscover = false;
 
-    /*   this.myDropzone.on('addedfile', (file) => {
-     file.previewElement.addEventListener('click', () => {
-     this.myDropzone.removeFile(file);
-     });
-     });
-     */
+    this.dropzone.on('addedfile', (file) => {
+      /*file.previewElement.addEventListener('click', () => {
+       this.dropzone.removeFile(file);
+       });*/
+    });
+    this.dropzone.on('completemultiple', (files) => {
+      this.dropzone.removeAllFiles();
+    });
+    // Listen to the sendingmultiple event. In this case, it's the sendingmultiple event instead
+    // of the sending event because uploadMultiple is set to true.
+    this.dropzone.on('sendingmultiple', () => {
+      console.log('sending!!!!!!!');
+    });
+  }
+
+  ngOnDestroy() {
+    this.dropzone.disable();
   }
 
   upload() {
-    this.myDropzone.processQueue();
+    this.dropzone.processQueue();
   }
 }

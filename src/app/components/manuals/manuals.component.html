@@ -23,10 +23,45 @@
       <button md-raised-button [type]="submit" [disabled]="!manualForm.valid">Speichern</button>
     </md-card-actions>
   </form>
+
+  <md-button-toggle-group name="view" [value]="view" (change)="setView($event)">
+    <md-button-toggle value="list">
+      <i class="fa fa-list"></i>
+    </md-button-toggle>
+    <md-button-toggle value="grid">
+      <i class="fa fa-th"></i>
+    </md-button-toggle>
+  </md-button-toggle-group>
 </md-card>
 
-<md-nav-list>
-  <md-card style="padding: 0;">
-    <a md-list-item [href]="manual.url" target="_blank" *ngFor="let manual of manualsList | async">{{manual.title}}</a>
-  </md-card>
-</md-nav-list>
+<div style="padding-top: 16px;" *ngIf="view === 'list'">
+  <md-nav-list class="md-card">
+    <a md-list-item style="border-bottom: solid 1px lightgray" *ngFor="let manual of manualsList | async" [href]="manual.url" target="_blank">
+      <span class="fa-stack fa-lg">
+      <i class="fa fa-file-text fa-stack-1x"></i>
+      <i class="fa fa-square-o fa-stack-2x"></i>
+        </span>
+      {{manual.title}}
+    </a>
+  </md-nav-list>
+</div>
+
+<div style="padding-top: 16px;" *ngIf="view === 'grid'">
+  <div style="display:flex; flex-direction: column; align-items: center;">
+    <div style="width: 100%;max-width: 1200px; padding: 16px;">
+      <md-grid-list cols="4" rowHeight="fit" gutterSize="16px" style="height: 156px;">
+        <a [href]="manual.url" target="_blank" *ngFor="let manual of manualsList | async">
+          <md-grid-tile class="md-card" style="cursor: pointer;animation: flyin 0.4s ease;">
+            <div class="centered noselect clickthrough">
+              <span class="fa-stack fa-2x">
+  <i class="fa fa-square fa-stack-2x"></i>
+  <i class="fa fa-file-pdf-o fa-stack-1x fa-inverse"></i>
+</span>
+              <p>{{manual.title}}</p>
+            </div>
+          </md-grid-tile>
+        </a>
+      </md-grid-list>
+    </div>
+  </div>
+</div>

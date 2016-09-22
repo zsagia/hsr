@@ -15,6 +15,7 @@ export class ManualsComponent implements OnInit, OnDestroy {
   manualFileName: string;
   isSaved: boolean = false;
   resetFileInput: boolean = false;
+  view: string = 'list';
 
   constructor(private formBuilder: FormBuilder, private storage: FirebaseStorageService, private database: FirebaseDatabaseService) {
   }
@@ -50,5 +51,13 @@ export class ManualsComponent implements OnInit, OnDestroy {
   onSubmit(event) {
     this.isSaved = true;
     this.resetFileInput = true;
+  }
+
+  setView(data) {
+    this.view = data.value;
+  }
+
+  getView(): string {
+    return this.view;
   }
 }

@@ -18,7 +18,8 @@
     ],
     "types": [
       "jasmine",
-      "hammerjs"
+      "hammerjs",
+      "request"
     ],
     "files": [
       "typings/index.d.ts",

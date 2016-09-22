@@ -11,6 +11,7 @@ body {
   position: relative;
 }
 
+/* Selection */
 ::selection {
   background-color: blueviolet;
   color: white;
@@ -19,6 +20,25 @@ body {
 ::-moz-selection {
   background-color: blueviolet;
   color: white;
+}
+
+/* Scrollbars */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar:horizontal {
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 2px;
+  background-color: lightgray;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 2px;
+  background-color: black;
 }
 
 a {
@@ -63,3 +83,77 @@ a:hover {
   z-index: 1000;
 }
 
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+/* Animations */
+
+@keyframes flyin {
+  from {
+    opacity: 0;
+    transform: scale(4);
+    filter: blur(2px);
+  }
+  to {
+    filter: blur(0);
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Dropzone Global Styles*/
+
+.dz-image-preview {
+  margin: 6px;
+  position: relative;
+  animation: flyin 0.4s ease;
+  border: dashed 1px gray;
+}
+
+.dz-image-preview img {
+  width: 56px;
+  height: auto;
+}
+
+/* Not selectable text*/
+.noselect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.clickthrough {
+  pointer-events: none;
+}
+
+/* md-card*/
+.md-card {
+  box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 0 rgba(0, 0, 0, 0.12);
+  transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: box-shadow;
+  border-radius: 2px;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background: white;
+  color: black;
+  max-width: 100%;
+  margin-top: 8px;
+}
+
+.md-card img {
+  width: 100%;
+}
+
+button[md-button], button[md-raised-button] {
+  text-transform: uppercase;
+}
+
+button[md-button]:hover, button[md-raised-button]:hover {
+  color: darkorange;
+}

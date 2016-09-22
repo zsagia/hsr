@@ -1,4 +1,7 @@
-<hsr-dropzone class="file-drop" (filesUploading)="onFileDrop($event)"></hsr-dropzone>
+<div style="min-height: 150px;">
+  <hsr-dropzone (filesUploading)="onFileDrop($event)"></hsr-dropzone>
+</div>
+
 <div style="display: flex;flex-direction: column; align-items: center;">
 
   <!--TODO: remove unneeded input and drop-->
@@ -13,10 +16,8 @@
      <div class="file-drop-text">Flyer hier droppen!!!</div>
    </div>-->
 
-  <div *ngFor="let flyer of flyersList | async" style="padding:16px;">
-    <md-card style="padding: 0;max-width: 100%;">
-      <img md-card-img [src]="flyer.url">
-    </md-card>
+  <div class="md-card" *ngFor="let flyer of flyersList | async" style="animation: flyin 0.4s ease;">
+    <img [src]="flyer.url">
   </div>
 </div>
 

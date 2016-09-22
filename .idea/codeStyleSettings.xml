@@ -15,7 +15,8 @@
         <option name="HTML_TEXT_WRAP" value="0" />
         <option name="HTML_KEEP_LINE_BREAKS" value="false" />
         <option name="HTML_KEEP_LINE_BREAKS_IN_TEXT" value="false" />
-        <option name="HTML_INLINE_ELEMENTS" value="a,abbr,acronym,b,basefont,bdo,big,br,cite,cite,code,dfn,em,font,i,kbd,label,q,s,samp,strike,strong,sub,sup,textarea,tt,u,var" />
+        <option name="HTML_DO_NOT_INDENT_CHILDREN_OF" value="thead,tbody,tfoot" />
+        <option name="HTML_INLINE_ELEMENTS" value="abbr,acronym,b,basefont,bdo,big,br,cite,cite,code,dfn,em,font,kbd,q,s,samp,strike,strong,sub,sup,textarea,tt,u,var" />
         <option name="FORMATTER_TAGS_ENABLED" value="true" />
         <option name="WRAP_COMMENTS" value="true" />
         <JSCodeStyleSettings>

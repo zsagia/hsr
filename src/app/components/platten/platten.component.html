@@ -36,8 +36,9 @@
   <div style="width: 100%;max-width: 1200px;height: 100%;padding: 16px;">
     <md-grid-list cols="4" rowHeight="1:1" gutterSize="16px">
       <md-grid-tile *ngFor="let platte of platten | async"
+                    class="md-card"
                     [ngStyle]="{'background-image': 'url(' + platte.cover + ')'}"
-                    style="background-size:contain;background-repeat: no-repeat;cursor: pointer;"
+                    style="background-size:contain;background-repeat: no-repeat;cursor: pointer;animation: flyin 0.4s ease;"
                     [routerLink]="['/platten', platte.$key]">
 
         <div style="position: relative;height:100%; width: 100%;">

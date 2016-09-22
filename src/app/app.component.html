@@ -1,33 +1,33 @@
-<md-toolbar color="primary" class="toolbar">
+<md-toolbar color="primary" class="toolbar md-card">
 
-  <img class="logo" routerLink="" src="assets/hsr_banner2.png" alt="HSR"/>
+  <img class="logo" routerLink="" src="assets/hsr_banner1.jpg" alt="HSR"/>
 
   <span style="flex: 1 1 auto;"></span>
 
-  <div *ngIf="isLoggedIn()" class="toolbar-right">
+  <div *ngIf="authState && !authState.auth.isAnonymous" class="toolbar-right">
     <a style="cursor: pointer;" (click)="onLogout()">Logout</a>
     <span *ngIf="authState.auth.email" style="font-size: small;">{{authState.auth.email}}</span>
     <span *ngIf="!authState.auth.email" style="font-size: small;">{{authState.auth.displayName}}</span>
   </div>
 
-  <div *ngIf="!isLoggedIn()" class="toolbar-right">
-    <a routerLink="login">Login</a> <a routerLink="register">Registrieren</a>
+  <div *ngIf="!authState || authState.auth.isAnonymous" class="toolbar-right">
+    <a routerLink="login">Login</a>
+    <a routerLink="register">Registrieren</a>
   </div>
 
-  <md-toolbar-row *ngIf="isLoggedIn()">
+  <md-toolbar-row *ngIf="authState && !authState.auth.isAnonymous">
     <template ngFor let-route [ngForOf]="routes" class="navigation">
       <a md-button
          class="nav-item"
          *ngIf="route.text"
          [routerLink]="route.path"
-         routerLinkActive="active-route"
-         [routerLinkActiveOptions]="{exact: true}">{{route.text}}</a>
+         routerLinkActive="active-route" [routerLinkActiveOptions]="{exact: true}">{{route.text}}
+      </a>
     </template>
   </md-toolbar-row>
 
 </md-toolbar>
 
-<div style="max-width: 100%;">
+<div style="max-width: 100%;padding: 16px;">
   <router-outlet></router-outlet>
 </div>
-

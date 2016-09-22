@@ -1,23 +1,24 @@
-<md-card>
+<div class="md-card">
   <form>
-    <md-input type="text" placeholder="Titel" id="title" name="title" required [(ngModel)]="currentEntry.title"></md-input>
-    <div>
-      <label for="showPublic">Öffentlich</label>
-      <md-checkbox id="showPublic" name="showPublic" [(ngModel)]="currentEntry.showPublic"></md-checkbox>
+    <div style="padding: 16px;">
+      <md-input type="text" placeholder="Titel" id="title" name="title" required [(ngModel)]="currentEntry.title"></md-input>
     </div>
     <hsr-tinymce [htmlContent]="inContent"></hsr-tinymce>
-
-    <div style="display: flex; flex-direction: row; align-items: flex-end; justify-content: flex-end">
-      <button md-raised-button (click)="saveEntry(currentEntry)">Speichern</button>
+    <div style="padding: 16px;">
+      <md-checkbox id="showPublic" name="showPublic" [(ngModel)]="currentEntry.showPublic">Öffentlich</md-checkbox>
+      <button md-button (click)="saveEntry(currentEntry)" style="float:right;">Speichern</button>
     </div>
   </form>
-</md-card>
+</div>
 
 
-<md-card *ngFor="let blog of blogEntries | async" style="margin: 16px;">
-  <h1>{{blog.title}}</h1>
-  <h5>{{blog.author}}</h5>
-  <div [innerHTML]="blog.content | safe"></div>
-  <button md-button (click)="deleteEntry(blog.$key)" style="position: absolute; top: 16px; right: 8px; min-width: 20px; font-size: x-large;">x
-  </button>
-</md-card>
+<div style="padding-top: 8px;">
+  <md-card *ngFor="let blog of blogEntries | async" style="animation: flyin 0.4s ease;">
+    <h1 style="margin-bottom: 0;">{{blog.title}}</h1>
+    <h5 style="margin-top: 2px; color: darkgrey;">{{blog.author}}</h5>
+    <div [innerHTML]="blog.content | safe"></div>
+    <button md-button (click)="deleteEntry(blog.$key)" style="position: absolute; top: 16px; right: 8px; min-width: 20px; font-size: x-large;">
+      <i class="fa fa-trash-o"></i>
+    </button>
+  </md-card>
+</div>

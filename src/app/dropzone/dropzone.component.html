@@ -1,6 +1,10 @@
-<md-card>
-  <div class="file-drop" id="my_dropzone"></div>
-  <md-card-actions align="end">
-    <button md-raised-button (click)="upload()">Hochladen!!!</button>
-  </md-card-actions>
-</md-card>
+<div class="dropzone" id="my_dropzone">
+  <div *ngIf="!fileDropped" class="centered noselect clickthrough">
+    <i class="fa fa-upload fa-3x"></i>
+    <p style="margin: 6px 0 0 0; font-weight: bold;">Hier klicken oder Dateien ablegen!!!</p>
+  </div>
+</div>
+
+<button md-raised-button style="float: right;" *ngIf="fileDropped" (click)="upload()">Hochladen</button>
+
+

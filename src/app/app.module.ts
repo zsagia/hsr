@@ -44,6 +44,7 @@ import { FileInputDirective } from './file-input/file-input.directive';
 import { PlattenDetailsComponent } from './components/platten/platten-details/platten-details.component';
 import { ManualsComponent } from './components/manuals/manuals.component';
 import { DropzoneComponent } from './dropzone/dropzone.component';
+import { FirechatComponent } from './firechat/firechat.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { DropzoneComponent } from './dropzone/dropzone.component';
     TinyMceComponent,
     PlattenComponent,
     PlattenDetailsComponent,
+    FirechatComponent,
     SafePipe,
     PageNotFoundComponent,
     LinkAccountComponent,
@@ -81,25 +83,26 @@ import { DropzoneComponent } from './dropzone/dropzone.component';
     // AngularFire2
     AngularFireModule.initializeApp(FIREBASE_CONFIG),
     // Material Design
-    MdCardModule,
-    MdListModule,
-    MdButtonModule,
-    MdInputModule,
-    MdMenuModule,
-    MdCheckboxModule,
-    MdCoreModule,
-    MdIconModule,
-    MdRadioModule,
+    MdCardModule.forRoot(),
+    MdListModule.forRoot(),
+    MdButtonModule.forRoot(),
+    MdInputModule.forRoot(),
+    MdMenuModule.forRoot(),
+    MdCheckboxModule.forRoot(),
+    MdCoreModule.forRoot(),
+    MdIconModule.forRoot(),
+    MdRadioModule.forRoot(),
     MdLineModule,
-    MdRippleModule,
-    MdSidenavModule,
-    MdToolbarModule,
-    MdTooltipModule,
-    MdTabsModule,
-    MdButtonToggleModule,
-    MdGridListModule,
-    MdProgressBarModule,
-    MdProgressCircleModule
+    MdRippleModule.forRoot(),
+    MdSidenavModule.forRoot(),
+    MdToolbarModule.forRoot(),
+    MdTooltipModule.forRoot(),
+    MdTabsModule.forRoot(),
+    MdButtonToggleModule.forRoot(),
+    MdButtonToggleModule.forRoot(),
+    MdGridListModule.forRoot(),
+    MdProgressBarModule.forRoot(),
+    MdProgressCircleModule.forRoot()
   ],
   providers: [
     FirebaseAuthService,

@@ -1,10 +1,18 @@
-.file-drop {
+.dropzone {
+  border: dashed 3px grey;
   width: 100%;
   min-height: 120px;
-  border: dashed 2px black;
+  box-sizing: border-box;
+  padding: 6px;
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-around;
+  justify-content: flex-start;
   flex-wrap: wrap;
+  cursor: pointer;
+  position: relative;
+  &:hover {
+    color: darkorange;
+    border-color: darkorange;
+  }
 }

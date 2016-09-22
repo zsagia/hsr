@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFire, AuthMethods, AuthProviders, FirebaseAuthState } from 'angularfire2';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import 'rxjs/add/operator/first';
 
 @Injectable()
 export class FirebaseAuthService implements CanActivate {
@@ -18,10 +20,6 @@ export class FirebaseAuthService implements CanActivate {
 
     this.angularFire.auth.subscribe(auth => {
       this.authState = auth;
-      console.log('AUTH STATE:');
-      console.log(auth);
-      console.log('CURRENT USER:');
-      console.log(firebase.auth().currentUser);
     });
   }
 
@@ -29,12 +27,15 @@ export class FirebaseAuthService implements CanActivate {
     return firebase.auth().currentUser;
   }
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    return this.loggedIn();
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | boolean {
+    return this.angularFire.auth.map(auth => {
+      return !!auth;
+    }).first();
   }
 
   logout() {
     this.angularFire.auth.logout();
+    // TODO: make work without console error
     this.loginAnonymously().then(() => {
       this.router.navigate(['']);
     });
@@ -98,14 +99,6 @@ export class FirebaseAuthService implements CanActivate {
     }).catch(function (error) {
       console.log(error);
     });
-  }
-
-  loggedIn(): boolean {
-    if (this.authState) {
-      return !this.authState.auth.isAnonymous;
-    } else {
-      return false;
-    }
   }
 
   getUserData() {

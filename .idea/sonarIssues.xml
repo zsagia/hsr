@@ -178,6 +178,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/app/components/fotos/fotos.component.html">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/app/components/fotos/fotos.component.ts">
           <value>
             <set />
@@ -379,6 +384,21 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/app/firebase.config.ts">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/app/firechat/firechat.component.html">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/app/firechat/firechat.component.scss">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/app/firechat/firechat.component.ts">
           <value>
             <set />
           </value>
