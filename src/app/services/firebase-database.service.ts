@@ -24,8 +24,8 @@ export class FirebaseDatabaseService {
     return this.angularFire.database.object('platten/' + key);
   }
 
-  getFlyers(): FirebaseListObservable<any> {
-    return this.angularFire.database.list('flyer', {
+  getFotos(): FirebaseListObservable<any> {
+    return this.angularFire.database.list('fotos', {
       query: {
         orderByChild: 'reverseDate'
       }

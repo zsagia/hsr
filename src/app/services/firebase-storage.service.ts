@@ -11,54 +11,14 @@ export class FirebaseStorageService {
     this.storageRef = firebase.storage().ref();
   }
 
-  uploadFlyers(files: File[]) {
-    for (let file of files) {
-      let flyerStorageRef = this.storageRef.child('flyer/' + file.name + this.generateRandomId());
-
-      flyerStorageRef.put(file).then((snapshot) => {
-        let now = Date.now();
-        let data = {
-          name: snapshot.metadata.name,
-          url: snapshot.metadata.downloadURLs[0],
-          contentType: snapshot.metadata.contentType,
-          fullPath: snapshot.metadata.fullPath,
-          timeCreated: snapshot.metadata.timeCreated,
-          size: snapshot.metadata.size,
-          author: this.auth.getCurrentUser().displayName || this.auth.getCurrentUser().email,
-          date: now,
-          reverseDate: 0 - now
-        };
-        console.log('flyer saved to database:');
-        console.log(data);
-        this.angularFire.database.list('flyer').push(data);
-      });
-    }
+  uploadFoto(file: File): Promise<any> {
+    let fotosStorageRef = this.storageRef.child('fotos/' + file.name + this.generateRandomId());
+    return fotosStorageRef.put(file);
   }
 
-  uploadManual(file: File, titel: string) {
+  uploadManual(file: File): Promise<any> {
     let manualsStorageRef = this.storageRef.child('manuals/' + file.name + this.generateRandomId());
-
-    manualsStorageRef.put(file).then((snapshot) => {
-
-      let now = Date.now();
-      let data = {
-        name: snapshot.metadata.name,
-        url: snapshot.metadata.downloadURLs[0],
-        contentType: 'application/pdf',
-        fullPath: snapshot.metadata.fullPath,
-        timeCreated: snapshot.metadata.timeCreated,
-        size: snapshot.metadata.size,
-        author: this.auth.getCurrentUser().displayName || this.auth.getCurrentUser().email,
-        date: now,
-        reverseDate: 0 - now,
-        title: titel
-      };
-
-      console.log('manual saved to database:');
-      console.log(data);
-
-      this.angularFire.database.list('manuals').push(data);
-    });
+    return manualsStorageRef.put(file);
   }
 
   deleteManual(file: File) {

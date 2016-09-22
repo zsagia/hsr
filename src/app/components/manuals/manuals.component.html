@@ -27,7 +27,7 @@
 </md-card>
 
 <div style="padding-top: 16px;" *ngIf="view === 'list'">
-  <md-nav-list class="md-card">
+  <md-nav-list class="card">
     <a md-list-item style="border-bottom: solid 1px lightgray" *ngFor="let manual of manualsList | async" [href]="manual.url" target="_blank">
       <span class="fa-stack fa-lg">
       <i class="fa fa-file-text fa-stack-1x"></i>
@@ -43,7 +43,7 @@
     <div style="width: 100%;max-width: 1200px; padding: 16px;">
       <md-grid-list cols="4" rowHeight="156px" gutterSize="16px">
         <a [href]="manual.url" target="_blank" *ngFor="let manual of manualsList | async">
-          <md-grid-tile class="md-card" style="cursor: pointer;animation: flyin 0.4s ease;">
+          <md-grid-tile class="card card-interactive">
             <div class="centered noselect clickthrough">
               <span class="fa-stack fa-2x">
   <i class="fa fa-square fa-stack-2x"></i>

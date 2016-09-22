@@ -35,17 +35,11 @@
 <div style="display:flex; flex-direction: column; align-items: center;">
   <div style="width: 100%;max-width: 1200px;height: 100%;padding: 16px;">
     <md-grid-list cols="4" rowHeight="1:1" gutterSize="16px">
-      <md-grid-tile *ngFor="let platte of platten | async"
-                    class="md-card"
-                    [ngStyle]="{'background-image': 'url(' + platte.cover + ')'}"
-                    style="background-size:contain;background-repeat: no-repeat;cursor: pointer;animation: flyin 0.4s ease;"
-                    [routerLink]="['/platten', platte.$key]">
-
-        <div style="position: relative;height:100%; width: 100%;">
-          <div style="background-color: rgba(0,0,0,0.7);color:white;position: absolute; top: 0; left: 0; right: 0;padding: 8px;">
-            <h4>{{platte.name}}</h4>
-            <p>{{platte.label}} - ({{platte.kurzbezeichnung}})</p>
-          </div>
+      <md-grid-tile *ngFor="let platte of platten | async" [routerLink]="['/platten', platte.$key]">
+        <img class="card card-interactive" [src]="platte.cover">
+        <div style="background-color: rgba(0,0,0,0.5);color:white;position: absolute; top: 0; left: 0; right: 0;padding: 8px; animation: flyin 0.4s ease;">
+          <h4>{{platte.name}}</h4>
+          <p>{{platte.label}} - ({{platte.kurzbezeichnung}})</p>
         </div>
       </md-grid-tile>
     </md-grid-list>

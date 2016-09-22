@@ -31,7 +31,6 @@ import { FirebaseDatabaseService } from './services/firebase-database.service';
 import { HomeComponent } from './components/home/home.component';
 import { BlogComponent } from './components/blog/blog.component';
 import { FotosComponent } from './components/fotos/fotos.component';
-import { FlyerComponent } from './components/flyer/flyer.component';
 import { TinyMceComponent } from './tinymce/tinymce.component';
 import { PlattenComponent } from './components/platten/platten.component';
 import { HttpModule, JsonpModule } from '@angular/http';
@@ -45,6 +44,7 @@ import { PlattenDetailsComponent } from './components/platten/platten-details/pl
 import { ManualsComponent } from './components/manuals/manuals.component';
 import { DropzoneComponent } from './dropzone/dropzone.component';
 import { FirechatComponent } from './firechat/firechat.component';
+import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
 
 @NgModule({
   declarations: [
@@ -54,7 +54,7 @@ import { FirechatComponent } from './firechat/firechat.component';
     HomeComponent,
     BlogComponent,
     FotosComponent,
-    FlyerComponent,
+    FotosComponent,
     ManualsComponent,
     TinyMceComponent,
     PlattenComponent,
@@ -82,6 +82,8 @@ import { FirechatComponent } from './firechat/firechat.component';
     ReactiveFormsModule,
     // AngularFire2
     AngularFireModule.initializeApp(FIREBASE_CONFIG),
+    // ng2 Slim Loading Bar
+    SlimLoadingBarModule.forRoot(),
     // Material Design
     MdCardModule.forRoot(),
     MdListModule.forRoot(),

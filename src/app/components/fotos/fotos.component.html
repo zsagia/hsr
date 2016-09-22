@@ -1,1 +1,29 @@
-<hsr-firechat></hsr-firechat>
+<div style="min-height: 150px; margin-bottom: 16px;">
+  <hsr-dropzone [acceptedFiles]="'image/*'"
+                [autoUpload]="false"
+                [maxFiles]="300"
+                [fileToRemove]="fileToRemove"
+                (areFilesInList)="onFilesChanged($event)"
+                (filesUploading)="onFilesUploading($event)">
+    <div class="centered">
+      <i *ngIf="!areFilesInList" class="fa fa-upload fa-3x"></i>
+      <p *ngIf="!areFilesInList" style="margin: 6px 0 0 0; font-weight: bold;">Hier klicken oder Dateien ablegen!!!</p>
+    </div>
+    <!--<md-progress-bar *ngIf="uploadProgress && uploadProgress.percent > 0" mode="determinate" [value]="uploadProgress.percent"></md-progress-bar>-->
+    <!--<md-progress-bar *ngIf="uploadProgress && uploadProgress.percent == 0" mode="query"></md-progress-bar>-->
+    <div class="centered-bottom">
+      <ng2-slim-loading-bar [color]="'darkorange'" [height]="'4px'"></ng2-slim-loading-bar>
+    </div>
+  </hsr-dropzone>
+</div>
+
+<div style="display:flex; flex-direction: column; align-items: center;">
+  <div style="width: 100%;max-width: 1200px;height: 100%;padding: 16px;">
+    <md-grid-list cols="4" rowHeight="400px" gutterSize="16px">
+      <md-grid-tile *ngFor="let foto of fotosList | async">
+        <img class="card card-interactive" [src]="foto.url">
+      </md-grid-tile>
+    </md-grid-list>
+  </div>
+</div>
+

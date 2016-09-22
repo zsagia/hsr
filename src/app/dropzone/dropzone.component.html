@@ -2,13 +2,13 @@
   <div id="dropzone-drop-area"
        class="dropzone-drop-area"
        [ngClass]="{'file-limit-reached': fileLimitReached && !fileLimitExceeded, 'file-limit-exceeded': fileLimitExceeded}">
-    <div *ngIf="!fileDropped" class="centered noselect clickthrough">
+    <div class="noselect clickthrough" style="width: 100%;">
       <ng-content></ng-content>
     </div>
   </div>
   <div class="error-messages">
     <div *ngIf="fileLimitReached && !fileLimitExceeded" style="color: darkorange;">Maximale Dateianzahl erreicht!</div>
-    <div *ngIf="fileLimitExceeded">Maximale Dateianzahl überschritten! Entferne {{countFiles - maxFiles}} Dateien.</div>
+    <div *ngIf="fileLimitExceeded">Maximale Dateianzahl überschritten! Entferne {{countFiles() - maxFiles}} Dateien.</div>
   </div>
 
   <button md-raised-button style="float: right;" *ngIf="fileDropped && !autoUpload" [disabled]="fileLimitExceeded" (click)="upload()">
