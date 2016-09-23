@@ -28,16 +28,15 @@ body {
 
 /* Scrollbars */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar:horizontal {
-  height: 10px;
+  height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  border-radius: 2px;
-  background-color: lightgray;
+  background-color: darkgray;
 }
 
 ::-webkit-scrollbar-thumb {
