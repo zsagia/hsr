@@ -17,13 +17,13 @@ body {
 
 /* Selection */
 ::selection {
-  background-color: blueviolet;
-  color: white;
+  background-color: darkorange;
+  color: black;
 }
 
 ::-moz-selection {
-  background-color: blueviolet;
-  color: white;
+  background-color: darkorange;
+  color: black;
 }
 
 /* Scrollbars */
