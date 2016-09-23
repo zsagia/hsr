@@ -5,21 +5,31 @@
   <span style="flex: 1 1 auto;"></span>
 
   <div *ngIf="authState && !authState.auth.isAnonymous" class="toolbar-right">
-    <a (click)="onLogout()">Logout</a>
-    <span class="hide-mobile" *ngIf="authState.auth.email">{{authState.auth.email}}</span>
-    <span class="hide-mobile" *ngIf="!authState.auth.email">{{authState.auth.displayName}}</span>
+    <a style="cursor: pointer;" (click)="onLogout()">
+      <span>Logout</span>
+      <i class="fa fa-sign-out"></i>
+    </a>
+    <div class="hide-mobile">
+      <span *ngIf="authState.auth.email">{{authState.auth.email}}</span>
+      <span *ngIf="!authState.auth.email">{{authState.auth.displayName}}</span>
+    </div>
   </div>
 
   <div *ngIf="!authState || authState.auth.isAnonymous" class="toolbar-right">
-    <a routerLink="login">Login</a>
-    <a routerLink="register">Registrieren</a>
+    <a routerLink="login">Login
+      <i class="fa fa-sign-out"></i>
+    </a>
+    <a routerLink="register">Anmelden
+      <i class="fa fa-user-plus"></i>
+    </a>
   </div>
 
   <md-toolbar-row *ngIf="authState && !authState.auth.isAnonymous" style="overflow-x: auto;">
     <template ngFor let-route [ngForOf]="routes" class="navigation">
       <a md-button
-         class="nav-item"
-         *ngIf="route.text" [routerLink]="route.path" routerLinkActive="active-route" [routerLinkActiveOptions]="{exact: true}">{{route.text}}
+         class="nav-item" *ngIf="route.text" [routerLink]="route.path" routerLinkActive="active-route" [routerLinkActiveOptions]="{exact: true}">
+        <i class="fa fa-{{route.icon}}"></i>
+        {{route.text}}
       </a>
     </template>
   </md-toolbar-row>

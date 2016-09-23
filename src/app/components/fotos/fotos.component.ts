@@ -24,6 +24,7 @@ export class FotosComponent implements OnInit {
     private angularFire: AngularFire) {
   }
 
+  // TODO: implement folders;) + treeview
   ngOnInit() {
     this.fotosList = this.database.getFotos();
   }

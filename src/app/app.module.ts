@@ -45,6 +45,7 @@ import { ManualsComponent } from './components/manuals/manuals.component';
 import { DropzoneComponent } from './dropzone/dropzone.component';
 import { FirechatComponent } from './firechat/firechat.component';
 import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
+import { ChatComponent } from './components/chat/chat.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
     LinkAccountComponent,
     FileInputDirective,
     DropzoneComponent,
-    FILE_UPLOAD_DIRECTIVES
+    FILE_UPLOAD_DIRECTIVES,
+    ChatComponent
   ],
   imports: [
     // Router

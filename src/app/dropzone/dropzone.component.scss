@@ -19,6 +19,7 @@
   &:hover {
     color: darkorange;
     border-color: darkorange;
+    transition: color .2s, border-color .1s;
   }
 }
 
