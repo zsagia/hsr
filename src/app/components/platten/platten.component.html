@@ -12,19 +12,6 @@
       <input hidden type="text" formControlName="cover">
     </div>
 
-    <div style="display: flex; flex-direction: column; align-items: flex-start;">
-      <span>Cover</span>
-      <input hsrFileInput (onSelected)="onFileSelected($event)" [reset]="resetFileInput" type="file"/>
-
-      <div *ngIf="platteForm.controls['cover'].value" style="position: relative;">
-        <img style="height: 150px; width: auto;" [src]="platteForm.controls['cover'].value">
-        <button md-button
-                (click)="deleteCover()"
-                style="position: absolute; top: 0px; right: 0px; min-width: 20px; font-size: x-large; background-color: rgba(0,0,0,0.7); color: white;">x
-        </button>
-      </div>
-    </div>
-
     <md-card-actions align="end">
       <button md-raised-button [type]="submit" [disabled]="!platteForm.valid">Speichern</button>
     </md-card-actions>

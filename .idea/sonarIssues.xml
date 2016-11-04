@@ -13,6 +13,11 @@
             <set />
           </value>
         </entry>
+        <entry key="/a.regexp">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/.gitignore">
           <value>
             <set />
@@ -159,6 +164,16 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/app/components/blog/blog.component.ts">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/app/components/chat/chat.component.html">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/app/components/chat/chat.component.ts">
           <value>
             <set />
           </value>
@@ -403,6 +418,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/app/froala/froala.directives.ts">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/app/login/login.component.html">
           <value>
             <set />
@@ -538,6 +558,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/app/theme.scss">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/app/tinymce/tinymce.component.ts">
           <value>
             <set />
@@ -568,7 +593,17 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/styles.scss">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/test.ts">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/theme.scss">
           <value>
             <set />
           </value>
@@ -589,6 +624,16 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/typings.json">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/typings/globals/dropzone/index.d.ts">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/typings/globals/dropzone/typings.json">
           <value>
             <set />
           </value>

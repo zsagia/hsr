@@ -9,6 +9,8 @@
 /bower_components
 
 # IDEs and editors
+/.idea
+/.vscode
 .project
 .classpath
 *.launch
@@ -30,5 +32,4 @@ testem.log
 #System Files
 .DS_Store
 Thumbs.db
-/.idea/sonarIssues.xml
-/.idea/checkstyle-idea.xml
+/yarn.lock

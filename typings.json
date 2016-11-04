@@ -2,7 +2,8 @@
   "name": "hsr",
   "dependencies": {},
   "globalDependencies": {
-    "dropzone": "registry:dt/dropzone#4.3.0+20160920054854",
-    "jquery": "registry:dt/jquery#1.10.0+20160908203239"
+    "dropzone": "registry:dt/dropzone#4.3.0+20160923131451",
+    "materialize-css": "registry:dt/materialize-css#0.97.5+20161019124558",
+    "require": "registry:dt/require#2.1.20+20160919185614"
   }
 }

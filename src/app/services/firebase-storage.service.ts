@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFire } from 'angularfire2';
 import { FirebaseAuthService } from './firebase-auth.service';
+import * as firebase from 'firebase';
 
 @Injectable()
 export class FirebaseStorageService {
@@ -21,13 +22,13 @@ export class FirebaseStorageService {
     return manualsStorageRef.put(file);
   }
 
-  deleteManual(file: File) {
-    let manualsStorageRef = this.storageRef.child('manuals/' + file.name);
+  deleteManual(filename: string) {
+    let manualsStorageRef = this.storageRef.child('manuals/' + filename);
     manualsStorageRef.delete();
     this.angularFire.database.list('manuals', {
       query: {
         orderByChild: 'name',
-        equalTo: file.name
+        equalTo: filename
       }
     }).remove();
   }

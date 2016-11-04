@@ -3,6 +3,7 @@ import { AngularFire, AuthMethods, AuthProviders, FirebaseAuthState } from 'angu
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import 'rxjs/add/operator/first';
+import * as firebase from 'firebase';
 
 @Injectable()
 export class FirebaseAuthService implements CanActivate {

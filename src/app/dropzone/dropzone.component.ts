@@ -1,9 +1,7 @@
 import { Component, AfterViewInit, EventEmitter, OnDestroy } from '@angular/core';
 import { Output, Input } from '@angular/core/src/metadata/directives';
 
-declare var require: any;
-
-let Dropzone = require('../../../node_modules/dropzone/dist/dropzone-amd-module');
+declare var Dropzone: any;
 
 @Component({
   selector: 'hsr-dropzone',

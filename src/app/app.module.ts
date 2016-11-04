@@ -37,15 +37,13 @@ import { HttpModule, JsonpModule } from '@angular/http';
 import { SafePipe } from './pipes/safe.pipe';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { FirebaseStorageService } from './services/firebase-storage.service';
-import { FILE_UPLOAD_DIRECTIVES } from 'ng2-file-upload';
 import { LinkAccountComponent } from './components/link-account/link-account.component';
-import { FileInputDirective } from './file-input/file-input.directive';
 import { PlattenDetailsComponent } from './components/platten/platten-details/platten-details.component';
 import { ManualsComponent } from './components/manuals/manuals.component';
 import { DropzoneComponent } from './dropzone/dropzone.component';
-import { FirechatComponent } from './firechat/firechat.component';
 import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
 import { ChatComponent } from './components/chat/chat.component';
+import { FroalaEditorDirective, FroalaViewDirective } from './froala/froala.directives';
 
 @NgModule({
   declarations: [
@@ -60,14 +58,13 @@ import { ChatComponent } from './components/chat/chat.component';
     TinyMceComponent,
     PlattenComponent,
     PlattenDetailsComponent,
-    FirechatComponent,
     SafePipe,
     PageNotFoundComponent,
     LinkAccountComponent,
-    FileInputDirective,
     DropzoneComponent,
-    FILE_UPLOAD_DIRECTIVES,
-    ChatComponent
+    ChatComponent,
+    FroalaEditorDirective,
+    FroalaViewDirective
   ],
   imports: [
     // Router

@@ -1,20 +1,16 @@
 <md-card style="max-width: 100%">
-  <form [formGroup]="manualForm" (submit)="onSubmit($event)">
+  <form [formGroup]="manualForm">
     <md-input [type]="text" formControlName="title" placeholder="Titel"></md-input>
-
-    <hsr-dropzone *ngIf="manualForm.controls['title'].value != ''"
-                  [acceptedFiles]="'application/pdf'"
-                  (fileAdded)="onManualAdded($event)"
-                  [autoUpload]="true">
-      <i class="fa fa-upload fa-3x"></i>
-      <p style="margin: 6px 0 0 0; font-weight: bold;">Hier klicken oder Datei ablegen!!!</p>
-    </hsr-dropzone>
-
-    <!--<md-card-actions align="end">-->
-    <!--<button md-raised-button [type]="submit" [disabled]="manualForm.controls['title'].value === ''">Speichern</button>-->
-    <!--</md-card-actions>-->
-
   </form>
+  <hsr-dropzone [acceptedFiles]="'application/pdf'" (fileAdded)="onManualAdded($event)" [autoUpload]="false">
+    <i class="fa fa-upload fa-3x"></i>
+    <p style="margin: 6px 0 0 0; font-weight: bold;">Hier klicken oder Datei ablegen!!!</p>
+  </hsr-dropzone>
+
+  <md-card-actions align="end">
+    <button md-raised-button [disabled]="manualForm.controls['title'].value == ''" (click)="onSubmit()">Speichern</button>
+  </md-card-actions>
+
 
   <md-button-toggle-group name="view" [value]="view" (change)="setView($event)">
     <md-button-toggle value="list">
@@ -38,12 +34,18 @@
   </md-nav-list>
 </div>
 
-<div style="padding-top: 16px;" *ngIf="view === 'grid'">
+<div style="padding-top: 16px;box-sizing: border-box;" *ngIf="view === 'grid'">
   <div style="display:flex; flex-direction: column; align-items: center;">
-    <div style="width: 100%;max-width: 1200px; padding: 16px;">
+    <div style="width: 100%;max-width: 1200px; padding: 16px; box-sizing: border-box;">
       <md-grid-list cols="4" rowHeight="156px" gutterSize="16px">
         <a [href]="manual.url" target="_blank" *ngFor="let manual of manualsList | async">
           <md-grid-tile class="card card-interactive">
+            <button md-button
+                    *ngIf="isAuthor(manual.author)"
+                    (click)="onManualDeleted($event, manual.name)"
+                    style="position: absolute; top:0; right: 0; min-width: 36px; width: 36px; height: 36px;">
+              <i class="fa fa-trash-o"></i>
+            </button>
             <div class="centered noselect clickthrough">
               <span class="fa-stack fa-2x">
   <i class="fa fa-square fa-stack-2x"></i>

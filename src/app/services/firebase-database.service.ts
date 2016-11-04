@@ -8,12 +8,24 @@ export class FirebaseDatabaseService {
   constructor(private angularFire: AngularFire) {
   }
 
+  getChatMessages(): FirebaseListObservable<any> {
+    return this.angularFire.database.list('chat');
+  }
+
+  getChatMessage(key: number): FirebaseObjectObservable<any> {
+    return this.angularFire.database.object('chat/' + key);
+  }
+
   getBlogEntries(): FirebaseListObservable<any> {
     return this.angularFire.database.list('blog', {
       query: {
         orderByChild: 'reverseDate'
       }
     });
+  }
+
+  getBlogEntry(key: number): FirebaseObjectObservable<any> {
+    return this.angularFire.database.object('blog/' + key);
   }
 
   getPlatten(): FirebaseListObservable<any> {

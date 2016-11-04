@@ -8,7 +8,8 @@ import { Component, ElementRef, EventEmitter, Inject, Output, Input, AfterViewIn
         <textarea id="baseTextArea">{{htmlContent}}</textarea>
     </div>
 </div>
-`
+`,
+  styleUrls: ['content.min.scss', 'skin.min.scss']
 })
 export class TinyMceComponent implements AfterViewInit, OnDestroy {
 

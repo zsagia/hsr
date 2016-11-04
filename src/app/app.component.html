@@ -10,8 +10,7 @@
       <i class="fa fa-sign-out"></i>
     </a>
     <div class="hide-mobile">
-      <span *ngIf="authState.auth.email">{{authState.auth.email}}</span>
-      <span *ngIf="!authState.auth.email">{{authState.auth.displayName}}</span>
+      <span>{{authState.auth.email}}</span>
     </div>
   </div>
 
@@ -27,7 +26,11 @@
   <md-toolbar-row *ngIf="authState && !authState.auth.isAnonymous" style="overflow-x: auto;">
     <template ngFor let-route [ngForOf]="routes" class="navigation">
       <a md-button
-         class="nav-item" *ngIf="route.text" [routerLink]="route.path" routerLinkActive="active-route" [routerLinkActiveOptions]="{exact: true}">
+         class="nav-item"
+         *ngIf="route.text"
+         [routerLink]="route.path"
+         routerLinkActive="active-route"
+         [routerLinkActiveOptions]="{exact: true}">
         <i class="fa fa-{{route.icon}}"></i>
         {{route.text}}
       </a>
@@ -36,6 +39,6 @@
 
 </md-toolbar>
 
-<div style="max-width: 100%;padding: 16px;">
+<div style="max-width: 100%;padding: 8px; margin-top: 128px;box-sizing: border-box;">
   <router-outlet></router-outlet>
 </div>

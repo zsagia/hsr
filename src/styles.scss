@@ -1,4 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+// TODO: make custom theme
+@import '../node_modules/@angular2-material/core/theming/prebuilt/deeppurple-amber.css';
 
 html, body {
   font-family: 'Special Elite', cursive;
@@ -27,21 +29,24 @@ body {
 }
 
 /* Scrollbars */
-::-webkit-scrollbar {
-  width: 8px;
-}
 
-::-webkit-scrollbar:horizontal {
-  height: 8px;
-}
+@media screen and (max-width: 599px) {
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
 
-::-webkit-scrollbar-track {
-  background-color: darkgray;
-}
+  ::-webkit-scrollbar:horizontal {
+    height: 8px;
+  }
 
-::-webkit-scrollbar-thumb {
-  border-radius: 2px;
-  background-color: black;
+  ::-webkit-scrollbar-track {
+    background-color: darkgray;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border-radius: 2px;
+    background-color: black;
+  }
 }
 
 a {
@@ -213,6 +218,7 @@ md-card {
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.24), 0 0 2px rgba(0, 0, 0, 0.12);
   -webkit-transition: box-shadow 0.1s;
   transition: box-shadow 0.1s;
+  box-sizing: border-box;
 }
 
 .card-interactive {

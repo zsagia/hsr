@@ -1,24 +1,39 @@
 <div class="card">
-  <form>
-    <div style="padding: 16px;">
-      <md-input type="text" placeholder="Titel" id="title" name="title" required [(ngModel)]="currentEntry.title"></md-input>
-    </div>
-    <hsr-tinymce [htmlContent]="inContent"></hsr-tinymce>
-    <div style="padding: 16px;">
+  <div style="padding: 16px;">
+    <md-input type="text" placeholder="Titel" id="title" name="title" required [(ngModel)]="currentEntry.title"></md-input>
+  </div>
+  <div [froalaEditor]="options" [(froalaModel)]="currentEntry.content"></div>
+  <div style="padding: 16px; display: flex; flex-direction: row; justify-content: space-between;">
+    <div style="flex-direction: column; display: flex;">
       <md-checkbox id="showPublic" name="showPublic" [(ngModel)]="currentEntry.showPublic">Öffentlich</md-checkbox>
-      <button md-button (click)="saveEntry(currentEntry)" style="float:right;">Speichern</button>
+      <md-checkbox id="editEveryone" name="editEveryone" [(ngModel)]="currentEntry.editEveryone">Jeder darf bearbeiten</md-checkbox>
     </div>
-  </form>
+    <button md-button
+            (click)="saveEntry()"
+            [disabled]="!currentEntry.title || currentEntry.title == '' || !currentEntry.content|| currentEntry.content == ''">Speichern
+    </button>
+  </div>
 </div>
 
 
-<div style="padding-top: 8px;">
-  <md-card *ngFor="let blog of blogEntries | async" style="animation: flyin 0.4s ease; overflow-x: auto;">
-    <h1 style="margin-bottom: 0;">{{blog.title}}</h1>
-    <h5 style="margin-top: 2px; color: darkgrey;">{{blog.author}}</h5>
-    <div [innerHTML]="blog.content | safe"></div>
-    <button md-button (click)="deleteEntry(blog.$key)" style="position: absolute; top: 16px; right: 8px; min-width: 20px; font-size: x-large;">
-      <i class="fa fa-trash-o"></i>
-    </button>
+<div style="padding-top: 16px;">
+  <md-card *ngFor="let entry of blogEntries | async" style="animation: flyin 0.4s ease; overflow-x: auto; margin-top: 8px;">
+    <h1 style="margin-bottom: 0;">{{entry.title}}</h1>
+    <h5 style="margin-top: 2px; color: darkgrey;">{{entry.author}}</h5>
+    <div [innerHTML]="entry.content | safe"></div>
+    <div style="position: absolute; top: 8px; right: 8px;">
+      <button md-button
+              *ngIf="isAuthor(entry.author) || entry.editEveryone"
+              (click)="editEntry(entry.$key)"
+              style=" min-width: 48px; width: 48px;padding: 6px;height: 48px; font-size: x-large;">
+        <i class="fa fa-pencil"></i>
+      </button>
+      <button md-button
+              *ngIf="isAuthor(entry.author)"
+              (click)="deleteEntry(entry.$key)"
+              style="min-width: 48px; width: 48px; padding: 6px; height: 48px; font-size: x-large;">
+        <i class="fa fa-trash-o"></i>
+      </button>
+    </div>
   </md-card>
 </div>

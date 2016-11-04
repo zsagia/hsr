@@ -1,4 +1,4 @@
-<div style="min-height: 150px; margin-bottom: 16px;">
+<div style="min-height: 150px; margin-bottom: 16px;box-sizing: border-box;">
   <hsr-dropzone [acceptedFiles]="'image/*'"
                 [autoUpload]="false"
                 [maxFiles]="300"
@@ -18,7 +18,7 @@
 </div>
 
 <div style="display:flex; flex-direction: column; align-items: center;">
-  <div style="width: 100%;max-width: 1200px;height: 100%;padding: 16px;">
+  <div style="width: 100%;max-width: 1200px;height: 100%;padding: 16px;box-sizing: border-box;">
     <md-grid-list cols="4" rowHeight="400px" gutterSize="16px">
       <md-grid-tile *ngFor="let foto of fotosList | async">
         <img class="card card-interactive" [src]="foto.url">

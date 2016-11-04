@@ -15,6 +15,8 @@ export class ManualsComponent implements OnInit {
   manualForm: FormGroup;
   view: string = 'grid';
 
+  currentManual: File;
+
   constructor(private angularFire: AngularFire, private formBuilder: FormBuilder, private storage: FirebaseStorageService, private database: FirebaseDatabaseService, private auth: FirebaseAuthService) {
   }
 
@@ -28,8 +30,11 @@ export class ManualsComponent implements OnInit {
   }
 
   onManualAdded(file: File) {
-    this.storage.uploadManual(file).then((snapshot) => {
+    this.currentManual = file;
+  }
 
+  onSubmit() {
+    this.storage.uploadManual(this.currentManual).then((snapshot) => {
       let now = Date.now();
       let data = {
         name: snapshot.metadata.name,
@@ -38,22 +43,24 @@ export class ManualsComponent implements OnInit {
         fullPath: snapshot.metadata.fullPath,
         timeCreated: snapshot.metadata.timeCreated,
         size: snapshot.metadata.size,
-        author: this.auth.getCurrentUser().displayName || this.auth.getCurrentUser().email,
+        author: this.auth.getCurrentUser().email,
         date: now,
         reverseDate: 0 - now,
         title: this.manualForm.controls['title'].value
       };
-
-      console.log('manual saved to database:');
-      console.log(data);
-
       this.angularFire.database.list('manuals').push(data);
+      this.manualForm.controls['title'].setValue('');
     });
-    this.manualForm.controls['title'].setValue('');
   }
 
-  onManualDeleted(file: File) {
-    this.storage.deleteManual(file);
+  onManualDeleted(event: Event, filename: string) {
+    event.stopPropagation();
+    event.preventDefault();
+    this.storage.deleteManual(filename);
+  }
+
+  isAuthor(author) {
+    return author === this.auth.getCurrentUser().email;
   }
 
   setView(data) {
