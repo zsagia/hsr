@@ -239,6 +239,7 @@ img.card {
   flex: 1 1 auto;
 }
 
+// Sticky
 .reverse-sticky {
   position: fixed;
   top: 0;
@@ -252,6 +253,12 @@ img.card {
     position: relative;
   }
   md-toolbar-row:last-child {
-    display: none;
+    max-height: 0;
+    overflow: hidden;
   }
+}
+
+md-toolbar md-toolbar-row:last-child {
+  max-height: 64px;
+  transition: max-height 0.2s ease-out;
 }
