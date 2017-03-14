@@ -47,7 +47,6 @@ body {
 //  background-color: black;
 //}
 
-
 a {
   color: #ff9800;
   text-decoration: none;
@@ -240,9 +239,18 @@ img.card {
   flex: 1 1 auto;
 }
 
+.reverse-sticky {
+  position: fixed;
+  top: 0;
+  height: 128px;
+}
 .sticky {
   position: fixed;
   z-index: 99;
+  top: 0;
+  &.reverse-sticky {
+    position: relative;
+  }
   md-toolbar-row:last-child {
     display: none;
   }
