@@ -2,7 +2,7 @@
 
 <md-toolbar hsrSticky class="toolbar">
 
-<span fxHide.gt-sm>
+<span fxHide.gt-sm *ngIf="authState && !authState.auth.isAnonymous">
  <i style="padding-right: 6px;" md-button [mdMenuTriggerFor]="navMenu" class="fa fa-bars fa-2x"></i>
   <md-menu #navMenu="mdMenu" style="background-color: black; color: white;">
     <ng-template ngFor let-route [ngForOf]="routes" class="navigation">
