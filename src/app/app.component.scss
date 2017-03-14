@@ -1,26 +1,13 @@
-a {
-  color: white;
-  text-decoration: none;
-}
-
-a:hover {
-  color: blueviolet;
-}
-
-a.active-route {
-  color: darkorange;
-}
-
 .toolbar {
   background-color: black;
-  position: fixed;
-  box-sizing: border-box;
-  top: 0;
-  left: 0;
-  right: 0;
-  padding: 0;
-  z-index: 99;
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  color: white;
+  a {
+  color: white;
+    .active-route {
+      color: #ffeb3b;
+    }
+  }
+
   .toolbar-right {
     padding: 8px;
     display: flex;
@@ -30,6 +17,7 @@ a.active-route {
     align-items: flex-end;
     font-size: 16px;
   }
+
 }
 
 .logo {

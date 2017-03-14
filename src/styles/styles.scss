@@ -1,6 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-// TODO: make custom theme
-@import '../node_modules/@angular2-material/core/theming/prebuilt/deeppurple-amber.css';
+@import 'theme';
 
 html, body {
   font-family: 'Special Elite', cursive;
@@ -19,12 +18,12 @@ body {
 
 /* Selection */
 ::selection {
-  background-color: darkorange;
+  background-color: #ffeb3b;
   color: black;
 }
 
 ::-moz-selection {
-  background-color: darkorange;
+  background-color: #ffeb3b;
   color: black;
 }
 
@@ -50,17 +49,16 @@ body {
 }
 
 a {
-  color: blueviolet;
+  color: #ff9800;
   text-decoration: none;
 }
 
 a:hover {
-  color: darkorange;
+  color: #ffeb3b;
 }
 
 .loading-screen {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: space-around;
   position: fixed;
@@ -240,10 +238,6 @@ img.card {
   border-radius: 4px;
 }
 
-button[md-button], button[md-raised-button] {
-  text-transform: uppercase;
-}
-
-button[md-button]:hover, button[md-raised-button]:hover {
-  color: darkorange;
+.flex-fill {
+  flex: 1 1 auto;
 }

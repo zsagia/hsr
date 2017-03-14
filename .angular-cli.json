@@ -15,7 +15,7 @@
       "prefix": "hsr",
       "mobile": false,
       "styles": [
-        "styles.scss",
+        "styles/styles.scss",
         "../node_modules/font-awesome/scss/font-awesome.scss",
         "../node_modules/froala-editor/css/froala_editor.min.css",
         "../node_modules/froala-editor/css/themes/dark.min.css",

@@ -1,5 +1,4 @@
-import { Component } from '@angular/core/src/metadata/directives';
-import { OnInit, OnDestroy } from '@angular/core';
+import { OnInit, OnDestroy, Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FirebaseDatabaseService } from '../../../services/firebase-database.service';
 import { FirebaseStorageService } from '../../../services/firebase-storage.service';

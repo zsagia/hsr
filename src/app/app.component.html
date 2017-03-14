@@ -1,10 +1,10 @@
-<md-toolbar color="primary" class="toolbar">
+<md-toolbar class="toolbar">
 
   <img class="logo" routerLink="" src="assets/hsr_banner1.jpg" alt="HSR"/>
 
-  <span style="flex: 1 1 auto;"></span>
+  <span class="flex-fill"></span>
 
-  <div *ngIf="authState && !authState.auth.isAnonymous" class="toolbar-right">
+  <span *ngIf="authState && !authState.auth.isAnonymous" class="toolbar-right">
     <a style="cursor: pointer;" (click)="onLogout()">
       <span>Logout</span>
       <i class="fa fa-sign-out"></i>
@@ -12,19 +12,19 @@
     <div class="hide-mobile">
       <span>{{authState.auth.email}}</span>
     </div>
-  </div>
+  </span>
 
-  <div *ngIf="!authState || authState.auth.isAnonymous" class="toolbar-right">
+  <span *ngIf="!authState || authState.auth.isAnonymous" class="toolbar-right">
     <a routerLink="login">Login
       <i class="fa fa-sign-out"></i>
     </a>
     <a routerLink="register">Anmelden
       <i class="fa fa-user-plus"></i>
     </a>
-  </div>
+  </span>
 
   <md-toolbar-row *ngIf="authState && !authState.auth.isAnonymous" style="overflow-x: auto;">
-    <template ngFor let-route [ngForOf]="routes" class="navigation">
+    <span><ng-template ngFor let-route [ngForOf]="routes" class="navigation">
       <a md-button
          class="nav-item"
          *ngIf="route.text"
@@ -34,11 +34,11 @@
         <i class="fa fa-{{route.icon}}"></i>
         {{route.text}}
       </a>
-    </template>
+    </ng-template></span>
   </md-toolbar-row>
 
 </md-toolbar>
 
-<div style="max-width: 100%;padding: 8px; margin-top: 128px;box-sizing: border-box;">
+<div style="max-width: 100%;padding: 8px;">
   <router-outlet></router-outlet>
 </div>

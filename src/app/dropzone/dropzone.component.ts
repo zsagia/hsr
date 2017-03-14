@@ -1,5 +1,4 @@
-import { Component, AfterViewInit, EventEmitter, OnDestroy } from '@angular/core';
-import { Output, Input } from '@angular/core/src/metadata/directives';
+import { Component, AfterViewInit, EventEmitter, OnDestroy, Output, Input } from '@angular/core';
 
 declare var Dropzone: any;
 

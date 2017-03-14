@@ -1,6 +1,8 @@
 <div class="card">
   <div style="padding: 16px;">
-    <md-input type="text" placeholder="Titel" id="title" name="title" required [(ngModel)]="currentEntry.title"></md-input>
+    <md-input-container>
+    <input mdInput type="text" placeholder="Titel" id="title" name="title" required [(ngModel)]="currentEntry.title">
+    </md-input-container>
   </div>
   <div [froalaEditor]="options" [(froalaModel)]="currentEntry.content"></div>
   <div style="padding: 16px; display: flex; flex-direction: row; justify-content: space-between;">

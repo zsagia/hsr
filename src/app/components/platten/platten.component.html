@@ -2,14 +2,30 @@
   <form [formGroup]="platteForm" (submit)="onSubmit($event)">
 
     <div style="display:flex; flex-direction:row;flex-wrap:wrap; align-items: flex-start; justify-content: flex-start;">
-      <md-input [type]="text" formControlName="name" placeholder="Name"></md-input>
-      <md-input [type]="text" formControlName="kurzbezeichnung" placeholder="Kurzbezeichnung"></md-input>
-      <md-input [type]="text" formControlName="label" placeholder="Label"></md-input>
-      <md-input [type]="text" formControlName="sideA" placeholder="Side A"></md-input>
-      <md-input [type]="text" formControlName="sideB" placeholder="Side B"></md-input>
-      <md-input [type]="text" formControlName="genre" placeholder="Genre"></md-input>
-      <md-input [type]="date" formControlName="year" placeholder="Erscheinungsjahr"></md-input>
-      <input hidden type="text" formControlName="cover">
+      <md-input-container>
+        <input mdInput [type]="text" formControlName="name" placeholder="Name">
+      </md-input-container>
+      <md-input-container>
+        <input mdInput [type]="text" formControlName="kurzbezeichnung" placeholder="Kurzbezeichnung">
+      </md-input-container>
+      <md-input-container>
+        <input mdInput [type]="text" formControlName="label" placeholder="Label">
+      </md-input-container>
+      <md-input-container>
+        <input mdInput [type]="text" formControlName="sideA" placeholder="Side A">
+      </md-input-container>
+      <md-input-container>
+        <input mdInput [type]="text" formControlName="sideB" placeholder="Side B">
+      </md-input-container>
+      <md-input-container>
+        <input mdInput [type]="text" formControlName="genre" placeholder="Genre">
+      </md-input-container>
+      <md-input-container>
+        <input mdInput [type]="date" formControlName="year" placeholder="Erscheinungsjahr">
+      </md-input-container>
+      <md-input-container>
+        <input mdInput hidden type="text" formControlName="cover">
+      </md-input-container>
     </div>
 
     <md-card-actions align="end">

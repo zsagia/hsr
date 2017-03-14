@@ -24,13 +24,15 @@
 
 
 <md-card style="position: fixed;display: flex; flex-direction: row; bottom: 0; left: 0; right: 0; padding: 8px;">
-  <md-input style="flex: 1 1 auto;"
+  <md-input-container>
+  <input mdInput style="flex: 1 1 auto;"
             type="text"
             placeholder="Nachricht eingeben..."
             id="message"
             name="message"
             (keydown.enter)="sendMessage()"
-            [(ngModel)]="currentMessage.message"></md-input>
+            [(ngModel)]="currentMessage.message">
+  </md-input-container>
   <button md-button (click)="sendMessage()" [disabled]="!currentMessage.message || currentMessage.message == ''">Senden
   </button>
 </md-card>
