@@ -32,6 +32,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { OrderBy } from './pipes/orderBy.pipe';
 import { ReversePipe } from './pipes/reverse.pipe';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { StickyDirective } from './directives/sticky.directive';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     DropzoneComponent,
     ChatComponent,
     FroalaEditorDirective,
-    FroalaViewDirective
+    FroalaViewDirective,
+    StickyDirective
   ],
   imports: [
     // Router

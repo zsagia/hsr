@@ -29,24 +29,24 @@ body {
 
 /* Scrollbars */
 
-@media screen and (min-width: 599px) {
-  ::-webkit-scrollbar {
-    width: 8px;
-  }
+//
+//::-webkit-scrollbar {
+//  width: 8px;
+//}
+//
+//::-webkit-scrollbar:horizontal {
+//  height: 8px;
+//}
+//
+//::-webkit-scrollbar-track {
+//  background-color: darkgray;
+//}
+//
+//::-webkit-scrollbar-thumb {
+//  border-radius: 2px;
+//  background-color: black;
+//}
 
-  ::-webkit-scrollbar:horizontal {
-    height: 8px;
-  }
-
-  ::-webkit-scrollbar-track {
-    background-color: darkgray;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    border-radius: 2px;
-    background-color: black;
-  }
-}
 
 a {
   color: #ff9800;
@@ -202,15 +202,6 @@ a:hover {
   pointer-events: none;
 }
 
-/* Mobile */
-@media screen and (max-width: 599px) {
-
-  .hide-mobile {
-    display: none;
-  }
-
-}
-
 /* md-card*/
 md-card {
   border-radius: 4px !important;
@@ -247,4 +238,12 @@ img.card {
 
 .flex-fill {
   flex: 1 1 auto;
+}
+
+.sticky {
+  position: fixed;
+  z-index: 99;
+  md-toolbar-row:last-child {
+    display: none;
+  }
 }

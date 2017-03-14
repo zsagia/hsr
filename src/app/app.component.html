@@ -1,4 +1,4 @@
-<md-toolbar class="toolbar">
+<md-toolbar hsrSticky class="toolbar">
 
 <span fxHide.gt-sm>
  <i style="padding-right: 6px;" md-button [mdMenuTriggerFor]="navMenu" class="fa fa-bars fa-2x"></i>
@@ -29,7 +29,7 @@
       <span>Logout</span>
       <i class="fa fa-sign-out"></i>
     </a>
-    <div class="hide-mobile">
+    <div fxHide.xs>
       <span>{{authState.auth.email}}</span>
     </div>
   </span>
