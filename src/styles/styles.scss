@@ -29,7 +29,7 @@ body {
 
 /* Scrollbars */
 
-@media screen and (max-width: 599px) {
+@media screen and (min-width: 599px) {
   ::-webkit-scrollbar {
     width: 8px;
   }

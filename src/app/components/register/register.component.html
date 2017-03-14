@@ -1,7 +1,6 @@
 <md-card class="app-input-section">
   <h1>Registrieren</h1>
-  <form #registerForm="ngForm" (ngSubmit)="onRegister()">
-
+  <form #registerForm="ngForm" (ngSubmit)="onRegister()" fxLayout="column">
     <md-input-container>
       <input mdInput ngControl="email" [(ngModel)]="user.email" required type="email" id="email" name="email" placeholder="E-Mail">
       <span md-prefix>
@@ -9,7 +8,6 @@
           &nbsp;
         </span>
     </md-input-container>
-
     <md-input-container>
       <input mdInput ngControl="password" [(ngModel)]="user.password" required type="password" id="password" name="password" placeholder="Passwort">
       <span md-prefix>
@@ -18,9 +16,7 @@
         </span>
     </md-input-container>
 
-    <div style="display: flex; flex-direction: row; align-items: flex-end; justify-content: flex-end">
-      <button md-raised-button type="submit">Registrieren</button>
-    </div>
+      <button md-raised-button type="submit" fxFlexAlign="end">Registrieren</button>
   </form>
   <!--TODO: enable when linking possible-->
   <!--

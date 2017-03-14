@@ -1,4 +1,22 @@
-<md-toolbar class="toolbar">
+<md-toolbar class="toolbar" fxLayout="row">
+
+<span fxHide.gt-sm>
+ <i style="padding-right: 6px;" md-button [mdMenuTriggerFor]="navMenu" class="fa fa-bars fa-2x"></i>
+  <md-menu #navMenu="mdMenu" style="background-color: black; color: white;">
+    <ng-template ngFor let-route [ngForOf]="routes" class="navigation">
+      <button md-menu-item
+              class="nav-item"
+              style="background-color: black; color: white;"
+              *ngIf="route.text"
+              [routerLink]="route.path"
+              routerLinkActive="active-route"
+              [routerLinkActiveOptions]="{exact: true}">
+        <i class="fa fa-{{route.icon}}"></i>
+        <span>{{route.text}}</span>
+      </button>
+    </ng-template>
+  </md-menu>
+</span>
 
   <img class="logo" routerLink="" src="assets/hsr_banner1.jpg" alt="HSR"/>
 
@@ -18,12 +36,12 @@
     <a routerLink="login">Login
       <i class="fa fa-sign-out"></i>
     </a>
-    <a routerLink="register">Anmelden
+    <a routerLink="register">Registrieren
       <i class="fa fa-user-plus"></i>
     </a>
   </span>
 
-  <md-toolbar-row *ngIf="authState && !authState.auth.isAnonymous" style="overflow-x: auto;">
+  <md-toolbar-row fxHide.sm fxHide.xs *ngIf="authState && !authState.auth.isAnonymous">
     <span><ng-template ngFor let-route [ngForOf]="routes" class="navigation">
       <a md-button
          class="nav-item"
@@ -32,13 +50,13 @@
          routerLinkActive="active-route"
          [routerLinkActiveOptions]="{exact: true}">
         <i class="fa fa-{{route.icon}}"></i>
-        {{route.text}}
+        <span>{{route.text}}</span>
       </a>
     </ng-template></span>
   </md-toolbar-row>
 
 </md-toolbar>
 
-<div style="max-width: 100%;padding: 8px;">
+<div style="max-width: 100%;padding: 8px;box-sizing: border-box;">
   <router-outlet></router-outlet>
 </div>

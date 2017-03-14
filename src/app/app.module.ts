@@ -31,6 +31,7 @@ import { FroalaEditorDirective, FroalaViewDirective } from './froala/froala.dire
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { OrderBy } from "./pipes/orderBy.pipe";
 import { ReversePipe } from './pipes/reverse.pipe';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -73,6 +74,7 @@ import { ReversePipe } from './pipes/reverse.pipe';
     // ng2 Slim Loading Bar
     SlimLoadingBarModule.forRoot(),
     MaterialModule,
+    FlexLayoutModule,
     BrowserAnimationsModule
   ],
   providers: [

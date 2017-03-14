@@ -4,12 +4,7 @@ declare var gapi: any;
 
 @Component({
   selector: 'hsr-link-account',
-  templateUrl: 'link-account.component.html',
-  styles: [`
-.ng-invalid {
-border: 1px solid red;
-}
-`]
+  templateUrl: 'link-account.component.html'
 })
 export class LinkAccountComponent implements AfterViewInit {
   // TODO: make it work for linking acounts

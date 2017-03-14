@@ -1,8 +1,7 @@
 <div style="display: flex; flex-direction: row;justify-content: center;padding-top: 64px;">
   <md-card style="width: 600px;" class="app-input-section">
     <h1>Login</h1>
-    <form #registerForm="ngForm" (ngSubmit)="onLogin()" layout="column">
-      <div style="display:flex;flex-direction:column;">
+    <form #registerForm="ngForm" (ngSubmit)="onLogin()" fxLayout="column">
         <md-input-container>
         <input mdInput ngControl="email" [(ngModel)]="user.email" required type="email" id="email" name="email" placeholder="E-Mail">
     <span md-prefix>
@@ -17,12 +16,7 @@
           &nbsp;
         </span>
         </md-input-container>
-      </div>
-
-      <div style="display: flex; flex-direction: row; align-items: flex-end; justify-content: flex-end">
-        <button md-raised-button type="submit">Einloggen</button>
-      </div>
-
+        <button fxFlexAlign="end" md-raised-button type="submit">Einloggen</button>
     </form>
     <!--TODO: enable when linking is possible-->
     <!--    <button (click)="onGoogle()">Mit Google einloggen</button>
