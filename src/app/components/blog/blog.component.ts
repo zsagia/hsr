@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FirebaseListObservable } from 'angularfire2';
 import { FirebaseDatabaseService } from '../../services/firebase-database.service';
 import { FirebaseAuthService } from '../../services/firebase-auth.service';
+import { MdSnackBar } from '@angular/material';
 
 @Component({
   selector: 'hsr-blog',
@@ -38,7 +39,7 @@ export class BlogComponent implements OnInit {
 
   blogEntries: FirebaseListObservable<any>;
 
-  constructor(private database: FirebaseDatabaseService, private auth: FirebaseAuthService) {
+  constructor(private database: FirebaseDatabaseService, private auth: FirebaseAuthService, public snackBar: MdSnackBar) {
     this.blogEntries = database.getBlogEntries();
   }
 
@@ -63,10 +64,16 @@ export class BlogComponent implements OnInit {
     }
     this.currentEntry = {title: null, content: '', showPublic: false, editEveryone: false};
     this.editingKey = null;
+    this.snackBar.open('Blogeintrag gespeichert', 'OK', {
+      duration: 3000
+    });
   }
 
   deleteEntry(key) {
     this.blogEntries.remove(key);
+    this.snackBar.open('Blogeintrag gelöscht', 'OK', {
+      duration: 3000
+    });
   }
 
   editEntry(key) {
@@ -75,6 +82,8 @@ export class BlogComponent implements OnInit {
       this.currentEntry.title = entry.title;
       this.currentEntry.content = entry.content;
       this.currentEntry.showPublic = entry.showPublic;
+      this.currentEntry.editEveryone = entry.editEveryone;
+      this.currentEntry.author = entry.author;
     });
   }
 }

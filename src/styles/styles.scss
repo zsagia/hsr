@@ -59,6 +59,7 @@ a:hover {
 
 .loading-screen {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: space-around;
   position: fixed;
@@ -108,6 +109,12 @@ a:hover {
 }
 
 /* Animations */
+@keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
 
 @media screen and (min-width: 600px) {
 

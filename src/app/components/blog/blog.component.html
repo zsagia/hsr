@@ -1,5 +1,5 @@
 <div class="card">
-  <div style="padding: 16px;">
+  <div style="padding:8px 12px;">
     <md-input-container>
     <input mdInput type="text" placeholder="Titel" id="title" name="title" required [(ngModel)]="currentEntry.title">
     </md-input-container>
@@ -8,7 +8,11 @@
   <div style="padding: 16px; display: flex; flex-direction: row; justify-content: space-between;">
     <div style="flex-direction: column; display: flex;">
       <md-checkbox id="showPublic" name="showPublic" [(ngModel)]="currentEntry.showPublic">Öffentlich</md-checkbox>
-      <md-checkbox id="editEveryone" name="editEveryone" [(ngModel)]="currentEntry.editEveryone">Jeder darf bearbeiten</md-checkbox>
+      <md-checkbox id="editEveryone"
+                   name="editEveryone"
+                   *ngIf="isAuthor(currentEntry.author) || !currentEntry.author"
+                   [(ngModel)]="currentEntry.editEveryone">Jeder darf bearbeiten
+      </md-checkbox>
     </div>
     <button md-button
             (click)="saveEntry()"

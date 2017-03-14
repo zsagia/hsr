@@ -1,4 +1,4 @@
-<md-toolbar class="toolbar" fxLayout="row">
+<md-toolbar class="toolbar">
 
 <span fxHide.gt-sm>
  <i style="padding-right: 6px;" md-button [mdMenuTriggerFor]="navMenu" class="fa fa-bars fa-2x"></i>
@@ -17,8 +17,10 @@
     </ng-template>
   </md-menu>
 </span>
+  <span fxHide.gt-xs class="flex-fill"></span>
 
-  <img class="logo" routerLink="" src="assets/hsr_banner1.jpg" alt="HSR"/>
+  <img fxHide.xs class="logo" routerLink="" src="assets/hsr_banner1.jpg" alt="HSR"/>
+  <img fxHide.gt-xs class="logo" routerLink="" src="assets/hsr_logo.jpg" alt="HSR"/>
 
   <span class="flex-fill"></span>
 

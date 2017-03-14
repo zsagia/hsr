@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFire, AuthMethods, AuthProviders, FirebaseAuthState } from 'angularfire2';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
 import 'rxjs/add/operator/first';
 import * as firebase from 'firebase';
@@ -53,8 +53,8 @@ export class FirebaseAuthService implements CanActivate {
     });
   }
 
-  loginWithEmailAndPassword(user) {
-    this.angularFire.auth.login(user, {
+  loginWithEmailAndPassword(user): firebase.Promise<FirebaseAuthState> {
+    return this.angularFire.auth.login(user, {
       method: AuthMethods.Password,
       provider: AuthProviders.Password
     });
