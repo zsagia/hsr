@@ -20,16 +20,20 @@
 <div fxLayout="column" fxLayoutAlign="center">
   <div style="width: 100%;max-width: 1200px;height: 100%;padding: 16px;box-sizing: border-box;">
     <md-grid-list fxHide.xs fxHide.sm cols="4" rowHeight="400px" gutterSize="16px">
-      <md-grid-tile *ngFor="let foto of fotosList | async">
-        <img class="card card-interactive" [src]="foto.url">
+      <md-grid-tile *ngFor="let foto of fotosList">
+        <img class="card card-interactive" (click)="openImageModal(foto.img, fotosList)" [src]="foto.img">
       </md-grid-tile>
     </md-grid-list>
 
-    <md-grid-list fxHide.gt-sm cols="2" rowHeight="150px" gutterSize="8px">
-      <md-grid-tile *ngFor="let foto of fotosList | async">
-        <img class="card card-interactive" [src]="foto.url">
-      </md-grid-tile>
-    </md-grid-list>
-  </div>
-</div>
+    <div *ngIf="openModalWindow">
+      <imageModal [modalImages]="fotosList" [imagePointer]="imagePointer" (cancelEvent)="cancelImageModal()"></imageModal>
+    </div>
+
+    <!--<md-grid-list fxHide.gt-sm cols="2" rowHeight="150px" gutterSize="8px">-->
+    <!--<md-grid-tile *ngFor="let foto of fotosList">-->
+    <!--<img class="card card-interactive" [src]="foto.url">-->
+    <!--</md-grid-tile>-->
+    <!--</md-grid-list>-->
+    <!--</div>-->
+    <!--</div>-->
 

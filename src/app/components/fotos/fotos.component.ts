@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FirebaseStorageService } from '../../services/firebase-storage.service';
-import { FirebaseListObservable, AngularFire } from 'angularfire2';
+import { AngularFire } from 'angularfire2';
 import { FirebaseDatabaseService } from '../../services/firebase-database.service';
 import { FirebaseAuthService } from '../../services/firebase-auth.service';
 import { ProgressHelper } from './shared/progress.helper';
@@ -8,14 +8,17 @@ import { SlimLoadingBarService } from 'ng2-slim-loading-bar';
 
 @Component({
   selector: 'hsr-fotos',
+
   templateUrl: 'fotos.component.html',
   styleUrls: ['fotos.component.scss']
 })
 export class FotosComponent implements OnInit {
-  fotosList: FirebaseListObservable<any>;
+  fotosList: ModalImage[] = [];
   uploadProgress: ProgressHelper;
   fileToRemove: File;
   areFilesInList: boolean;
+  openModalWindow: boolean = false;
+  imagePointer: number;
 
   constructor(private progressBar: SlimLoadingBarService,
     private auth: FirebaseAuthService,
@@ -26,7 +29,32 @@ export class FotosComponent implements OnInit {
 
   // TODO: implement folders;) + treeview
   ngOnInit() {
-    this.fotosList = this.database.getFotos();
+    this.database.getFotos().subscribe((fotos) => {
+      fotos.forEach((foto) => {
+        this.fotosList.push({
+          thumb: foto.url,
+          img: foto.url,
+          description: foto.name
+        });
+      })
+    });
+  }
+
+  openImageModal(imageSrc, images) {
+    let imageModalPointer;
+    for (let i = 0; i < images.length; i++) {
+      if (imageSrc === images[i].img) {
+        imageModalPointer = i;
+        break;
+      }
+    }
+    this.openModalWindow = true;
+    this.fotosList = images;
+    this.imagePointer = imageModalPointer;
+  }
+
+  cancelImageModal() {
+    this.openModalWindow = false;
   }
 
   onFilesChanged(event) {
@@ -67,4 +95,10 @@ export class FotosComponent implements OnInit {
       });
     }
   }
+}
+
+export interface ModalImage {
+  img: string;
+  thumb: string;
+  description: string;
 }

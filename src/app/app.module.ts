@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularFireModule } from 'angularfire2';
 import { RouterModule } from '@angular/router';
 import { MaterialModule } from '@angular/material';
@@ -29,9 +29,10 @@ import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
 import { ChatComponent } from './components/chat/chat.component';
 import { FroalaEditorDirective, FroalaViewDirective } from './froala/froala.directives';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { OrderBy } from "./pipes/orderBy.pipe";
+import { OrderBy } from './pipes/orderBy.pipe';
 import { ReversePipe } from './pipes/reverse.pipe';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { ModalGalleryModule } from 'angular-modal-gallery';
 
 @NgModule({
   declarations: [
@@ -75,7 +76,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     SlimLoadingBarModule.forRoot(),
     MaterialModule,
     FlexLayoutModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ModalGalleryModule.forRoot()
   ],
   providers: [
     FirebaseAuthService,

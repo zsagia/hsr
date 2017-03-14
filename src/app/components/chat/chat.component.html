@@ -1,7 +1,6 @@
 <md-card *ngFor="let message of chatMessages | async"
          style="margin-top: 8px; padding: 0 8px 8px 8px; width: 85%;clear: both;"
-         [style.float]="isAuthor(message.author) ? 'right' : 'left'"
-         [style.background-color]="isAuthor(message.author) ? 'grey' : 'white'">
+         [style.float]="isAuthor(message.author) ? 'right' : 'left'" [style.background-color]="isAuthor(message.author) ? 'white' : '#ffeb3b'">
   <div style="display: flex; flex-direction: row; align-items: center;">
     <div style="font-size: x-small;color: gray;">{{message.author}}</div>
     <div style="flex: 1 1 auto;"></div>
@@ -23,7 +22,7 @@
 <div style="clear: both; height: 72px;"></div>
 
 
-<md-card style="position: fixed;display: flex; flex-direction: row; bottom: 0; left: 0; right: 0; padding: 8px;">
+<md-card class="message-input">
   <md-input-container>
   <input mdInput style="flex: 1 1 auto;"
             type="text"
@@ -33,6 +32,6 @@
             (keydown.enter)="sendMessage()"
             [(ngModel)]="currentMessage.message">
   </md-input-container>
-  <button md-button (click)="sendMessage()" [disabled]="!currentMessage.message || currentMessage.message == ''">Senden
+  <button md-raised-button (click)="sendMessage()" [disabled]="!currentMessage.message || currentMessage.message == ''">Senden
   </button>
 </md-card>
