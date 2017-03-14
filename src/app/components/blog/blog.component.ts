@@ -37,6 +37,8 @@ export class BlogComponent implements OnInit {
   currentEntry: BlogEntry;
   editingKey: number;
 
+  editorOpened = false;
+
   blogEntries: FirebaseListObservable<any>;
 
   constructor(private database: FirebaseDatabaseService, private auth: FirebaseAuthService, public snackBar: MdSnackBar) {
@@ -44,7 +46,7 @@ export class BlogComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.currentEntry = {title: null, content: null, showPublic: false, editEveryone: false};
+    this.currentEntry = {title: '', content: null, showPublic: false, editEveryone: false};
   }
 
   isAuthor(author) {
@@ -64,6 +66,7 @@ export class BlogComponent implements OnInit {
     }
     this.currentEntry = {title: null, content: '', showPublic: false, editEveryone: false};
     this.editingKey = null;
+    this.editorOpened = false;
     this.snackBar.open('Blogeintrag gespeichert', 'OK', {
       duration: 3000
     });
@@ -77,6 +80,7 @@ export class BlogComponent implements OnInit {
   }
 
   editEntry(key) {
+    this.editorOpened = true;
     this.database.getBlogEntry(key).subscribe((entry) => {
       this.editingKey = entry.$key;
       this.currentEntry.title = entry.title;

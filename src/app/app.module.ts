@@ -32,7 +32,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { OrderBy } from './pipes/orderBy.pipe';
 import { ReversePipe } from './pipes/reverse.pipe';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { ModalGalleryModule } from 'angular-modal-gallery';
 
 @NgModule({
   declarations: [
@@ -76,8 +75,7 @@ import { ModalGalleryModule } from 'angular-modal-gallery';
     SlimLoadingBarModule.forRoot(),
     MaterialModule,
     FlexLayoutModule,
-    BrowserAnimationsModule,
-    ModalGalleryModule.forRoot()
+    BrowserAnimationsModule
   ],
   providers: [
     FirebaseAuthService,
