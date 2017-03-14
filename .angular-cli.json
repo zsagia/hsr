@@ -1,6 +1,6 @@
 {
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "project": {
-    "version": "1.0.0-beta.19-3",
     "name": "hsr"
   },
   "apps": [
@@ -11,9 +11,9 @@
       "index": "index.html",
       "main": "main.ts",
       "test": "test.ts",
-      "tsconfig": "tsconfig.json",
-      "prefix": "hsr",
-      "mobile": false,
+      "tsconfig": "tsconfig.app.json",
+      "testTsconfig": "tsconfig.spec.json",
+      "prefix": "app",
       "styles": [
         "styles/styles.scss",
         "../node_modules/font-awesome/scss/font-awesome.scss",
@@ -27,7 +27,51 @@
         "../node_modules/froala-editor/css/plugins/line_breaker.min.css",
         "../node_modules/froala-editor/css/plugins/quick_insert.min.css",
         "../node_modules/froala-editor/css/plugins/video.min.css",
-        "../node_modules/codemirror/lib/codemirror.css"
+        "../node_modules/codemirror/lib/codemirror.css",
+        {
+          "input": "../node_modules/froala-editor/css/froala_editor.min.css",
+          "lazy": true
+        },
+        {
+          "input": "../node_modules/froala-editor/css/themes/dark.min.css",
+          "lazy": true
+        },
+        {
+          "input": "../node_modules/froala-editor/css/plugins/code_view.min.css",
+          "lazy": true
+        },
+        {
+          "input": "../node_modules/froala-editor/css/plugins/colors.min.css",
+          "lazy": true
+        },
+        {
+          "input": "../node_modules/froala-editor/css/plugins/draggable.min.css",
+          "lazy": true
+        },
+        {
+          "input": "../node_modules/froala-editor/css/plugins/emoticons.min.css",
+          "lazy": true
+        },
+        {
+          "input": "../node_modules/froala-editor/css/plugins/image.min.css",
+          "lazy": true
+        },
+        {
+          "input": "../node_modules/froala-editor/css/plugins/line_breaker.min.css",
+          "lazy": true
+        },
+        {
+          "input": "../node_modules/froala-editor/css/plugins/quick_insert.min.css",
+          "lazy": true
+        },
+        {
+          "input": "../node_modules/froala-editor/css/plugins/video.min.css",
+          "lazy": true
+        },
+        {
+          "input": "../node_modules/codemirror/lib/codemirror.css",
+          "lazy": true
+        }
       ],
       "scripts": [
         "../node_modules/jquery/dist/jquery.min.js",
@@ -75,13 +119,22 @@
       }
     }
   ],
-  "addons": [],
-  "packages": [],
   "e2e": {
     "protractor": {
       "config": "./protractor.conf.js"
     }
   },
+  "lint": [
+    {
+      "project": "src/tsconfig.app.json"
+    },
+    {
+      "project": "src/tsconfig.spec.json"
+    },
+    {
+      "project": "e2e/tsconfig.e2e.json"
+    }
+  ],
   "test": {
     "karma": {
       "config": "./karma.conf.js"
