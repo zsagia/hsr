@@ -13,17 +13,17 @@ export class FirebaseStorageService {
   }
 
   uploadFoto(file: File): Promise<any> {
-    let fotosStorageRef = this.storageRef.child('fotos/' + file.name + this.generateRandomId());
+    const fotosStorageRef = this.storageRef.child('fotos/' + file.name + this.generateRandomId());
     return fotosStorageRef.put(file);
   }
 
   uploadManual(file: File): Promise<any> {
-    let manualsStorageRef = this.storageRef.child('manuals/' + file.name + this.generateRandomId());
+    const manualsStorageRef = this.storageRef.child('manuals/' + file.name + this.generateRandomId());
     return manualsStorageRef.put(file);
   }
 
   deleteManual(filename: string) {
-    let manualsStorageRef = this.storageRef.child('manuals/' + filename);
+    const manualsStorageRef = this.storageRef.child('manuals/' + filename);
     manualsStorageRef.delete();
     this.angularFire.database.list('manuals', {
       query: {
@@ -34,20 +34,20 @@ export class FirebaseStorageService {
   }
 
   uploadCover(file: File): Promise<any> {
-    let imageRef = this.storageRef.child('cover/' + file.name + this.generateRandomId());
+    const imageRef = this.storageRef.child('cover/' + file.name + this.generateRandomId());
 
     return imageRef.put(file);
   }
 
   deleteCover(fileName: string) {
-    let imageRef = this.storageRef.child('cover/' + fileName);
+    const imageRef = this.storageRef.child('cover/' + fileName);
     imageRef.delete();
   }
 
   // generate random id to make filename dupes possible
   private generateRandomId(): string {
     let text = '';
-    let possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
     for (let i = 0; i < 5; i++) {
       text += possible.charAt(Math.floor(Math.random() * possible.length));

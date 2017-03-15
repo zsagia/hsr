@@ -54,7 +54,7 @@ export class BlogComponent implements OnInit {
   }
 
   saveEntry() {
-    let now = Date.now();
+    const now = Date.now();
 
     if (!this.editingKey) {
       this.currentEntry.author = this.auth.getCurrentUser().email;

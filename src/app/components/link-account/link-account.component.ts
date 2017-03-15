@@ -37,7 +37,7 @@ export class LinkAccountComponent implements AfterViewInit {
       console.log(this.userAuthToken);
       console.log(this.userDisplayName);
     });
-  };
+  }
 
   onGoogleFailure(error) {
     console.log(error);

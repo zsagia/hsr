@@ -8,9 +8,9 @@ declare var Dropzone: any;
   styleUrls: ['dropzone.component.scss']
 })
 export class DropzoneComponent implements AfterViewInit, OnDestroy {
-  private fileLimitReached: boolean = false;
-  private fileLimitExceeded: boolean = false;
-  private hasError: boolean = false;
+  private fileLimitReached = false;
+  private fileLimitExceeded = false;
+  private hasError = false;
   private dropzone;
 
   @Output() filesUploading: EventEmitter<File[]> = new EventEmitter<File[]>();

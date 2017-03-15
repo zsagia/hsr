@@ -8,6 +8,7 @@
     "build": "ng build",
     "deploy": "ng build --target=production --environment=prod && firebase deploy",
     "lint": "ng lint",
+    "tslint": "tslint -t stylish -c tslint.json --project src/tsconfig.app.json",
     "test": "ng test",
     "e2e": "ng e2e",
     "compodoc": "compodoc -p src/tsconfig.app.json -s",

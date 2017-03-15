@@ -17,7 +17,7 @@ export class FotosComponent implements OnInit {
   uploadProgress: ProgressHelper;
   fileToRemove: File;
   areFilesInList: boolean;
-  openModalWindow: boolean = false;
+  openModalWindow = false;
   imagePointer: number;
 
   constructor(private progressBar: SlimLoadingBarService,
@@ -36,7 +36,7 @@ export class FotosComponent implements OnInit {
           img: foto.url,
           description: foto.name
         });
-      })
+      });
     });
   }
 
@@ -65,10 +65,10 @@ export class FotosComponent implements OnInit {
     this.uploadProgress = new ProgressHelper(files.length);
     this.progressBar.reset();
     this.progressBar.start();
-    for (let file of files) {
+    for (const file of files) {
       this.storage.uploadFoto(file).then((snapshot) => {
-        let now = Date.now();
-        let data = {
+        const now = Date.now();
+        const data = {
           name: snapshot.metadata.name,
           url: snapshot.metadata.downloadURLs[0],
           contentType: snapshot.metadata.contentType,

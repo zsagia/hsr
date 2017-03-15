@@ -14,8 +14,8 @@ export class PlattenDetailsComponent implements OnInit, OnDestroy {
   plattenDetailsForm: FormGroup;
   platte: FirebaseObjectObservable<any>;
   coverFileName: string;
-  isSaved: boolean = false;
-  resetFileInput: boolean = false;
+  isSaved = false;
+  resetFileInput = false;
 
   constructor(private route: ActivatedRoute, private formBuilder: FormBuilder, private database: FirebaseDatabaseService, private storage: FirebaseStorageService) {
   }
@@ -50,7 +50,7 @@ export class PlattenDetailsComponent implements OnInit, OnDestroy {
   onFileSelected(files: File[]): void {
     this.resetFileInput = false;
     this.storage.uploadCover(files[0]).then((snapshot) => {
-      let url = snapshot.metadata.downloadURLs[0];
+      const url = snapshot.metadata.downloadURLs[0];
       this.coverFileName = snapshot.metadata.name;
       this.plattenDetailsForm.controls['cover'].setValue(url);
     });
