@@ -1,4 +1,4 @@
-import { OnInit, OnDestroy, Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FirebaseDatabaseService } from '../../../services/firebase-database.service';
 import { FirebaseStorageService } from '../../../services/firebase-storage.service';

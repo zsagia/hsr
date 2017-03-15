@@ -47,7 +47,12 @@
 
   <md-toolbar-row fxHide.sm fxHide.xs *ngIf="authState && !authState.auth.isAnonymous">
     <span><ng-template ngFor let-route [ngForOf]="routes" class="navigation">
-      <a md-button class="nav-item" *ngIf="route.text" [routerLink]="route.path" routerLinkActive="active-route" [routerLinkActiveOptions]="{exact: true}">
+      <a md-button
+         class="nav-item"
+         *ngIf="route.text"
+         [routerLink]="route.path"
+         routerLinkActive="active-route"
+         [routerLinkActiveOptions]="{exact: true}">
         <i class="fa fa-{{route.icon}}"></i>
         <span>{{route.text}}</span>
       </a>

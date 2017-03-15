@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FirebaseStorageService } from '../../services/firebase-storage.service';
-import { FirebaseListObservable, AngularFire } from 'angularfire2';
+import { AngularFire, FirebaseListObservable } from 'angularfire2';
 import { FirebaseDatabaseService } from '../../services/firebase-database.service';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FirebaseAuthService } from '../../services/firebase-auth.service';
 
 @Component({

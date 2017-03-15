@@ -1,14 +1,14 @@
 import {
+  AfterViewInit,
   Directive,
   ElementRef,
-  Renderer,
-  Input,
-  Output,
   EventEmitter,
-  OnInit,
+  Inject,
+  Input,
   OnDestroy,
-  AfterViewInit,
-  Inject
+  OnInit,
+  Output,
+  Renderer
 } from '@angular/core';
 
 // non-typescript definitions

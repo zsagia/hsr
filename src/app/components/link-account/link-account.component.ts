@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, NgZone } from '@angular/core';
+import { AfterViewInit, Component, NgZone } from '@angular/core';
 import { FirebaseAuthService } from '../../services/firebase-auth.service';
 declare var gapi: any;
 

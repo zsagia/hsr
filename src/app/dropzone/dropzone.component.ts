@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, EventEmitter, OnDestroy, Output, Input } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnDestroy, Output } from '@angular/core';
 
 declare var Dropzone: any;
 

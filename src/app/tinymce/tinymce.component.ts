@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, Inject, Output, Input, AfterViewInit, OnDestroy } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, EventEmitter, Inject, Input, OnDestroy, Output } from '@angular/core';
 
 @Component({
   selector: 'hsr-tinymce',

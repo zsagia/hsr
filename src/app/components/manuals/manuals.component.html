@@ -1,7 +1,7 @@
 <md-card style="max-width: 100%">
   <form [formGroup]="manualForm">
     <md-input-container>
-    <input mdInput [type]="text" formControlName="title" placeholder="Titel">
+      <input mdInput [type]="text" formControlName="title" placeholder="Titel">
     </md-input-container>
   </form>
   <hsr-dropzone [acceptedFiles]="'application/pdf'" (fileAdded)="onManualAdded($event)" [autoUpload]="false">
