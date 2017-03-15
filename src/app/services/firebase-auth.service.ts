@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFire, AuthMethods, AuthProviders, FirebaseAuthState } from 'angularfire2';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
-import { Observable } from 'rxjs';
-import 'rxjs/add/operator/first';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
 import * as firebase from 'firebase';
 
 @Injectable()
@@ -36,21 +36,10 @@ export class FirebaseAuthService implements CanActivate {
 
   logout() {
     this.angularFire.auth.logout();
-    // TODO: make work without console error
-    this.loginAnonymously().then(() => {
-      this.router.navigate(['']);
-    });
   }
 
   registerWithEmailAndPassword(user) {
     this.angularFire.auth.createUser({email: user.email, password: user.password});
-  }
-
-  loginAnonymously(): firebase.Promise<FirebaseAuthState> {
-    return this.angularFire.auth.login({
-      method: AuthMethods.Anonymous,
-      provider: AuthProviders.Anonymous
-    });
   }
 
   loginWithEmailAndPassword(user): firebase.Promise<FirebaseAuthState> {

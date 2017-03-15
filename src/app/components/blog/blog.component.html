@@ -9,7 +9,7 @@
     </button>
   </div>
   <div [hidden]="!editorOpened">
-    <div [froalaEditor]="options" [(froalaModel)]="currentEntry.content"></div>
+    <div [hsrFroalaEditor]="options" [(froalaModel)]="currentEntry.content"></div>
     <div style="padding: 16px; display: flex; flex-direction: row; justify-content: space-between;">
       <div style="flex-direction: column; display: flex;">
         <md-checkbox id="showPublic" name="showPublic" [(ngModel)]="currentEntry.showPublic">Öffentlich</md-checkbox>

@@ -15,9 +15,6 @@ export class AppComponent {
   constructor(private firebaseAuthService: FirebaseAuthService, private af: AngularFire) {
     af.auth.subscribe(auth => {
       this.authState = auth;
-      if (!this.authState) {
-        this.firebaseAuthService.loginAnonymously();
-      }
     });
   }
 
