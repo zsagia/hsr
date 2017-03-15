@@ -8,22 +8,16 @@ import {
   OnDestroy,
   OnInit,
   Output,
-  Renderer, Renderer2
+  Renderer
 } from '@angular/core';
 
 // non-typescript definitions
 declare var $: JQueryStatic;
 
 @Directive({
-  selector: '[hsrFroalaEditor]'
+  selector: '[froalaEditor]'
 })
 export class FroalaEditorDirective implements OnInit, OnDestroy {
-
-  // froalaModel directive as output: update model if editor contentChanged
-  @Output() froalaModelChange: EventEmitter<any> = new EventEmitter<any>();
-
-  // froalaInit directive as output: send manual editor initialization
-  @Output() froalaInit: EventEmitter<Object> = new EventEmitter<Object>();
 
   // editor options
   private _opts: any = {
@@ -80,6 +74,12 @@ export class FroalaEditorDirective implements OnInit, OnDestroy {
       this.setContent();
     }
   }
+
+  // froalaModel directive as output: update model if editor contentChanged
+  @Output() froalaModelChange: EventEmitter<any> = new EventEmitter<any>();
+
+  // froalaInit directive as output: send manual editor initialization
+  @Output() froalaInit: EventEmitter<Object> = new EventEmitter<Object>();
 
   // update model if editor contentChanged
   private updateModel() {
@@ -269,13 +269,13 @@ export class FroalaEditorDirective implements OnInit, OnDestroy {
 }
 
 @Directive({
-  selector: '[hsrFroalaView]'
+  selector: '[froalaView]'
 })
 export class FroalaViewDirective implements AfterViewInit {
 
   private _element: HTMLElement;
 
-  constructor(private renderer: Renderer2, element: ElementRef) {
+  constructor(private renderer: Renderer, element: ElementRef) {
     this._element = element.nativeElement;
   }
 
@@ -285,6 +285,6 @@ export class FroalaViewDirective implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.renderer.addClass(this._element, 'fr-view');
+    this.renderer.setElementClass(this._element, 'fr-view', true);
   }
 }
