@@ -36,10 +36,21 @@ export class FirebaseAuthService implements CanActivate {
 
   logout() {
     this.angularFire.auth.logout();
+    // TODO: make work without console error
+    this.loginAnonymously().then(() => {
+      this.router.navigate(['']);
+    });
   }
 
   registerWithEmailAndPassword(user) {
     this.angularFire.auth.createUser({email: user.email, password: user.password});
+  }
+
+  loginAnonymously(): firebase.Promise<FirebaseAuthState> {
+    return this.angularFire.auth.login({
+      method: AuthMethods.Anonymous,
+      provider: AuthProviders.Anonymous
+    });
   }
 
   loginWithEmailAndPassword(user): firebase.Promise<FirebaseAuthState> {
