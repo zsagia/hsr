@@ -3,7 +3,7 @@ node {
     checkout scm
   }
   stage('lint') {
-    nodejs(nodeJSInstallationName: 'node') {
+    nodejs(nodeJSInstallationName: 'nodejs') {
       sh 'npm run lint'
     }
   }
