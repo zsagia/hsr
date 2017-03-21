@@ -2,9 +2,9 @@ node {
   stage('checkout') {
     checkout scm
   }
-  stage('lint') {
+  stage('npm install') {
     nodejs(nodeJSInstallationName: 'nodejs') {
-      sh 'npm run lint'
+      sh 'npm install'
     }
   }
 }
