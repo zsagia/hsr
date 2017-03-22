@@ -6,7 +6,8 @@
   "scripts": {
     "start": "ng serve --port 5000 --live-reload",
     "build": "ng build",
-    "deploy": "ng build --target=production --environment=prod && firebase deploy",
+    "buildProd": "ng build --target=production --environment=prod",
+    "deploy": "npm run buildProd && firebase deploy",
     "lint": "ng lint",
     "tslint": "tslint -t stylish -c tslint.json --project src/tsconfig.app.json --type-check",
     "test": "ng test",
