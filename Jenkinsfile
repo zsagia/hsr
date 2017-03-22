@@ -3,7 +3,7 @@ node {
     checkout scm
   }
   stage('npm install') {
-    nodejs(nodeJSInstallationName: 'nodejs') {
+    nodejs(nodeJSInstallationName: 'nodejs7') {
       sh 'npm install'
     }
   }
