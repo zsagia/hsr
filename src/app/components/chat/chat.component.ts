@@ -31,7 +31,7 @@ export class ChatComponent implements OnInit {
   }
 
   sendMessage() {
-    let now = Date.now();
+    const now = Date.now();
 
     if (!this.editingKey) {
       this.currentMessage.author = this.auth.getCurrentUser().email;

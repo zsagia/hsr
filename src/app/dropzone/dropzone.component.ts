@@ -1,5 +1,4 @@
-import { Component, AfterViewInit, EventEmitter, OnDestroy } from '@angular/core';
-import { Output, Input } from '@angular/core/src/metadata/directives';
+import { AfterViewInit, Component, EventEmitter, Input, OnDestroy, Output } from '@angular/core';
 
 declare var Dropzone: any;
 
@@ -9,10 +8,10 @@ declare var Dropzone: any;
   styleUrls: ['dropzone.component.scss']
 })
 export class DropzoneComponent implements AfterViewInit, OnDestroy {
-  private fileLimitReached: boolean = false;
-  private fileLimitExceeded: boolean = false;
-  private hasError: boolean = false;
-  private dropzone;
+  fileLimitReached = false;
+  fileLimitExceeded = false;
+  hasError = false;
+  dropzone;
 
   @Output() filesUploading: EventEmitter<File[]> = new EventEmitter<File[]>();
   @Output() fileAdded: EventEmitter<File> = new EventEmitter<File>();

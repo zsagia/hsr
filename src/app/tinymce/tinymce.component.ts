@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, Inject, Output, Input, AfterViewInit, OnDestroy } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, EventEmitter, Inject, Input, OnDestroy, Output } from '@angular/core';
 
 @Component({
   selector: 'hsr-tinymce',
@@ -26,11 +26,11 @@ export class TinyMceComponent implements AfterViewInit, OnDestroy {
 
   ngAfterViewInit() {
     // clone base textarea
-    let baseTextArea = this.elementRef.nativeElement.querySelector('#baseTextArea');
-    let clonedTextArea = baseTextArea.cloneNode(true);
+    const baseTextArea = this.elementRef.nativeElement.querySelector('#baseTextArea');
+    const clonedTextArea = baseTextArea.cloneNode(true);
     clonedTextArea.id = this.elementId;
 
-    let formGroup = this.elementRef.nativeElement.querySelector('#tinyFormGroup');
+    const formGroup = this.elementRef.nativeElement.querySelector('#tinyFormGroup');
     formGroup.appendChild(clonedTextArea);
 
     // attach tinyMCE to cloned textarea
@@ -44,13 +44,13 @@ export class TinyMceComponent implements AfterViewInit, OnDestroy {
         toolbar: 'code | insertfile undo redo | styleselect | textcolor | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | emoticons media link image',
         elements: this.elementId,
         images_upload_handler: (blobInfo, success, failure) => {
-          let blogImageFolderRef = firebase.storage().ref('images/blog');
-          let uploadTask = blogImageFolderRef.put(blobInfo.blob());
+          const blogImageFolderRef = firebase.storage().ref('images/blog');
+          const uploadTask = blogImageFolderRef.put(blobInfo.blob());
 
           uploadTask.on('state_changed', snapshot => {
             // Observe state change events such as progress, pause, and resume
             // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-            let progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
             console.log('Upload is ' + progress + '% done');
             switch (snapshot.state) {
               case firebase.storage.TaskState.PAUSED: // or 'paused'
@@ -67,7 +67,7 @@ export class TinyMceComponent implements AfterViewInit, OnDestroy {
           }, () => {
             // Handle successful uploads on complete
             // For instance, get the download URL: https://firebasestorage.googleapis.com/...
-            let downloadURL = uploadTask.snapshot.downloadURL;
+            const downloadURL = uploadTask.snapshot.downloadURL;
 
             success(downloadURL);
           });

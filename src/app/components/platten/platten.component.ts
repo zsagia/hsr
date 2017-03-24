@@ -1,5 +1,5 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FirebaseDatabaseService } from '../../services/firebase-database.service';
 import { FirebaseListObservable } from 'angularfire2';
 import { FirebaseStorageService } from '../../services/firebase-storage.service';
@@ -14,8 +14,8 @@ export class PlattenComponent implements OnInit, OnDestroy {
   platteForm: FormGroup;
   platten: FirebaseListObservable<any>;
   coverFileName: string;
-  isSaved: boolean = false;
-  resetFileInput: boolean = false;
+  isSaved = false;
+  resetFileInput = false;
 
   constructor(private formBuilder: FormBuilder, private database: FirebaseDatabaseService, private storage: FirebaseStorageService) {
   }
@@ -43,7 +43,7 @@ export class PlattenComponent implements OnInit, OnDestroy {
   onFileSelected(files: File[]) {
     this.resetFileInput = false;
     this.storage.uploadCover(files[0]).then((snapshot) => {
-      let url = snapshot.metadata.downloadURLs[0];
+      const url = snapshot.metadata.downloadURLs[0];
       this.coverFileName = snapshot.metadata.name;
       this.platteForm.controls['cover'].patchValue(url);
     });

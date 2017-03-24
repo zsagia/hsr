@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FirebaseListObservable } from 'angularfire2';
 import { FirebaseDatabaseService } from '../../services/firebase-database.service';
 import { FirebaseAuthService } from '../../services/firebase-auth.service';
+import { MdSnackBar } from '@angular/material';
 
 @Component({
   selector: 'hsr-blog',
@@ -36,14 +37,16 @@ export class BlogComponent implements OnInit {
   currentEntry: BlogEntry;
   editingKey: number;
 
+  editorOpened = false;
+
   blogEntries: FirebaseListObservable<any>;
 
-  constructor(private database: FirebaseDatabaseService, private auth: FirebaseAuthService) {
+  constructor(private database: FirebaseDatabaseService, private auth: FirebaseAuthService, public snackBar: MdSnackBar) {
     this.blogEntries = database.getBlogEntries();
   }
 
   ngOnInit() {
-    this.currentEntry = {title: null, content: null, showPublic: false, editEveryone: false};
+    this.currentEntry = {title: '', content: null, showPublic: false, editEveryone: false};
   }
 
   isAuthor(author) {
@@ -51,7 +54,7 @@ export class BlogComponent implements OnInit {
   }
 
   saveEntry() {
-    let now = Date.now();
+    const now = Date.now();
 
     if (!this.editingKey) {
       this.currentEntry.author = this.auth.getCurrentUser().email;
@@ -63,18 +66,28 @@ export class BlogComponent implements OnInit {
     }
     this.currentEntry = {title: null, content: '', showPublic: false, editEveryone: false};
     this.editingKey = null;
+    this.editorOpened = false;
+    this.snackBar.open('Blogeintrag gespeichert', 'OK', {
+      duration: 3000
+    });
   }
 
   deleteEntry(key) {
     this.blogEntries.remove(key);
+    this.snackBar.open('Blogeintrag gelöscht', 'OK', {
+      duration: 3000
+    });
   }
 
   editEntry(key) {
+    this.editorOpened = true;
     this.database.getBlogEntry(key).subscribe((entry) => {
       this.editingKey = entry.$key;
       this.currentEntry.title = entry.title;
       this.currentEntry.content = entry.content;
       this.currentEntry.showPublic = entry.showPublic;
+      this.currentEntry.editEveryone = entry.editEveryone;
+      this.currentEntry.author = entry.author;
     });
   }
 }

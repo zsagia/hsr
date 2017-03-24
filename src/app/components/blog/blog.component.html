@@ -1,17 +1,29 @@
 <div class="card">
-  <div style="padding: 16px;">
-    <md-input type="text" placeholder="Titel" id="title" name="title" required [(ngModel)]="currentEntry.title"></md-input>
-  </div>
-  <div [froalaEditor]="options" [(froalaModel)]="currentEntry.content"></div>
-  <div style="padding: 16px; display: flex; flex-direction: row; justify-content: space-between;">
-    <div style="flex-direction: column; display: flex;">
-      <md-checkbox id="showPublic" name="showPublic" [(ngModel)]="currentEntry.showPublic">Öffentlich</md-checkbox>
-      <md-checkbox id="editEveryone" name="editEveryone" [(ngModel)]="currentEntry.editEveryone">Jeder darf bearbeiten</md-checkbox>
-    </div>
-    <button md-button
-            (click)="saveEntry()"
-            [disabled]="!currentEntry.title || currentEntry.title == '' || !currentEntry.content|| currentEntry.content == ''">Speichern
+  <div style="padding:8px 12px;" fxLayout="row" fxLayoutAlign="center center">
+    <md-input-container>
+      <input mdInput type="text" placeholder="Titel" id="title" name="title" [(ngModel)]="currentEntry.title">
+    </md-input-container>
+    <span class="flex-fill"></span>
+    <button md-button (click)="editorOpened=!editorOpened">
+      <i class="fa fa-lg" [ngClass]="{'fa-plus': !editorOpened, 'fa-minus': editorOpened}"></i>
     </button>
+  </div>
+  <div [hidden]="!editorOpened">
+    <div [froalaEditor]="options" [(froalaModel)]="currentEntry.content"></div>
+    <div style="padding: 16px; display: flex; flex-direction: row; justify-content: space-between;">
+      <div style="flex-direction: column; display: flex;">
+        <md-checkbox id="showPublic" name="showPublic" [(ngModel)]="currentEntry.showPublic">Öffentlich</md-checkbox>
+        <md-checkbox id="editEveryone"
+                     name="editEveryone"
+                     *ngIf="isAuthor(currentEntry.author) || !currentEntry.author"
+                     [(ngModel)]="currentEntry.editEveryone">Jeder darf bearbeiten
+        </md-checkbox>
+      </div>
+      <button md-button (click)="saveEntry()" [disabled]="!currentEntry.content|| currentEntry.content == ''">
+        <i class="fa fa-floppy-o fa-lg"></i>
+        Speichern
+      </button>
+    </div>
   </div>
 </div>
 
@@ -22,17 +34,12 @@
     <h5 style="margin-top: 2px; color: darkgrey;">{{entry.author}}</h5>
     <div [innerHTML]="entry.content | safe"></div>
     <div style="position: absolute; top: 8px; right: 8px;">
-      <button md-button
-              *ngIf="isAuthor(entry.author) || entry.editEveryone"
-              (click)="editEntry(entry.$key)"
-              style=" min-width: 48px; width: 48px;padding: 6px;height: 48px; font-size: x-large;">
-        <i class="fa fa-pencil"></i>
+      <button md-button *ngIf="isAuthor(entry.author) || entry.editEveryone" (click)="editEntry(entry.$key)">
+        <i class="fa fa-pencil fa-lg"></i>
       </button>
-      <button md-button
-              *ngIf="isAuthor(entry.author)"
-              (click)="deleteEntry(entry.$key)"
-              style="min-width: 48px; width: 48px; padding: 6px; height: 48px; font-size: x-large;">
-        <i class="fa fa-trash-o"></i>
+      <button md-button *ngIf="isAuthor(entry.author)" (click)="deleteEntry(entry.$key)">
+
+        <i class="fa fa-trash-o fa-lg"></i>
       </button>
     </div>
   </md-card>

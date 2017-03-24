@@ -3,12 +3,7 @@ import { FirebaseAuthService } from '../../services/firebase-auth.service';
 
 @Component({
   selector: 'hsr-register',
-  templateUrl: 'register.component.html',
-  styles: [`
-.ng-invalid {
-border: 1px solid red;
-}
-`]
+  templateUrl: 'register.component.html'
 })
 export class RegisterComponent {
   user = {email: undefined, password: undefined};

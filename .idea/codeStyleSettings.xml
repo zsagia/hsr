@@ -30,6 +30,7 @@
         </JavaCodeStyleSettings>
         <TypeScriptCodeStyleSettings>
           <option name="USE_DOUBLE_QUOTES" value="false" />
+          <option name="FORCE_QUOTE_STYlE" value="true" />
           <option name="SPACES_WITHIN_IMPORTS" value="true" />
         </TypeScriptCodeStyleSettings>
         <XML>
@@ -116,6 +117,7 @@
           </indentOptions>
         </codeStyleSettings>
         <codeStyleSettings language="TypeScript">
+          <option name="RIGHT_MARGIN" value="220" />
           <option name="KEEP_BLANK_LINES_IN_CODE" value="1" />
           <option name="ALIGN_MULTILINE_CHAINED_METHODS" value="true" />
           <option name="ALIGN_MULTILINE_PARAMETERS" value="false" />

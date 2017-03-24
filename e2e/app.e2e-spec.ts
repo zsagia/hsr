@@ -1,10 +1,10 @@
-import { HsrPage } from './app.po';
+import { CheckPage } from './app.po';
 
-describe('hsr App', function() {
-  let page: HsrPage;
+describe('check App', () => {
+  let page: CheckPage;
 
   beforeEach(() => {
-    page = new HsrPage();
+    page = new CheckPage();
   });
 
   it('should display message saying app works', () => {

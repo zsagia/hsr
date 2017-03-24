@@ -1,14 +1,14 @@
 import {
+  AfterViewInit,
   Directive,
   ElementRef,
-  Renderer,
-  Input,
-  Output,
   EventEmitter,
-  OnInit,
+  Inject,
+  Input,
   OnDestroy,
-  AfterViewInit,
-  Inject
+  OnInit,
+  Output,
+  Renderer
 } from '@angular/core';
 
 // non-typescript definitions
@@ -29,8 +29,8 @@ export class FroalaEditorDirective implements OnInit, OnDestroy {
   private _$element: any;
 
   private SPECIAL_TAGS: string[] = ['img', 'button', 'input', 'a'];
-  private INNER_HTML_ATTR: string = 'innerHTML';
-  private _hasSpecialTag: boolean = false;
+  private INNER_HTML_ATTR = 'innerHTML';
+  private _hasSpecialTag = false;
 
   // editor element
   private _editor: any;
@@ -40,13 +40,13 @@ export class FroalaEditorDirective implements OnInit, OnDestroy {
 
   private _listeningEvents: string[] = [];
 
-  private _editorInitialized: boolean = false;
+  private _editorInitialized = false;
 
   private _oldModel: string = null;
 
   constructor(@Inject(ElementRef) private el: ElementRef) {
 
-    let element: any = el.nativeElement;
+    const element: any = el.nativeElement;
 
     // check if the element is a special tag
     if (this.SPECIAL_TAGS.indexOf(element.tagName.toLowerCase()) !== -1) {
@@ -88,12 +88,12 @@ export class FroalaEditorDirective implements OnInit, OnDestroy {
 
     if (this._hasSpecialTag) {
 
-      let attributeNodes = this._$element[0].attributes;
-      let attrs = {};
+      const attributeNodes = this._$element[0].attributes;
+      const attrs = {};
 
       for (let i = 0; i < attributeNodes.length; i++) {
 
-        let attrName = attributeNodes[i].name;
+        const attrName = attributeNodes[i].name;
         if (this._opts.angularIgnoreAttrs && this._opts.angularIgnoreAttrs.indexOf(attrName) !== -1) {
           continue;
         }
@@ -107,7 +107,7 @@ export class FroalaEditorDirective implements OnInit, OnDestroy {
       modelContent = attrs;
     } else {
 
-      let returnedHtml: any = this._$element.froalaEditor('html.get');
+      const returnedHtml: any = this._$element.froalaEditor('html.get');
       if (typeof returnedHtml === 'string') {
         modelContent = returnedHtml;
       }
@@ -130,7 +130,7 @@ export class FroalaEditorDirective implements OnInit, OnDestroy {
 
   private initListeners() {
 
-    let self = this;
+    const self = this;
 
     // bind contentChange and keyup event to froalaModel
     this.registerEvent(this._$element, 'froalaEditor.contentChanged', function () {
@@ -150,7 +150,7 @@ export class FroalaEditorDirective implements OnInit, OnDestroy {
       return;
     }
 
-    for (let eventName in this._opts.events) {
+    for (const eventName in this._opts.events) {
 
       if (this._opts.events.hasOwnProperty(eventName)) {
         this.registerEvent(this._$element, eventName, this._opts.events[eventName]);
@@ -183,12 +183,12 @@ export class FroalaEditorDirective implements OnInit, OnDestroy {
       this._oldModel = this._model;
       if (this._hasSpecialTag) {
 
-        let tags: Object = this._model;
+        const tags: Object = this._model;
 
         // add tags on element
         if (tags) {
 
-          for (let attr in tags) {
+          for (const attr in tags) {
             if (tags.hasOwnProperty(attr) && attr !== this.INNER_HTML_ATTR) {
               this._$element.attr(attr, tags[attr]);
             }
@@ -244,7 +244,7 @@ export class FroalaEditorDirective implements OnInit, OnDestroy {
 
   // send manual editor initialization
   private generateManualController() {
-    let controls = {
+    const controls = {
       initialize: this.createEditor.bind(this),
       destroy: this.destroyEditor.bind(this),
       getEditor: this.getEditor.bind(this),

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FirebaseStorageService } from '../../services/firebase-storage.service';
-import { FirebaseListObservable, AngularFire } from 'angularfire2';
+import { AngularFire, FirebaseListObservable } from 'angularfire2';
 import { FirebaseDatabaseService } from '../../services/firebase-database.service';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FirebaseAuthService } from '../../services/firebase-auth.service';
 
 @Component({
@@ -13,7 +13,7 @@ import { FirebaseAuthService } from '../../services/firebase-auth.service';
 export class ManualsComponent implements OnInit {
   manualsList: FirebaseListObservable<any>;
   manualForm: FormGroup;
-  view: string = 'grid';
+  view = 'grid';
 
   currentManual: File;
 
@@ -35,8 +35,8 @@ export class ManualsComponent implements OnInit {
 
   onSubmit() {
     this.storage.uploadManual(this.currentManual).then((snapshot) => {
-      let now = Date.now();
-      let data = {
+      const now = Date.now();
+      const data = {
         name: snapshot.metadata.name,
         url: snapshot.metadata.downloadURLs[0],
         contentType: 'application/pdf',

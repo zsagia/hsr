@@ -1,0 +1,265 @@
+/* You can add global styles to this file, and also import other style files */
+@import 'theme';
+
+html, body {
+  font-family: 'Special Elite', cursive;
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  display: block;
+}
+
+body {
+  background-color: darkgrey;
+  position: relative;
+}
+
+/* Selection */
+::selection {
+  background-color: #ffeb3b;
+  color: black;
+}
+
+::-moz-selection {
+  background-color: #ffeb3b;
+  color: black;
+}
+
+/* Scrollbars */
+
+//
+//::-webkit-scrollbar {
+//  width: 8px;
+//}
+//
+//::-webkit-scrollbar:horizontal {
+//  height: 8px;
+//}
+//
+//::-webkit-scrollbar-track {
+//  background-color: darkgray;
+//}
+//
+//::-webkit-scrollbar-thumb {
+//  border-radius: 2px;
+//  background-color: black;
+//}
+
+a {
+  color: #ff9800;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #ffeb3b;
+}
+
+.loading-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  font-size: xx-large;
+  background-color: black;
+}
+
+/* below is needed for angular material 2 */
+/** The overlay-container is an invisible element which contains all individual overlays. */
+.md-overlay-container {
+  position: absolute;
+  pointer-events: none;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+/** A single overlay pane. */
+.md-overlay-pane {
+  position: absolute;
+  pointer-events: auto;
+  box-sizing: border-box;
+  z-index: 1000;
+}
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.centered-bottom {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+}
+
+.padding {
+  padding: 16px;
+}
+
+/* Animations */
+@keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@media screen and (min-width: 600px) {
+
+  @keyframes flyin {
+    from {
+      opacity: 0;
+      transform: scale(4);
+      filter: blur(2px);
+    }
+    to {
+      filter: blur(0);
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+}
+
+/* Dropzone Global Styles*/
+.dz-preview {
+  margin: 6px;
+  position: relative;
+  animation: flyin 0.4s ease;
+  box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 0 rgba(0, 0, 0, 0.12);
+  transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: box-shadow;
+  border-radius: 2px;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background: white;
+  color: black;
+}
+
+.dz-preview:hover {
+  box-shadow: 0 8px 8px rgba(0, 0, 0, 0.24), 0 0 8px rgba(0, 0, 0, 0.12);
+}
+
+.dz-preview-x-layer {
+  color: red;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  opacity: 0;
+}
+
+.dz-preview-x-layer:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 1;
+  transition: opacity 0.2s;
+}
+
+.dz-filename {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  word-wrap: break-word;
+  width: 56px;
+  z-index: 5;
+}
+
+.dz-image-preview img {
+  width: 56px;
+  height: auto;
+  z-index: 6;
+}
+
+/* Not selectable text*/
+.noselect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.clickthrough {
+  pointer-events: none;
+}
+
+/* md-card*/
+md-card {
+  border-radius: 4px !important;
+}
+
+.card {
+  background: #fff;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  border-radius: 4px;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.24), 0 0 2px rgba(0, 0, 0, 0.12);
+  -webkit-transition: box-shadow 0.1s;
+  transition: box-shadow 0.1s;
+  box-sizing: border-box;
+}
+
+.card-interactive {
+  cursor: pointer;
+  animation: flyin 0.3s ease;
+}
+
+.card-interactive:hover {
+  border: 1px solid gray;
+  box-shadow: 0 8px 8px rgba(0, 0, 0, 0.24), 0 0 8px rgba(0, 0, 0, 0.12);
+}
+
+img.card {
+  width: 100%;
+}
+
+.card img {
+  width: 100%;
+  border-radius: 4px;
+}
+
+.flex-fill {
+  flex: 1 1 auto;
+}
+
+// Sticky
+.reverse-sticky {
+  position: fixed;
+  top: 0;
+  height: 128px;
+}
+
+.sticky {
+  position: fixed;
+  z-index: 99;
+  top: 0;
+  &.reverse-sticky {
+    position: relative;
+  }
+  md-toolbar-row:last-child {
+    max-height: 0;
+    overflow: hidden;
+  }
+}
+
+md-toolbar md-toolbar-row:last-child {
+  max-height: 64px;
+  transition: max-height 0.2s ease-out;
+}

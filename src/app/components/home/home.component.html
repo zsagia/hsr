@@ -1,8 +1,3 @@
-<div style="display: flex;flex-direction: column; align-items: center;">
-  <h1 style="font-size: 36px;">
-    H0ch5chwabrebe11en </h1>
-</div>
-
 <div *ngFor="let blog of blogEntries | async" style="margin: 16px;">
   <div *ngIf="blog.showPublic" class="card padding">
     <h1>{{blog.title}}</h1>

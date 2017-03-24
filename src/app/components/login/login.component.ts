@@ -13,22 +13,6 @@ export class LoginComponent {
   }
 
   onLogin() {
-    this.auth.loginWithEmailAndPassword(this.user);
-    this.toHome();
+    this.auth.loginWithEmailAndPassword(this.user).then(() => this.router.navigate(['/blog']));
   }
-
-  onGoogle() {
-    this.auth.loginWithGoogle();
-    this.toHome();
-  }
-
-  onFacebook() {
-    this.auth.loginWithFacebook();
-    this.toHome();
-  }
-
-  toHome() {
-    this.router.navigate(['']);
-  }
-
 }

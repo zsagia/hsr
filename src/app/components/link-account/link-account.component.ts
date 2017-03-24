@@ -1,15 +1,10 @@
-import { Component, AfterViewInit, NgZone } from '@angular/core';
+import { AfterViewInit, Component, NgZone } from '@angular/core';
 import { FirebaseAuthService } from '../../services/firebase-auth.service';
 declare var gapi: any;
 
 @Component({
   selector: 'hsr-link-account',
-  templateUrl: 'link-account.component.html',
-  styles: [`
-.ng-invalid {
-border: 1px solid red;
-}
-`]
+  templateUrl: 'link-account.component.html'
 })
 export class LinkAccountComponent implements AfterViewInit {
   // TODO: make it work for linking acounts
@@ -42,7 +37,7 @@ export class LinkAccountComponent implements AfterViewInit {
       console.log(this.userAuthToken);
       console.log(this.userDisplayName);
     });
-  };
+  }
 
   onGoogleFailure(error) {
     console.log(error);

@@ -9,7 +9,6 @@
 /bower_components
 
 # IDEs and editors
-/.idea
 /.vscode
 .project
 .classpath
@@ -33,3 +32,19 @@ testem.log
 .DS_Store
 Thumbs.db
 /yarn.lock
+
+#IntelliJ IDEA
+/.idea/*
+
+!/.idea/dictionaries/
+!/.idea/inspectionProfiles
+!/.idea/runConfigurations
+
+!/.idea/codeStyleSettings.xml
+!/.idea/compiler.xml
+!/.idea/jsLibraryMappings.xml
+!/.idea/misc.xml
+!/.idea/modules.xml
+!/.idea/scssLintPlugin.xml
+!/.idea/vcs.xml
+!/.idea/watcherTasks.xml

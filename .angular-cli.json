@@ -1,0 +1,161 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "project": {
+    "name": "hsr"
+  },
+  "apps": [
+    {
+      "root": "src",
+      "outDir": "dist",
+      "assets": [
+        "assets"
+      ],
+      "index": "index.html",
+      "main": "main.ts",
+      "test": "test.ts",
+      "tsconfig": "tsconfig.app.json",
+      "testTsconfig": "tsconfig.spec.json",
+      "prefix": "app",
+      "styles": [
+        "styles/styles.scss",
+        "../node_modules/font-awesome/scss/font-awesome.scss",
+        "../node_modules/froala-editor/css/froala_editor.min.css",
+        "../node_modules/froala-editor/css/themes/dark.min.css",
+        "../node_modules/froala-editor/css/plugins/code_view.min.css",
+        "../node_modules/froala-editor/css/plugins/colors.min.css",
+        "../node_modules/froala-editor/css/plugins/draggable.min.css",
+        "../node_modules/froala-editor/css/plugins/emoticons.min.css",
+        "../node_modules/froala-editor/css/plugins/image.min.css",
+        "../node_modules/froala-editor/css/plugins/line_breaker.min.css",
+        "../node_modules/froala-editor/css/plugins/quick_insert.min.css",
+        "../node_modules/froala-editor/css/plugins/video.min.css",
+        "../node_modules/codemirror/lib/codemirror.css",
+        {
+          "input": "../node_modules/froala-editor/css/froala_editor.min.css",
+          "lazy": true
+        },
+        {
+          "input": "../node_modules/froala-editor/css/themes/dark.min.css",
+          "lazy": true
+        },
+        {
+          "input": "../node_modules/froala-editor/css/plugins/code_view.min.css",
+          "lazy": true
+        },
+        {
+          "input": "../node_modules/froala-editor/css/plugins/colors.min.css",
+          "lazy": true
+        },
+        {
+          "input": "../node_modules/froala-editor/css/plugins/draggable.min.css",
+          "lazy": true
+        },
+        {
+          "input": "../node_modules/froala-editor/css/plugins/emoticons.min.css",
+          "lazy": true
+        },
+        {
+          "input": "../node_modules/froala-editor/css/plugins/image.min.css",
+          "lazy": true
+        },
+        {
+          "input": "../node_modules/froala-editor/css/plugins/line_breaker.min.css",
+          "lazy": true
+        },
+        {
+          "input": "../node_modules/froala-editor/css/plugins/quick_insert.min.css",
+          "lazy": true
+        },
+        {
+          "input": "../node_modules/froala-editor/css/plugins/video.min.css",
+          "lazy": true
+        },
+        {
+          "input": "../node_modules/codemirror/lib/codemirror.css",
+          "lazy": true
+        }
+      ],
+      "scripts": [
+        "../node_modules/jquery/dist/jquery.min.js",
+        "../node_modules/tinymce/tinymce.js",
+        "../node_modules/tinymce/plugins/advlist/plugin.js",
+        "../node_modules/tinymce/plugins/autolink/plugin.js",
+        "../node_modules/tinymce/plugins/lists/plugin.js",
+        "../node_modules/tinymce/plugins/link/plugin.js",
+        "../node_modules/tinymce/plugins/imagetools/plugin.js",
+        "../node_modules/tinymce/plugins/image/plugin.js",
+        "../node_modules/tinymce/plugins/charmap/plugin.js",
+        "../node_modules/tinymce/plugins/preview/plugin.js",
+        "../node_modules/tinymce/plugins/code/plugin.js",
+        "../node_modules/tinymce/plugins/media/plugin.js",
+        "../node_modules/tinymce/plugins/table/plugin.js",
+        "../node_modules/tinymce/plugins/contextmenu/plugin.js",
+        "../node_modules/tinymce/plugins/paste/plugin.js",
+        "../node_modules/tinymce/plugins/colorpicker/plugin.js",
+        "../node_modules/tinymce/plugins/emoticons/plugin.js",
+        "../node_modules/tinymce/plugins/tabfocus/plugin.js",
+        "../node_modules/tinymce/plugins/textcolor/plugin.js",
+        "../node_modules/tinymce/themes/modern/theme.js",
+        "../node_modules/dropzone/dist/dropzone.js",
+        "../node_modules/codemirror/lib/codemirror.js",
+        "../node_modules/froala-editor/js/froala_editor.min.js",
+        "../node_modules/froala-editor/js/plugins/align.min.js",
+        "../node_modules/froala-editor/js/plugins/url.min.js",
+        "../node_modules/froala-editor/js/plugins/quick_insert.min.js",
+        "../node_modules/froala-editor/js/plugins/link.min.js",
+        "../node_modules/froala-editor/js/plugins/image.min.js",
+        "../node_modules/froala-editor/js/plugins/font_size.min.js",
+        "../node_modules/froala-editor/js/plugins/font_family.min.js",
+        "../node_modules/froala-editor/js/plugins/draggable.min.js",
+        "../node_modules/froala-editor/js/plugins/video.min.js",
+        "../node_modules/froala-editor/js/plugins/code_view.min.js",
+        "../node_modules/froala-editor/js/plugins/code_beautifier.min.js",
+        "../node_modules/froala-editor/js/plugins/emoticons.min.js",
+        "../node_modules/froala-editor/js/plugins/colors.min.js",
+        "../node_modules/froala-editor/js/languages/de.js"
+      ],
+      "environmentSource": "environments/environment.ts",
+      "environments": {
+        "dev": "environments/environment.ts",
+        "prod": "environments/environment.prod.ts"
+      }
+    }
+  ],
+  "e2e": {
+    "protractor": {
+      "config": "./protractor.conf.js"
+    }
+  },
+  "lint": [
+    {
+      "project": "src/tsconfig.app.json"
+    },
+    {
+      "project": "src/tsconfig.spec.json"
+    },
+    {
+      "project": "e2e/tsconfig.e2e.json"
+    }
+  ],
+  "test": {
+    "karma": {
+      "config": "./karma.conf.js"
+    }
+  },
+  "defaults": {
+    "styleExt": "scss",
+    "prefixInterfaces": false,
+    "inline": {
+      "style": false,
+      "template": false
+    },
+    "spec": {
+      "class": false,
+      "component": true,
+      "directive": true,
+      "module": false,
+      "pipe": true,
+      "service": true
+    }
+  }
+}

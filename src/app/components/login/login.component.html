@@ -1,30 +1,22 @@
 <div style="display: flex; flex-direction: row;justify-content: center;padding-top: 64px;">
   <md-card style="width: 600px;" class="app-input-section">
     <h1>Login</h1>
-    <form #registerForm="ngForm" (ngSubmit)="onLogin()" layout="column">
-      <div style="display:flex;flex-direction:column;">
-        <md-input ngControl="email" [(ngModel)]="user.email" required type="email" id="email" name="email" placeholder="E-Mail">
-    <span md-prefix>
+    <form #registerForm="ngForm" (ngSubmit)="onLogin()" fxLayout="column">
+      <md-input-container>
+        <input mdInput ngControl="email" [(ngModel)]="user.email" required type="email" id="email" name="email" placeholder="E-Mail">
+        <span md-prefix>
           <i class="material-icons app-input-icon">mail</i>
           &nbsp;
         </span>
-        </md-input>
-
-        <md-input ngControl="password" [(ngModel)]="user.password" required type="password" id="password" name="password" placeholder="Passwort">
-    <span md-prefix>
+      </md-input-container>
+      <md-input-container>
+        <input mdInput ngControl="password" [(ngModel)]="user.password" required type="password" id="password" name="password" placeholder="Passwort">
+        <span md-prefix>
           <i class="material-icons app-input-icon">vpn_key</i>
           &nbsp;
         </span>
-        </md-input>
-      </div>
-
-      <div style="display: flex; flex-direction: row; align-items: flex-end; justify-content: flex-end">
-        <button md-raised-button type="submit">Einloggen</button>
-      </div>
-
+      </md-input-container>
+      <button fxFlexAlign="end" md-raised-button type="submit">Einloggen</button>
     </form>
-    <!--TODO: enable when linking is possible-->
-    <!--    <button (click)="onGoogle()">Mit Google einloggen</button>
-        <button (click)="onFacebook()">Mit Facebook einloggen</button>-->
   </md-card>
 </div>
