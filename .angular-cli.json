@@ -1,7 +1,8 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "project": {
-    "name": "hsr"
+    "name": "hsr",
+    "ejected": true
   },
   "apps": [
     {
@@ -31,49 +32,71 @@
         "../node_modules/froala-editor/css/plugins/video.min.css",
         "../node_modules/codemirror/lib/codemirror.css",
         {
-          "input": "../node_modules/froala-editor/css/froala_editor.min.css",
-          "lazy": true
-        },
+  "input": "../node_modules/froala-editor/css/froala_editor.min.css",
+  "lazy": true,
+  "path": "C:\\Users\\Gernot\\IdeaProjects\\hsr\\node_modules\\froala-editor\\css\\froala_editor.min.css",
+  "entry": "../node_modules/froala-editor/css/froala_editor.min"
+},
         {
-          "input": "../node_modules/froala-editor/css/themes/dark.min.css",
-          "lazy": true
-        },
+  "input": "../node_modules/froala-editor/css/themes/dark.min.css",
+  "lazy": true,
+  "path": "C:\\Users\\Gernot\\IdeaProjects\\hsr\\node_modules\\froala-editor\\css\\themes\\dark.min.css",
+  "entry": "../node_modules/froala-editor/css/themes/dark.min"
+},
         {
-          "input": "../node_modules/froala-editor/css/plugins/code_view.min.css",
-          "lazy": true
-        },
+  "input": "../node_modules/froala-editor/css/plugins/code_view.min.css",
+  "lazy": true,
+  "path": "C:\\Users\\Gernot\\IdeaProjects\\hsr\\node_modules\\froala-editor\\css\\plugins\\code_view.min.css",
+  "entry": "../node_modules/froala-editor/css/plugins/code_view.min"
+},
         {
-          "input": "../node_modules/froala-editor/css/plugins/colors.min.css",
-          "lazy": true
-        },
+  "input": "../node_modules/froala-editor/css/plugins/colors.min.css",
+  "lazy": true,
+  "path": "C:\\Users\\Gernot\\IdeaProjects\\hsr\\node_modules\\froala-editor\\css\\plugins\\colors.min.css",
+  "entry": "../node_modules/froala-editor/css/plugins/colors.min"
+},
         {
-          "input": "../node_modules/froala-editor/css/plugins/draggable.min.css",
-          "lazy": true
-        },
+  "input": "../node_modules/froala-editor/css/plugins/draggable.min.css",
+  "lazy": true,
+  "path": "C:\\Users\\Gernot\\IdeaProjects\\hsr\\node_modules\\froala-editor\\css\\plugins\\draggable.min.css",
+  "entry": "../node_modules/froala-editor/css/plugins/draggable.min"
+},
         {
-          "input": "../node_modules/froala-editor/css/plugins/emoticons.min.css",
-          "lazy": true
-        },
+  "input": "../node_modules/froala-editor/css/plugins/emoticons.min.css",
+  "lazy": true,
+  "path": "C:\\Users\\Gernot\\IdeaProjects\\hsr\\node_modules\\froala-editor\\css\\plugins\\emoticons.min.css",
+  "entry": "../node_modules/froala-editor/css/plugins/emoticons.min"
+},
         {
-          "input": "../node_modules/froala-editor/css/plugins/image.min.css",
-          "lazy": true
-        },
+  "input": "../node_modules/froala-editor/css/plugins/image.min.css",
+  "lazy": true,
+  "path": "C:\\Users\\Gernot\\IdeaProjects\\hsr\\node_modules\\froala-editor\\css\\plugins\\image.min.css",
+  "entry": "../node_modules/froala-editor/css/plugins/image.min"
+},
         {
-          "input": "../node_modules/froala-editor/css/plugins/line_breaker.min.css",
-          "lazy": true
-        },
+  "input": "../node_modules/froala-editor/css/plugins/line_breaker.min.css",
+  "lazy": true,
+  "path": "C:\\Users\\Gernot\\IdeaProjects\\hsr\\node_modules\\froala-editor\\css\\plugins\\line_breaker.min.css",
+  "entry": "../node_modules/froala-editor/css/plugins/line_breaker.min"
+},
         {
-          "input": "../node_modules/froala-editor/css/plugins/quick_insert.min.css",
-          "lazy": true
-        },
+  "input": "../node_modules/froala-editor/css/plugins/quick_insert.min.css",
+  "lazy": true,
+  "path": "C:\\Users\\Gernot\\IdeaProjects\\hsr\\node_modules\\froala-editor\\css\\plugins\\quick_insert.min.css",
+  "entry": "../node_modules/froala-editor/css/plugins/quick_insert.min"
+},
         {
-          "input": "../node_modules/froala-editor/css/plugins/video.min.css",
-          "lazy": true
-        },
+  "input": "../node_modules/froala-editor/css/plugins/video.min.css",
+  "lazy": true,
+  "path": "C:\\Users\\Gernot\\IdeaProjects\\hsr\\node_modules\\froala-editor\\css\\plugins\\video.min.css",
+  "entry": "../node_modules/froala-editor/css/plugins/video.min"
+},
         {
-          "input": "../node_modules/codemirror/lib/codemirror.css",
-          "lazy": true
-        }
+  "input": "../node_modules/codemirror/lib/codemirror.css",
+  "lazy": true,
+  "path": "C:\\Users\\Gernot\\IdeaProjects\\hsr\\node_modules\\codemirror\\lib\\codemirror.css",
+  "entry": "../node_modules/codemirror/lib/codemirror"
+}
       ],
       "scripts": [
         "../node_modules/jquery/dist/jquery.min.js",
@@ -144,18 +167,13 @@
   },
   "defaults": {
     "styleExt": "scss",
-    "prefixInterfaces": false,
-    "inline": {
-      "style": false,
-      "template": false
+    "class": {
+      "spec": false
     },
-    "spec": {
-      "class": false,
-      "component": true,
-      "directive": true,
-      "module": false,
-      "pipe": true,
-      "service": true
+    "component": {
+      "spec": true,
+      "inlineStyle": false,
+      "inlineTemplate": false
     }
   }
 }
