@@ -15,7 +15,6 @@ import { FirebaseDatabaseService } from './services/firebase-database.service';
 import { HomeComponent } from './components/home/home.component';
 import { BlogComponent } from './components/blog/blog.component';
 import { FotosComponent } from './components/fotos/fotos.component';
-import { TinyMceComponent } from './tinymce/tinymce.component';
 import { PlattenComponent } from './components/platten/platten.component';
 import { HttpModule, JsonpModule } from '@angular/http';
 import { SafePipe } from './pipes/safe.pipe';
@@ -44,7 +43,6 @@ import { StickyDirective } from './directives/sticky.directive';
     FotosComponent,
     FotosComponent,
     ManualsComponent,
-    TinyMceComponent,
     PlattenComponent,
     PlattenDetailsComponent,
     SafePipe,
