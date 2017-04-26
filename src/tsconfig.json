@@ -21,9 +21,6 @@
       "hammerjs",
       "request",
       "jquery"
-    ],
-    "files": [
-      "typings/index.d.ts"
     ]
   }
 }
