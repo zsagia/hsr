@@ -12,7 +12,7 @@
     "tslint": "tslint -t stylish -c tslint.json --project src/tsconfig.app.json --type-check",
     "test": "ng test",
     "e2e": "ng e2e",
-    "compodoc": "compodoc -p src/tsconfig.app.json -s",
+    "compodoc": "compodoc --tsconfig src/tsconfig.app.json --output docs --serve",
     "postinstall": "typings install",
     "update-webdriver": "webdriver-manager update",
     "repl": "protractor --elementExplorer",
