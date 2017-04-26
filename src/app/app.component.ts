@@ -21,4 +21,8 @@ export class AppComponent {
   onLogout() {
     this.firebaseAuthService.logout();
   }
+
+  get routesDisplay() {
+    return this.routes.filter((value, index, array) => value.text);
+  }
 }

@@ -33,6 +33,7 @@ import { OrderBy } from './pipes/orderBy.pipe';
 import { ReversePipe } from './pipes/reverse.pipe';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { StickyDirective } from './directives/sticky.directive';
+import 'hammerjs';
 
 @NgModule({
   declarations: [

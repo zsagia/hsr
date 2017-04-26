@@ -10,8 +10,13 @@ import { LinkAccountComponent } from '../components/link-account/link-account.co
 import { PlattenDetailsComponent } from '../components/platten/platten-details/platten-details.component';
 import { ManualsComponent } from '../components/manuals/manuals.component';
 import { ChatComponent } from '../components/chat/chat.component';
+import { Route } from '@angular/router';
 
-export const ROUTES_CONFIG = [
+export interface MyRoute extends Route {
+  text?: string;
+  icon?: string;
+}
+export const ROUTES_CONFIG: MyRoute[] = [
   {path: '', component: HomeComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'login', component: LoginComponent},
