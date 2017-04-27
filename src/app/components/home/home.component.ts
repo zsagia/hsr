@@ -5,7 +5,9 @@ import { FirebaseDatabaseService } from '../../services/firebase-database.servic
 @Component({
   selector: 'hsr-home',
   templateUrl: './home.component.html',
-  styles: []
+  styles: [`
+  
+  `]
 })
 export class HomeComponent {
   blogEntries: FirebaseListObservable<any>;

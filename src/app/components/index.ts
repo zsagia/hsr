@@ -1,5 +1,0 @@
-export * from './blog';
-export * from './fotos';
-export * from './home';
-export * from './login';
-export * from './register';

@@ -35,10 +35,10 @@ export class FirebaseAuthService implements CanActivate {
   }
 
   logout() {
-    this.angularFire.auth.logout();
-    // TODO: make work without console error
-    this.loginAnonymously().then(() => {
-      this.router.navigate(['']);
+    this.router.navigate(['']).then(() => {
+      this.angularFire.auth.logout().then(() => {
+        this.loginAnonymously();
+      });
     });
   }
 

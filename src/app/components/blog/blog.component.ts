@@ -1,16 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FirebaseListObservable } from 'angularfire2';
 import { FirebaseDatabaseService } from '../../services/firebase-database.service';
 import { FirebaseAuthService } from '../../services/firebase-auth.service';
 import { MdSnackBar } from '@angular/material';
+
+
+export interface BlogEntry {
+  title: string;
+  showPublic: boolean;
+  editEveryone: boolean;
+  author?: string;
+  content: string;
+  date?: number;
+  reverseDate?: number;
+  $key?: number;
+}
+
 
 @Component({
   selector: 'hsr-blog',
   templateUrl: 'blog.component.html',
   styleUrls: ['blog.component.scss']
 })
-export class BlogComponent implements OnInit {
-
+export class BlogComponent implements OnInit, OnDestroy {
   options: any = {
     height: 400,
     language: 'de',
@@ -90,15 +102,8 @@ export class BlogComponent implements OnInit {
       this.currentEntry.author = entry.author;
     });
   }
-}
 
-export interface BlogEntry {
-  title: string;
-  showPublic: boolean;
-  editEveryone: boolean;
-  author?: string;
-  content: string;
-  date?: number;
-  reverseDate?: number;
-  $key?: number;
+  ngOnDestroy(): void {
+  }
+
 }

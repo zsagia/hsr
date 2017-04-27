@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { FirebaseAuthService } from './services/firebase-auth.service';
 import { ROUTES_CONFIG } from './config/routes.config';
 import { AngularFire } from 'angularfire2';
@@ -8,7 +8,7 @@ import { AngularFire } from 'angularfire2';
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnDestroy {
   routes = ROUTES_CONFIG;
   authState;
 
@@ -24,5 +24,9 @@ export class AppComponent {
 
   get routesDisplay() {
     return this.routes.filter((value, index, array) => value.text);
+  }
+
+  ngOnDestroy(): void {
+    this.af.auth.unsubscribe();
   }
 }

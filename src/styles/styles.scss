@@ -263,3 +263,8 @@ md-toolbar md-toolbar-row:last-child:not(:first-child) {
   max-height: 64px;
   transition: max-height 0.2s ease-out;
 }
+
+.medium-card {
+  max-width: 900px;
+  margin: 6px auto;
+}
