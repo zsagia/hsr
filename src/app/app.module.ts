@@ -1,39 +1,55 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AngularFireModule } from 'angularfire2';
-import { RouterModule } from '@angular/router';
-import { MaterialModule } from '@angular/material';
-import { AppComponent } from './app.component';
-import { RegisterComponent } from './components/register/register.component';
-import { LoginComponent } from './components/login/login.component';
-import { ROUTES_CONFIG } from './config/routes.config';
-import { FIREBASE_CONFIG } from './config/firebase.config';
-import { FirebaseAuthService } from './services/firebase-auth.service';
-import { FirebaseDatabaseService } from './services/firebase-database.service';
-import { HomeComponent } from './components/home/home.component';
-import { BlogComponent } from './components/blog/blog.component';
-import { FotosComponent } from './components/fotos/fotos.component';
-import { TinyMceComponent } from './tinymce/tinymce.component';
-import { PlattenComponent } from './components/platten/platten.component';
 import { HttpModule, JsonpModule } from '@angular/http';
-import { SafePipe } from './pipes/safe.pipe';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { FirebaseStorageService } from './services/firebase-storage.service';
-import { LinkAccountComponent } from './components/link-account/link-account.component';
-import { PlattenDetailsComponent } from './components/platten/platten-details/platten-details.component';
-import { ManualsComponent } from './components/manuals/manuals.component';
-import { DropzoneComponent } from './dropzone/dropzone.component';
-import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
-import { ChatComponent } from './components/chat/chat.component';
-import { FroalaEditorDirective, FroalaViewDirective } from './froala/froala.directives';
+import {
+  MdButtonModule,
+  MdButtonToggleModule,
+  MdCardModule,
+  MdCheckboxModule,
+  MdCommonModule,
+  MdCoreModule,
+  MdGridListModule,
+  MdInputModule,
+  MdListModule,
+  MdMenuModule,
+  MdRippleModule,
+  MdSnackBarModule,
+  MdToolbarModule
+} from '@angular/material';
+import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterModule } from '@angular/router';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import 'hammerjs';
+import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
+import { AppComponent } from './app.component';
+import { BlogComponent } from './components/blog/blog.component';
+import { ChatComponent } from './components/chat/chat.component';
+import { FotosComponent } from './components/fotos/fotos.component';
+import { HomeComponent } from './components/home/home.component';
+import { LinkAccountComponent } from './components/link-account/link-account.component';
+import { LoginComponent } from './components/login/login.component';
+import { ManualsComponent } from './components/manuals/manuals.component';
+import { PlattenDetailsComponent } from './components/platten/platten-details/platten-details.component';
+import { PlattenComponent } from './components/platten/platten.component';
+import { RegisterComponent } from './components/register/register.component';
+import { FIREBASE_CONFIG } from './config/firebase.config';
+import { ROUTES_CONFIG } from './config/routes.config';
+import { StickyDirective } from './directives/sticky.directive';
+import { DropzoneComponent } from './dropzone/dropzone.component';
+import { FroalaEditorDirective, FroalaViewDirective } from './froala/froala.directives';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { OrderBy } from './pipes/orderBy.pipe';
 import { ReversePipe } from './pipes/reverse.pipe';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { StickyDirective } from './directives/sticky.directive';
-import 'hammerjs';
+import { SafePipe } from './pipes/safe.pipe';
+import { HsrAuthService } from './services/firebase-auth.service';
+import { HsrDatabaseService } from './services/firebase-database.service';
+import { HsrStorageService } from './services/firebase-storage.service';
+import { TinyMceComponent } from './tinymce/tinymce.component';
 
 @NgModule({
   declarations: [
@@ -73,17 +89,31 @@ import 'hammerjs';
     FormsModule,
     ReactiveFormsModule,
     // AngularFire2
-    AngularFireModule.initializeApp(FIREBASE_CONFIG),
+    AngularFireModule.initializeApp(FIREBASE_CONFIG, 'hsr'),
+    AngularFireAuthModule,
+    AngularFireDatabaseModule,
     // ng2 Slim Loading Bar
     SlimLoadingBarModule.forRoot(),
-    MaterialModule,
     FlexLayoutModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MdButtonModule,
+    MdButtonToggleModule,
+    MdCardModule,
+    MdCheckboxModule,
+    MdCommonModule,
+    MdCoreModule,
+    MdListModule,
+    MdInputModule,
+    MdRippleModule,
+    MdMenuModule,
+    MdToolbarModule,
+    MdGridListModule,
+    MdSnackBarModule
   ],
   providers: [
-    FirebaseAuthService,
-    FirebaseDatabaseService,
-    FirebaseStorageService,
+    HsrAuthService,
+    HsrDatabaseService,
+    HsrStorageService,
     FormBuilder
   ],
   entryComponents: [AppComponent],

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FirebaseAuthService } from '../../services/firebase-auth.service';
+import { HsrAuthService } from '../../services/firebase-auth.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -7,12 +7,17 @@ import { Router } from '@angular/router';
   templateUrl: 'login.component.html'
 })
 export class LoginComponent {
-  user = {email: undefined, password: undefined};
+  email: string;
+  password: string;
 
-  constructor(private auth: FirebaseAuthService, private router: Router) {
+  constructor(private firebaseAuthService: HsrAuthService, private router: Router) {
+  }
+
+  get isAuthenticated(): boolean {
+    return this.firebaseAuthService.isAuthenticated;
   }
 
   onLogin() {
-    this.auth.loginWithEmailAndPassword(this.user).then(() => this.router.navigate(['/blog']));
+    this.firebaseAuthService.loginWithEmailAndPassword(this.email, this.password);
   }
 }

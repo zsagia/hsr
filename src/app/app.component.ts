@@ -1,21 +1,28 @@
-import { Component, OnDestroy } from '@angular/core';
-import { FirebaseAuthService } from './services/firebase-auth.service';
+import { Component } from '@angular/core';
+import { HsrAuthService } from './services/firebase-auth.service';
 import { ROUTES_CONFIG } from './config/routes.config';
-import { AngularFire } from 'angularfire2';
 
 @Component({
   selector: 'hsr-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss']
 })
-export class AppComponent implements OnDestroy {
+export class AppComponent {
   routes = ROUTES_CONFIG;
-  authState;
 
-  constructor(private firebaseAuthService: FirebaseAuthService, private af: AngularFire) {
-    af.auth.subscribe(auth => {
-      this.authState = auth;
-    });
+  constructor(private firebaseAuthService: HsrAuthService) {
+  }
+
+  get isAuthenticated(): boolean {
+    return this.firebaseAuthService.isAuthenticated;
+  }
+
+  get isAnonymous(): boolean {
+    return this.firebaseAuthService.isAnonymous;
+  }
+
+  get email():string {
+    return this.firebaseAuthService.email;
   }
 
   onLogout() {
@@ -24,9 +31,5 @@ export class AppComponent implements OnDestroy {
 
   get routesDisplay() {
     return this.routes.filter((value, index, array) => value.text);
-  }
-
-  ngOnDestroy(): void {
-    this.af.auth.unsubscribe();
   }
 }

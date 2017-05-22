@@ -1,6 +1,6 @@
 import { RegisterComponent } from '../components/register/register.component';
 import { LoginComponent } from '../components/login/login.component';
-import { FirebaseAuthService } from '../services/firebase-auth.service';
+import { HsrAuthService } from '../services/firebase-auth.service';
 import { HomeComponent } from '../components/home/home.component';
 import { BlogComponent } from '../components/blog/blog.component';
 import { FotosComponent } from '../components/fotos/fotos.component';
@@ -20,18 +20,18 @@ export const ROUTES_CONFIG: MyRoute[] = [
   {path: '', component: HomeComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'blog', component: BlogComponent, text: 'Blog', icon: 'newspaper-o', canActivate: [FirebaseAuthService]},
-  {path: 'fotos', component: FotosComponent, text: 'Fotos', icon: 'camera-retro', canActivate: [FirebaseAuthService]},
-  {path: 'chat', component: ChatComponent, text: 'Chat', icon: 'comments', canActivate: [FirebaseAuthService]},
-  {path: 'manual', component: ManualsComponent, text: 'Handbücher', icon: 'book', canActivate: [FirebaseAuthService]},
+  {path: 'blog', component: BlogComponent, text: 'Blog', icon: 'newspaper-o', canActivate: [HsrAuthService]},
+  {path: 'fotos', component: FotosComponent, text: 'Fotos', icon: 'camera-retro', canActivate: [HsrAuthService]},
+  {path: 'chat', component: ChatComponent, text: 'Chat', icon: 'comments', canActivate: [HsrAuthService]},
+  {path: 'manual', component: ManualsComponent, text: 'Handbücher', icon: 'book', canActivate: [HsrAuthService]},
   {
     path: 'platten',
     component: PlattenComponent,
     text: 'Platten',
     icon: 'headphones',
-    canActivate: [FirebaseAuthService]
+    canActivate: [HsrAuthService]
   },
-  {path: 'platten/:key', component: PlattenDetailsComponent, canActivate: [FirebaseAuthService]},
-  {path: 'link-account', component: LinkAccountComponent, canActivate: [FirebaseAuthService]},
+  {path: 'platten/:key', component: PlattenDetailsComponent, canActivate: [HsrAuthService]},
+  {path: 'link-account', component: LinkAccountComponent, canActivate: [HsrAuthService]},
   {path: '**', component: PageNotFoundComponent}
 ];

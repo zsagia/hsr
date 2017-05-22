@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { FirebaseStorageService } from '../../services/firebase-storage.service';
-import { AngularFire } from 'angularfire2';
-import { FirebaseDatabaseService } from '../../services/firebase-database.service';
-import { FirebaseAuthService } from '../../services/firebase-auth.service';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { HsrStorageService } from '../../services/firebase-storage.service';
+import { HsrDatabaseService } from '../../services/firebase-database.service';
+import { HsrAuthService } from '../../services/firebase-auth.service';
 import { ProgressHelper } from './shared/progress.helper';
 import { SlimLoadingBarService } from 'ng2-slim-loading-bar';
 
@@ -12,24 +11,24 @@ import { SlimLoadingBarService } from 'ng2-slim-loading-bar';
   templateUrl: 'fotos.component.html',
   styleUrls: ['fotos.component.scss']
 })
-export class FotosComponent implements OnInit {
+export class FotosComponent implements OnInit, OnDestroy {
+
   fotosList: ModalImage[] = [];
   uploadProgress: ProgressHelper;
   fileToRemove: File;
-  areFilesInList: boolean;
+  areFilesInList = false;
   openModalWindow = false;
   imagePointer: number;
 
   constructor(private progressBar: SlimLoadingBarService,
-    private auth: FirebaseAuthService,
-    private storage: FirebaseStorageService,
-    private database: FirebaseDatabaseService,
-    private angularFire: AngularFire) {
+    private hsrAuthService: HsrAuthService,
+    private hsrStorageService: HsrStorageService,
+    private hsrDatabaseService: HsrDatabaseService) {
   }
 
   // TODO: implement folders;) + treeview
   ngOnInit() {
-    this.database.getFotos().subscribe((fotos) => {
+    this.hsrDatabaseService.getFotosReverse().subscribe((fotos) => {
       fotos.forEach((foto) => {
         this.fotosList.push({
           thumb: foto.url,
@@ -66,7 +65,7 @@ export class FotosComponent implements OnInit {
     this.progressBar.reset();
     this.progressBar.start();
     for (const file of files) {
-      this.storage.uploadFoto(file).then((snapshot) => {
+      this.hsrStorageService.uploadFoto(file).then((snapshot) => {
         const now = Date.now();
         const data = {
           name: snapshot.metadata.name,
@@ -75,11 +74,11 @@ export class FotosComponent implements OnInit {
           fullPath: snapshot.metadata.fullPath,
           timeCreated: snapshot.metadata.timeCreated,
           size: snapshot.metadata.size,
-          author: this.auth.getCurrentUser().displayName || this.auth.getCurrentUser().email,
+          author: this.hsrAuthService.getCurrentUser().displayName || this.hsrAuthService.getCurrentUser().email,
           date: now,
           reverseDate: 0 - now
         };
-        this.angularFire.database.list('fotos').push(data);
+        this.hsrDatabaseService.getFotos().push(data);
         console.log('foto saved to database:');
         console.log(file);
         console.log(data);
@@ -94,6 +93,10 @@ export class FotosComponent implements OnInit {
         }
       });
     }
+  }
+
+  ngOnDestroy(): void {
+    this.hsrDatabaseService.getFotosReverse();
   }
 }
 

@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { FirebaseDatabaseService } from '../../../services/firebase-database.service';
-import { FirebaseStorageService } from '../../../services/firebase-storage.service';
+import { HsrDatabaseService } from '../../../services/firebase-database.service';
+import { HsrStorageService } from '../../../services/firebase-storage.service';
 import { ActivatedRoute } from '@angular/router';
-import { FirebaseObjectObservable } from 'angularfire2';
+import { FirebaseObjectObservable } from 'angularfire2/database';
 
 @Component({
   selector: 'hsr-platten-details',
@@ -17,7 +17,7 @@ export class PlattenDetailsComponent implements OnInit, OnDestroy {
   isSaved = false;
   resetFileInput = false;
 
-  constructor(private route: ActivatedRoute, private formBuilder: FormBuilder, private database: FirebaseDatabaseService, private storage: FirebaseStorageService) {
+  constructor(private route: ActivatedRoute, private formBuilder: FormBuilder, private database: HsrDatabaseService, private storage: HsrStorageService) {
   }
 
   ngOnInit() {
