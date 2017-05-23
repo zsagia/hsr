@@ -67,8 +67,8 @@ export class HsrAuthService implements CanActivate {
     });
   }
 
-  registerWithEmailAndPassword(user) {
-    this.angularFireAuth.auth.createUserWithEmailAndPassword(user.email, user.password);
+  registerWithEmailAndPassword(email: string, password: string) {
+    this.angularFireAuth.auth.createUserWithEmailAndPassword(email, password);
   }
 
   loginAnonymously(): firebase.Promise<any> {

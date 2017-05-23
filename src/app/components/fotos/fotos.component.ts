@@ -1,3 +1,4 @@
+import { AngularFireDatabase } from 'angularfire2/database';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { HsrStorageService } from '../../services/firebase-storage.service';
 import { HsrDatabaseService } from '../../services/firebase-database.service';

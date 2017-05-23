@@ -6,13 +6,18 @@ import { HsrAuthService } from '../../services/firebase-auth.service';
   templateUrl: 'register.component.html'
 })
 export class RegisterComponent {
-  user = {email: undefined, password: undefined};
+  email: string;
+  password: string;
 
-  constructor(private auth: HsrAuthService) {
+  constructor(private hsrAuthService: HsrAuthService) {
+  }
+
+  get isAuthenticated(): boolean {
+    return this.hsrAuthService.isAuthenticated;
   }
 
   onRegister() {
-    this.auth.registerWithEmailAndPassword(this.user);
+    this.hsrAuthService.registerWithEmailAndPassword(this.email, this.password);
   }
 
   // onGoogle() {

@@ -19,9 +19,7 @@ export interface BlogEntry {
 
 @Component({
   selector: 'hsr-blog',
-  templateUrl: 'blog.component.html',
-  styleUrls: ['blog.component.scss']
-})
+  templateUrl: 'blog.component.html'})
 export class BlogComponent implements OnInit, OnDestroy {
   options: any = {
     height: 400,

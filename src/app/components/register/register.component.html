@@ -1,25 +1,26 @@
-<md-card class="app-input-section">
+<md-card class="app-input-section" *ngIf="!isAuthenticated">
   <h1>Registrieren</h1>
-  <form #registerForm="ngForm" (ngSubmit)="onRegister()" fxLayout="column">
+  <form #registerForm="ngForm" fxLayout="column">
     <md-input-container>
-      <input mdInput ngControl="email" [(ngModel)]="user.email" required type="email" id="email" name="email" placeholder="E-Mail">
+      <input mdInput ngControl="email" [(ngModel)]="email" required type="email" id="email" name="email" placeholder="E-Mail">
       <span md-prefix>
           <i class="material-icons app-input-icon">mail</i>
           &nbsp;
         </span>
     </md-input-container>
     <md-input-container>
-      <input mdInput ngControl="password" [(ngModel)]="user.password" required type="password" id="password" name="password" placeholder="Passwort">
+      <input mdInput ngControl="password" [(ngModel)]="password" required type="password" id="password" name="password" placeholder="Passwort">
       <span md-prefix>
           <i class="material-icons app-input-icon">vpn_key</i>
           &nbsp;
         </span>
     </md-input-container>
 
-    <button md-raised-button type="submit" fxFlexAlign="end">Registrieren</button>
+    <button md-raised-button fxFlexAlign="end" (click)="onRegister()">Registrieren</button>
   </form>
   <!--TODO: enable when linking possible-->
   <!--
     <button (click)="onGoogle()">Mit Google registrieren</button>
     <button (click)="onFacebook()">Mit Facebook registrieren</button>-->
 </md-card>
+<div *ngIf="isAuthenticated">DU BIST EINGELOGGT</div>
