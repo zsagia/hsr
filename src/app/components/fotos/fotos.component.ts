@@ -1,10 +1,9 @@
-import { AngularFireDatabase } from 'angularfire2/database';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { HsrStorageService } from '../../services/firebase-storage.service';
-import { HsrDatabaseService } from '../../services/firebase-database.service';
-import { HsrAuthService } from '../../services/firebase-auth.service';
-import { ProgressHelper } from './shared/progress.helper';
 import { SlimLoadingBarService } from 'ng2-slim-loading-bar';
+import { HsrAuthService } from '../../services/firebase-auth.service';
+import { HsrDatabaseService } from '../../services/firebase-database.service';
+import { HsrStorageService } from '../../services/firebase-storage.service';
+import { ProgressHelper } from './shared/progress.helper';
 
 @Component({
   selector: 'hsr-fotos',
@@ -75,7 +74,7 @@ export class FotosComponent implements OnInit, OnDestroy {
           fullPath: snapshot.metadata.fullPath,
           timeCreated: snapshot.metadata.timeCreated,
           size: snapshot.metadata.size,
-          author: this.hsrAuthService.getCurrentUser().displayName || this.hsrAuthService.getCurrentUser().email,
+          author: this.hsrAuthService.email,
           date: now,
           reverseDate: 0 - now
         };

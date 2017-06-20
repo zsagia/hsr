@@ -48,3 +48,4 @@ Thumbs.db
 !/.idea/scssLintPlugin.xml
 !/.idea/vcs.xml
 !/.idea/watcherTasks.xml
+/package-lock.json

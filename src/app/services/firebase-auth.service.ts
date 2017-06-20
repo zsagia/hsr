@@ -1,9 +1,9 @@
 import { Inject, Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
-import { AngularFireAuth } from 'angularfire2/auth';
+import { CanActivate, Router } from '@angular/router';
 import { FirebaseApp } from 'angularfire2';
+import { AngularFireAuth } from 'angularfire2/auth';
+import 'rxjs/add/operator/map';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class HsrAuthService implements CanActivate {
@@ -20,50 +20,28 @@ export class HsrAuthService implements CanActivate {
   constructor(private angularFireAuth: AngularFireAuth, private router: Router, @Inject(FirebaseApp) private firebaseApp: FirebaseApp) {
     // this.googleProvider = new firebaseApp.auth.GoogleAuthProvider();
     // this.facebookProvider = new firebaseApp.auth.FacebookAuthProvider();
-    if (!this.isAuthenticated && !this.isAnonymous) {
-      this.loginAnonymously();
-    }
     this.user = angularFireAuth.authState;
 
-    angularFireAuth.authState.filter(state => !!state).subscribe(state => {
-      this.isAnonymous = state.isAnonymous;
+    this.user.subscribe((state) => {
+      if (!state) {
+        this.loginAnonymously();
+      } else {
+        this.isAnonymous = state.isAnonymous;
+        this.isAuthenticated = !!state.email;
+        this.email = state.email;
+      }
     });
-
-    angularFireAuth.authState.filter(state => !!state).subscribe(state => {
-      this.isAuthenticated = !!state.email;
-    });
-
-    angularFireAuth.authState.filter(state => !!state).subscribe(state => {
-      this.email = state.email;
-    });
-  }
-
-  // loginWithGoogle() {
-  //   this.angularFireAuth.auth.signInWithPopup(new firebaseApp.auth.GoogleAuthProvider());
-  // }
-
-  getCurrentUser() {
-    const user = this.firebaseApp.auth().currentUser;
-    if (user) {
-      return user;
-    } else {
-      return null;
-    }
   }
 
   canActivate(): Observable<boolean> | boolean {
-    if (this.isAuthenticated) {
-      return true;
-    } else {
-      this.router.navigate(['/login']);
-      return false;
-    }
+    return this.user.map((state) => {
+      return !!state.email
+    });
   }
 
   logout() {
-
-    this.angularFireAuth.auth.signOut().then(() => {
-      this.loginAnonymously().then(() => this.router.navigate(['/']));
+    this.router.navigate(['/login']).then(() => {
+      this.angularFireAuth.auth.signOut().then(() => this.loginAnonymously())
     });
   }
 
@@ -78,47 +56,4 @@ export class HsrAuthService implements CanActivate {
   loginWithEmailAndPassword(email: string, password: string): firebase.Promise<any> {
     return this.angularFireAuth.auth.signInWithEmailAndPassword(email, password);
   }
-
-  //
-  // loginWithGoogle() {
-  //   this.angularFireAuth.auth.login({
-  //     method: AuthMethods.Popup,
-  //     provider: AuthProviders.Google
-  //   });
-  // }
-  //
-  // loginWithFacebook() {
-  //   this.angularFireAuth.auth.login({
-  //     method: AuthMethods.Popup,
-  //     provider: AuthProviders.Facebook
-  //   });
-  // }
-  //
-  // registerWithGoogle() {
-  //   firebaseApp.auth().signInWithPopup(this.googleProvider).then(result => {
-  //     // This gives you a Google Access Token. You can use it to access the Google API.
-  //     this.accessToken = result.credential['accessToken'];
-  //   }).catch(function (error) {
-  //     console.log(error);
-  //   });
-  // }
-  //
-  // linkWithGoogle() {
-  //   firebaseApp.auth().signInWithPopup(this.googleProvider).then(result => {
-  //     // This gives you a Google Access Token. You can use it to access the Google API.
-  //     console.log(result.credential);
-  //     console.log(result.user);
-  //   }).catch(function (error) {
-  //     console.log(error);
-  //   });
-  // }
-  //
-  // registerWithFacebook() {
-  //   firebaseApp.auth().signInWithPopup(this.facebookProvider).then(result => {
-  //     // This gives you a Google Access Token. You can use it to access the Google API.
-  //     this.accessToken = result.credential['accessToken'];
-  //   }).catch(function (error) {
-  //     console.log(error);
-  //   });
-  // }
 }

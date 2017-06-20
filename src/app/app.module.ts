@@ -1,8 +1,7 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpModule, JsonpModule } from '@angular/http';
+import { HttpModule } from '@angular/http';
 import {
   MdButtonModule,
   MdButtonToggleModule,
@@ -27,7 +26,6 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import 'hammerjs';
 import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
 import { AppComponent } from './app.component';
-import { BlogComponent } from './components/blog/blog.component';
 import { ChatComponent } from './components/chat/chat.component';
 import { FotosComponent } from './components/fotos/fotos.component';
 import { HomeComponent } from './components/home/home.component';
@@ -41,11 +39,8 @@ import { FIREBASE_CONFIG } from './config/firebase.config';
 import { ROUTES_CONFIG } from './config/routes.config';
 import { StickyDirective } from './directives/sticky.directive';
 import { DropzoneComponent } from './dropzone/dropzone.component';
-import { FroalaEditorDirective, FroalaViewDirective } from './froala/froala.directives';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { OrderBy } from './pipes/orderBy.pipe';
-import { ReversePipe } from './pipes/reverse.pipe';
-import { SafePipe } from './pipes/safe.pipe';
+import { PipesModule } from './pipes/pipes.module';
 import { HsrAuthService } from './services/firebase-auth.service';
 import { HsrDatabaseService } from './services/firebase-database.service';
 import { HsrStorageService } from './services/firebase-storage.service';
@@ -57,34 +52,26 @@ import { TinyMceComponent } from './tinymce/tinymce.component';
     RegisterComponent,
     LoginComponent,
     HomeComponent,
-    BlogComponent,
     FotosComponent,
     FotosComponent,
     ManualsComponent,
     TinyMceComponent,
     PlattenComponent,
     PlattenDetailsComponent,
-    SafePipe,
-    OrderBy,
-    ReversePipe,
     PageNotFoundComponent,
     LinkAccountComponent,
     DropzoneComponent,
     ChatComponent,
-    FroalaEditorDirective,
-    FroalaViewDirective,
     StickyDirective
   ],
   imports: [
+    PipesModule,
     // Router
     RouterModule.forRoot(ROUTES_CONFIG),
     // Browser
     BrowserModule,
-    // Common
-    CommonModule,
     // AJAX
     HttpModule,
-    JsonpModule,
     // Forms
     FormsModule,
     ReactiveFormsModule,

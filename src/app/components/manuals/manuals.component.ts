@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { HsrStorageService } from '../../services/firebase-storage.service';
-import { HsrDatabaseService } from '../../services/firebase-database.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HsrAuthService } from '../../services/firebase-auth.service';
+import { HsrDatabaseService } from '../../services/firebase-database.service';
+import { HsrStorageService } from '../../services/firebase-storage.service';
 
 @Component({
   selector: 'hsr-manuals',
@@ -48,7 +48,7 @@ export class ManualsComponent implements OnInit {
         fullPath: snapshot.metadata.fullPath,
         timeCreated: snapshot.metadata.timeCreated,
         size: snapshot.metadata.size,
-        author: this.firebaseAuthService.getCurrentUser().email,
+        author: this.firebaseAuthService.email,
         date: now,
         reverseDate: 0 - now,
         title: this.manualForm.controls['title'].value
@@ -65,7 +65,7 @@ export class ManualsComponent implements OnInit {
   }
 
   isAuthor(author) {
-    return author === this.firebaseAuthService.getCurrentUser().email;
+    return author === this.firebaseAuthService.email;
   }
 
   setView(data) {

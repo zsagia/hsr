@@ -1,15 +1,4 @@
-import {
-  AfterViewInit,
-  Directive,
-  ElementRef,
-  EventEmitter,
-  Inject,
-  Input,
-  OnDestroy,
-  OnInit,
-  Output,
-  Renderer
-} from '@angular/core';
+import { AfterViewInit, Directive, ElementRef, EventEmitter, Inject, Input, OnDestroy, OnInit, Output, Renderer } from '@angular/core';
 
 // non-typescript definitions
 declare var $: JQueryStatic;

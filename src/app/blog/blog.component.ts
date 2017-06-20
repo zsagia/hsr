@@ -1,9 +1,8 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { HsrDatabaseService } from '../../services/firebase-database.service';
-import { HsrAuthService } from '../../services/firebase-auth.service';
+import { Component, OnInit } from '@angular/core';
 import { MdSnackBar } from '@angular/material';
 import { FirebaseListObservable } from 'angularfire2/database';
-
+import { HsrAuthService } from '../services/firebase-auth.service';
+import { HsrDatabaseService } from '../services/firebase-database.service';
 
 export interface BlogEntry {
   title: string;
@@ -16,11 +15,11 @@ export interface BlogEntry {
   $key?: number;
 }
 
-
 @Component({
   selector: 'hsr-blog',
-  templateUrl: 'blog.component.html'})
-export class BlogComponent implements OnInit, OnDestroy {
+  templateUrl: './blog.component.html'
+})
+export class BlogComponent implements OnInit {
   options: any = {
     height: 400,
     language: 'de',
@@ -60,14 +59,14 @@ export class BlogComponent implements OnInit, OnDestroy {
   }
 
   isAuthor(author) {
-    return author === this.hsrAuthService.getCurrentUser().email;
+    return author === this.hsrAuthService.email;
   }
 
   saveEntry() {
     const now = Date.now();
 
     if (!this.editingKey) {
-      this.currentEntry.author = this.hsrAuthService.getCurrentUser().email;
+      this.currentEntry.author = this.hsrAuthService.email;
       this.currentEntry.date = now;
       this.currentEntry.reverseDate = 0 - now;
       this.blogEntries.push(this.currentEntry);
@@ -99,9 +98,6 @@ export class BlogComponent implements OnInit, OnDestroy {
       this.currentEntry.editEveryone = entry.editEveryone;
       this.currentEntry.author = entry.author;
     });
-  }
-
-  ngOnDestroy(): void {
   }
 
 }

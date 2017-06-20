@@ -1,13 +1,10 @@
 import { Component } from '@angular/core';
-import { HsrDatabaseService } from '../../services/firebase-database.service';
 import { FirebaseListObservable } from 'angularfire2/database';
+import { HsrDatabaseService } from '../../services/firebase-database.service';
 
 @Component({
   selector: 'hsr-home',
-  templateUrl: './home.component.html',
-  styles: [`
-  
-  `]
+  templateUrl: './home.component.html'
 })
 export class HomeComponent {
   blogEntries: FirebaseListObservable<any>;
