@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, NgZone } from '@angular/core';
-import { FirebaseAuthService } from '../../services/firebase-auth.service';
+import { HsrAuthService } from '../../services/firebase-auth.service';
 declare var gapi: any;
 
 @Component({
@@ -13,7 +13,7 @@ export class LinkAccountComponent implements AfterViewInit {
   userAuthToken = null;
   userDisplayName = 'empty';
 
-  constructor(private firebaseAuthService: FirebaseAuthService, private _zone: NgZone) {
+  constructor(private firebaseAuthService: HsrAuthService, private _zone: NgZone) {
   }
 
   ngAfterViewInit() {

@@ -1,108 +1,124 @@
-import { Injectable } from '@angular/core';
-import { AngularFire, AuthMethods, AuthProviders, FirebaseAuthState } from 'angularfire2';
+import { Inject, Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
-import * as firebase from 'firebase';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { FirebaseApp } from 'angularfire2';
 
 @Injectable()
-export class FirebaseAuthService implements CanActivate {
+export class HsrAuthService implements CanActivate {
 
-  googleProvider;
-  facebookProvider;
+  // googleProvider;
+  // facebookProvider;
+  // accessToken: string;
 
-  authState;
+  isAuthenticated = false;
+  isAnonymous = false;
+  email: string;
+  user: Observable<firebase.User>;
 
-  accessToken: string;
+  constructor(private angularFireAuth: AngularFireAuth, private router: Router, @Inject(FirebaseApp) private firebaseApp: FirebaseApp) {
+    // this.googleProvider = new firebaseApp.auth.GoogleAuthProvider();
+    // this.facebookProvider = new firebaseApp.auth.FacebookAuthProvider();
+    if (!this.isAuthenticated && !this.isAnonymous) {
+      this.loginAnonymously();
+    }
+    this.user = angularFireAuth.authState;
 
-  constructor(private angularFire: AngularFire, private router: Router) {
-    this.googleProvider = new firebase.auth.GoogleAuthProvider();
-    this.facebookProvider = new firebase.auth.FacebookAuthProvider();
+    angularFireAuth.authState.filter(state => !!state).subscribe(state => {
+      this.isAnonymous = state.isAnonymous;
+    });
 
-    this.angularFire.auth.subscribe(auth => {
-      this.authState = auth;
+    angularFireAuth.authState.filter(state => !!state).subscribe(state => {
+      this.isAuthenticated = !!state.email;
+    });
+
+    angularFireAuth.authState.filter(state => !!state).subscribe(state => {
+      this.email = state.email;
     });
   }
 
+  // loginWithGoogle() {
+  //   this.angularFireAuth.auth.signInWithPopup(new firebaseApp.auth.GoogleAuthProvider());
+  // }
+
   getCurrentUser() {
-    return firebase.auth().currentUser;
+    const user = this.firebaseApp.auth().currentUser;
+    if (user) {
+      return user;
+    } else {
+      return null;
+    }
   }
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | boolean {
-    return this.angularFire.auth.map(auth => {
-      return !!auth;
-    }).first();
+  canActivate(): Observable<boolean> | boolean {
+    if (this.isAuthenticated) {
+      return true;
+    } else {
+      this.router.navigate(['/login']);
+      return false;
+    }
   }
 
   logout() {
-    this.angularFire.auth.logout();
-    // TODO: make work without console error
-    this.loginAnonymously().then(() => {
-      this.router.navigate(['']);
+
+    this.angularFireAuth.auth.signOut().then(() => {
+      this.loginAnonymously().then(() => this.router.navigate(['/']));
     });
   }
 
-  registerWithEmailAndPassword(user) {
-    this.angularFire.auth.createUser({email: user.email, password: user.password});
+  registerWithEmailAndPassword(email: string, password: string) {
+    this.angularFireAuth.auth.createUserWithEmailAndPassword(email, password);
   }
 
-  loginAnonymously(): firebase.Promise<FirebaseAuthState> {
-    return this.angularFire.auth.login({
-      method: AuthMethods.Anonymous,
-      provider: AuthProviders.Anonymous
-    });
+  loginAnonymously(): firebase.Promise<any> {
+    return this.angularFireAuth.auth.signInAnonymously();
   }
 
-  loginWithEmailAndPassword(user): firebase.Promise<FirebaseAuthState> {
-    return this.angularFire.auth.login(user, {
-      method: AuthMethods.Password,
-      provider: AuthProviders.Password
-    });
+  loginWithEmailAndPassword(email: string, password: string): firebase.Promise<any> {
+    return this.angularFireAuth.auth.signInWithEmailAndPassword(email, password);
   }
 
-  loginWithGoogle() {
-    this.angularFire.auth.login({
-      method: AuthMethods.Popup,
-      provider: AuthProviders.Google
-    });
-  }
-
-  loginWithFacebook() {
-    this.angularFire.auth.login({
-      method: AuthMethods.Popup,
-      provider: AuthProviders.Facebook
-    });
-  }
-
-  registerWithGoogle() {
-    firebase.auth().signInWithPopup(this.googleProvider).then(result => {
-      // This gives you a Google Access Token. You can use it to access the Google API.
-      this.accessToken = result.credential['accessToken'];
-    }).catch(function (error) {
-      console.log(error);
-    });
-  }
-
-  linkWithGoogle() {
-    firebase.auth().signInWithPopup(this.googleProvider).then(result => {
-      // This gives you a Google Access Token. You can use it to access the Google API.
-      console.log(result.credential);
-      console.log(result.user);
-    }).catch(function (error) {
-      console.log(error);
-    });
-  }
-
-  registerWithFacebook() {
-    firebase.auth().signInWithPopup(this.facebookProvider).then(result => {
-      // This gives you a Google Access Token. You can use it to access the Google API.
-      this.accessToken = result.credential['accessToken'];
-    }).catch(function (error) {
-      console.log(error);
-    });
-  }
-
-  getUserData() {
-    return this.authState.auth;
-  }
+  //
+  // loginWithGoogle() {
+  //   this.angularFireAuth.auth.login({
+  //     method: AuthMethods.Popup,
+  //     provider: AuthProviders.Google
+  //   });
+  // }
+  //
+  // loginWithFacebook() {
+  //   this.angularFireAuth.auth.login({
+  //     method: AuthMethods.Popup,
+  //     provider: AuthProviders.Facebook
+  //   });
+  // }
+  //
+  // registerWithGoogle() {
+  //   firebaseApp.auth().signInWithPopup(this.googleProvider).then(result => {
+  //     // This gives you a Google Access Token. You can use it to access the Google API.
+  //     this.accessToken = result.credential['accessToken'];
+  //   }).catch(function (error) {
+  //     console.log(error);
+  //   });
+  // }
+  //
+  // linkWithGoogle() {
+  //   firebaseApp.auth().signInWithPopup(this.googleProvider).then(result => {
+  //     // This gives you a Google Access Token. You can use it to access the Google API.
+  //     console.log(result.credential);
+  //     console.log(result.user);
+  //   }).catch(function (error) {
+  //     console.log(error);
+  //   });
+  // }
+  //
+  // registerWithFacebook() {
+  //   firebaseApp.auth().signInWithPopup(this.facebookProvider).then(result => {
+  //     // This gives you a Google Access Token. You can use it to access the Google API.
+  //     this.accessToken = result.credential['accessToken'];
+  //   }).catch(function (error) {
+  //     console.log(error);
+  //   });
+  // }
 }

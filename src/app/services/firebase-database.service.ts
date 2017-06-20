@@ -1,23 +1,22 @@
 import { Injectable } from '@angular/core';
-import { AngularFire, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
+import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 
 @Injectable()
-export class FirebaseDatabaseService {
-  items: FirebaseListObservable<any>;
+export class HsrDatabaseService {
 
-  constructor(private angularFire: AngularFire) {
+  constructor(private angularFireDatabase: AngularFireDatabase) {
   }
 
   getChatMessages(): FirebaseListObservable<any> {
-    return this.angularFire.database.list('chat');
+    return this.angularFireDatabase.list('chat');
   }
 
   getChatMessage(key: number): FirebaseObjectObservable<any> {
-    return this.angularFire.database.object('chat/' + key);
+    return this.angularFireDatabase.object('chat/' + key);
   }
 
   getBlogEntries(): FirebaseListObservable<any> {
-    return this.angularFire.database.list('blog', {
+    return this.angularFireDatabase.list('blog', {
       query: {
         orderByChild: 'reverseDate'
       }
@@ -25,19 +24,23 @@ export class FirebaseDatabaseService {
   }
 
   getBlogEntry(key: number): FirebaseObjectObservable<any> {
-    return this.angularFire.database.object('blog/' + key);
+    return this.angularFireDatabase.object('blog/' + key);
   }
 
   getPlatten(): FirebaseListObservable<any> {
-    return this.angularFire.database.list('platten');
+    return this.angularFireDatabase.list('platten');
   }
 
   getPlatte(key: number): FirebaseObjectObservable<any> {
-    return this.angularFire.database.object('platten/' + key);
+    return this.angularFireDatabase.object('platten/' + key);
   }
 
   getFotos(): FirebaseListObservable<any> {
-    return this.angularFire.database.list('fotos', {
+    return this.angularFireDatabase.list('fotos');
+  }
+
+  getFotosReverse(): FirebaseListObservable<any> {
+    return this.angularFireDatabase.list('fotos', {
       query: {
         orderByChild: 'reverseDate'
       }
@@ -45,6 +48,6 @@ export class FirebaseDatabaseService {
   }
 
   getManuals(): FirebaseListObservable<any> {
-    return this.angularFire.database.list('manuals');
+    return this.angularFireDatabase.list('manuals');
   }
 }

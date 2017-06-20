@@ -1,25 +1,30 @@
 import { Component } from '@angular/core';
-import { FirebaseAuthService } from '../../services/firebase-auth.service';
+import { HsrAuthService } from '../../services/firebase-auth.service';
 
 @Component({
   selector: 'hsr-register',
   templateUrl: 'register.component.html'
 })
 export class RegisterComponent {
-  user = {email: undefined, password: undefined};
+  email: string;
+  password: string;
 
-  constructor(private auth: FirebaseAuthService) {
+  constructor(private hsrAuthService: HsrAuthService) {
+  }
+
+  get isAuthenticated(): boolean {
+    return this.hsrAuthService.isAuthenticated;
   }
 
   onRegister() {
-    this.auth.registerWithEmailAndPassword(this.user);
+    this.hsrAuthService.registerWithEmailAndPassword(this.email, this.password);
   }
 
-  onGoogle() {
-    this.auth.registerWithGoogle();
-  }
-
-  onFacebook() {
-    this.auth.registerWithFacebook();
-  }
+  // onGoogle() {
+  //   this.auth.registerWithGoogle();
+  // }
+  //
+  // onFacebook() {
+  //   this.auth.registerWithFacebook();
+  // }
 }

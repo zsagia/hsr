@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card medium-card">
   <div style="padding:8px 12px;" fxLayout="row" fxLayoutAlign="center center">
     <md-input-container>
       <input mdInput type="text" placeholder="Titel" id="title" name="title" [(ngModel)]="currentEntry.title">
@@ -28,9 +28,8 @@
 </div>
 
 
-<div style="padding-top: 16px;">
-  <md-card *ngFor="let entry of blogEntries | async" style="animation: flyin 0.4s ease; overflow-x: auto; margin-top: 8px;">
-    <h1 style="margin-bottom: 0;">{{entry.title}}</h1>
+  <md-card class="medium-card" *ngFor="let entry of blogEntries | async" style="animation: flyin 0.4s ease; overflow-x: auto; margin-top: 8px;">
+    <h4 style="margin-bottom: 0;">{{entry.title}}</h4>
     <h5 style="margin-top: 2px; color: darkgrey;">{{entry.author}}</h5>
     <div [innerHTML]="entry.content | safe"></div>
     <div style="position: absolute; top: 8px; right: 8px;">
@@ -43,4 +42,4 @@
       </button>
     </div>
   </md-card>
-</div>
+

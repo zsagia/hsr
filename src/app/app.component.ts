@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { FirebaseAuthService } from './services/firebase-auth.service';
+import { HsrAuthService } from './services/firebase-auth.service';
 import { ROUTES_CONFIG } from './config/routes.config';
-import { AngularFire } from 'angularfire2';
 
 @Component({
   selector: 'hsr-root',
@@ -10,15 +9,27 @@ import { AngularFire } from 'angularfire2';
 })
 export class AppComponent {
   routes = ROUTES_CONFIG;
-  authState;
 
-  constructor(private firebaseAuthService: FirebaseAuthService, private af: AngularFire) {
-    af.auth.subscribe(auth => {
-      this.authState = auth;
-    });
+  constructor(private firebaseAuthService: HsrAuthService) {
+  }
+
+  get isAuthenticated(): boolean {
+    return this.firebaseAuthService.isAuthenticated;
+  }
+
+  get isAnonymous(): boolean {
+    return this.firebaseAuthService.isAnonymous;
+  }
+
+  get email():string {
+    return this.firebaseAuthService.email;
   }
 
   onLogout() {
     this.firebaseAuthService.logout();
+  }
+
+  get routesDisplay() {
+    return this.routes.filter((value, index, array) => value.text);
   }
 }

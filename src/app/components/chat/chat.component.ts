@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FirebaseDatabaseService } from '../../services/firebase-database.service';
-import { FirebaseAuthService } from '../../services/firebase-auth.service';
-import { FirebaseListObservable } from 'angularfire2';
+import { HsrDatabaseService } from '../../services/firebase-database.service';
+import { HsrAuthService } from '../../services/firebase-auth.service';
+import { FirebaseListObservable } from 'angularfire2/database';
 
 @Component({
   selector: 'hsr-chat',
@@ -16,8 +16,8 @@ export class ChatComponent implements OnInit {
 
   editingKey: number;
 
-  constructor(private database: FirebaseDatabaseService, private auth: FirebaseAuthService) {
-    this.chatMessages = database.getChatMessages();
+  constructor(private hsrDatabaseService: HsrDatabaseService, private auth: HsrAuthService) {
+    this.chatMessages = hsrDatabaseService.getChatMessages();
   }
 
   ngOnInit() {
@@ -39,7 +39,7 @@ export class ChatComponent implements OnInit {
       this.currentMessage.reverseDate = 0 - now;
       this.chatMessages.push(this.currentMessage);
     } else {
-      this.database.getChatMessage(this.editingKey).update(this.currentMessage);
+      this.hsrDatabaseService.getChatMessage(this.editingKey).update(this.currentMessage);
     }
     this.currentMessage = {message: null};
     this.editingKey = null;
@@ -54,7 +54,7 @@ export class ChatComponent implements OnInit {
   }
 
   editMessage(key) {
-    this.database.getChatMessage(key).subscribe((message) => {
+    this.hsrDatabaseService.getChatMessage(key).subscribe((message) => {
       this.editingKey = message.$key;
       this.currentMessage.message = message.message;
     });

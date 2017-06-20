@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FirebaseStorageService } from '../../services/firebase-storage.service';
-import { AngularFire, FirebaseListObservable } from 'angularfire2';
-import { FirebaseDatabaseService } from '../../services/firebase-database.service';
+import { HsrStorageService } from '../../services/firebase-storage.service';
+import { HsrDatabaseService } from '../../services/firebase-database.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { FirebaseAuthService } from '../../services/firebase-auth.service';
+import { HsrAuthService } from '../../services/firebase-auth.service';
 
 @Component({
   selector: 'hsr-manuals',
@@ -11,13 +10,16 @@ import { FirebaseAuthService } from '../../services/firebase-auth.service';
   styleUrls: ['manuals.component.scss']
 })
 export class ManualsComponent implements OnInit {
-  manualsList: FirebaseListObservable<any>;
+
   manualForm: FormGroup;
   view = 'grid';
 
   currentManual: File;
 
-  constructor(private angularFire: AngularFire, private formBuilder: FormBuilder, private storage: FirebaseStorageService, private database: FirebaseDatabaseService, private auth: FirebaseAuthService) {
+  constructor(private formBuilder: FormBuilder,
+    private firebaseStorageService: HsrStorageService,
+    private firebaseDatabaseService: HsrDatabaseService,
+    private firebaseAuthService: HsrAuthService) {
   }
 
   ngOnInit() {
@@ -26,7 +28,10 @@ export class ManualsComponent implements OnInit {
       // TODO: disable when no title / make validation work for input-file
       // manualFile: [{value: '', disabled: true}, Validators.required]
     });
-    this.manualsList = this.database.getManuals();
+  }
+
+  get manualsList() {
+    return this.firebaseDatabaseService.getManuals();
   }
 
   onManualAdded(file: File) {
@@ -34,7 +39,7 @@ export class ManualsComponent implements OnInit {
   }
 
   onSubmit() {
-    this.storage.uploadManual(this.currentManual).then((snapshot) => {
+    this.firebaseStorageService.uploadManual(this.currentManual).then((snapshot) => {
       const now = Date.now();
       const data = {
         name: snapshot.metadata.name,
@@ -43,12 +48,12 @@ export class ManualsComponent implements OnInit {
         fullPath: snapshot.metadata.fullPath,
         timeCreated: snapshot.metadata.timeCreated,
         size: snapshot.metadata.size,
-        author: this.auth.getCurrentUser().email,
+        author: this.firebaseAuthService.getCurrentUser().email,
         date: now,
         reverseDate: 0 - now,
         title: this.manualForm.controls['title'].value
       };
-      this.angularFire.database.list('manuals').push(data);
+      this.firebaseDatabaseService.getManuals().push(data);
       this.manualForm.controls['title'].setValue('');
     });
   }
@@ -56,11 +61,11 @@ export class ManualsComponent implements OnInit {
   onManualDeleted(event: Event, filename: string) {
     event.stopPropagation();
     event.preventDefault();
-    this.storage.deleteManual(filename);
+    this.firebaseStorageService.deleteManual(filename);
   }
 
   isAuthor(author) {
-    return author === this.auth.getCurrentUser().email;
+    return author === this.firebaseAuthService.getCurrentUser().email;
   }
 
   setView(data) {
