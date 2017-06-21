@@ -15,6 +15,14 @@ export class HsrDatabaseService {
     return this.angularFireDatabase.object('chat/' + key);
   }
 
+  getBlogEntries(): FirebaseListObservable<any> {
+    return this.angularFireDatabase.list('blog', {
+      query: {
+        orderByChild: 'reverseDate'
+      }
+    });
+  }
+
   getPlatten(): FirebaseListObservable<any> {
     return this.angularFireDatabase.list('platten');
   }
@@ -27,6 +35,7 @@ export class HsrDatabaseService {
     return this.angularFireDatabase.list('fotos');
   }
 
+  // TODO: remove and use BlogService
   getFotosReverse(): FirebaseListObservable<any> {
     return this.angularFireDatabase.list('fotos', {
       query: {

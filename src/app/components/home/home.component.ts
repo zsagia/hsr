@@ -1,16 +1,15 @@
 import { Component } from '@angular/core';
 import { FirebaseListObservable } from 'angularfire2/database';
-import { BlogService } from '../../blog/blog.service';
-import { BlogEntry } from '../../blog/blog.types';
+import { HsrDatabaseService } from '../../services/firebase-database.service';
 
 @Component({
   selector: 'hsr-home',
   templateUrl: './home.component.html'
 })
 export class HomeComponent {
-  blogEntries: FirebaseListObservable<BlogEntry[]>;
+  blogEntries: FirebaseListObservable<any>;
 
-  constructor(private blogService: BlogService) {
-    this.blogEntries = blogService.getBlogEntries();
+  constructor(private hsrDatabaseService: HsrDatabaseService) {
+    this.blogEntries = hsrDatabaseService.getBlogEntries();
   }
 }

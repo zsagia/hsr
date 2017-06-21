@@ -26,7 +26,6 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import 'hammerjs';
 import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
 import { AppComponent } from './app.component';
-import { BlogModule } from './blog/blog.module';
 import { ChatComponent } from './components/chat/chat.component';
 import { FotosComponent } from './components/fotos/fotos.component';
 import { HomeComponent } from './components/home/home.component';
@@ -66,7 +65,6 @@ import { TinyMceComponent } from './tinymce/tinymce.component';
     StickyDirective
   ],
   imports: [
-    BlogModule,
     PipesModule,
     // Router
     RouterModule.forRoot(ROUTES_CONFIG),
