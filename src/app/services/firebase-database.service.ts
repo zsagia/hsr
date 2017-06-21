@@ -15,18 +15,6 @@ export class HsrDatabaseService {
     return this.angularFireDatabase.object('chat/' + key);
   }
 
-  getBlogEntries(): FirebaseListObservable<any> {
-    return this.angularFireDatabase.list('blog', {
-      query: {
-        orderByChild: 'reverseDate'
-      }
-    });
-  }
-
-  getBlogEntry(key: number): FirebaseObjectObservable<any> {
-    return this.angularFireDatabase.object('blog/' + key);
-  }
-
   getPlatten(): FirebaseListObservable<any> {
     return this.angularFireDatabase.list('platten');
   }

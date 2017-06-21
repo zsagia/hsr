@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FirebaseListObservable } from 'angularfire2/database';
 import { HsrAuthService } from '../../services/firebase-auth.service';
 import { HsrDatabaseService } from '../../services/firebase-database.service';
 import { HsrStorageService } from '../../services/firebase-storage.service';
@@ -16,6 +17,8 @@ export class ManualsComponent implements OnInit {
 
   currentManual: File;
 
+  manualsList: FirebaseListObservable<any>;
+
   constructor(private formBuilder: FormBuilder,
     private firebaseStorageService: HsrStorageService,
     private firebaseDatabaseService: HsrDatabaseService,
@@ -23,15 +26,12 @@ export class ManualsComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.manualsList = this.firebaseDatabaseService.getManuals();
     this.manualForm = this.formBuilder.group({
       title: ['', Validators.required]
       // TODO: disable when no title / make validation work for input-file
       // manualFile: [{value: '', disabled: true}, Validators.required]
     });
-  }
-
-  get manualsList() {
-    return this.firebaseDatabaseService.getManuals();
   }
 
   onManualAdded(file: File) {
@@ -53,15 +53,15 @@ export class ManualsComponent implements OnInit {
         reverseDate: 0 - now,
         title: this.manualForm.controls['title'].value
       };
-      this.firebaseDatabaseService.getManuals().push(data);
+      this.manualsList.push(data);
       this.manualForm.controls['title'].setValue('');
     });
   }
 
-  onManualDeleted(event: Event, filename: string) {
+  onDeleteManual(event: Event, key: string, filename: string) {
     event.stopPropagation();
     event.preventDefault();
-    this.firebaseStorageService.deleteManual(filename);
+    this.firebaseStorageService.deleteManual(key, filename);
   }
 
   isAuthor(author) {

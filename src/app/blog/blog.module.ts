@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { MyRoute } from '../config/routes.config';
 import { PipesModule } from '../pipes/pipes.module';
 import { BlogComponent } from './blog.component';
+import { BlogService } from './blog.service';
 import { FroalaEditorDirective, FroalaViewDirective } from './froala/froala.directives';
 
 const ROUTES: MyRoute[] = [
@@ -29,6 +30,9 @@ const ROUTES: MyRoute[] = [
     BlogComponent,
     FroalaEditorDirective,
     FroalaViewDirective,
+  ],
+  providers: [
+    BlogService
   ]
 })
 export class BlogModule {

@@ -1,8 +1,8 @@
 import { Inject, Injectable } from '@angular/core';
-import { HsrAuthService } from './firebase-auth.service';
-import { AngularFireDatabase } from 'angularfire2/database';
 import { FirebaseApp } from 'angularfire2';
+import { AngularFireDatabase } from 'angularfire2/database';
 import * as firebase from 'firebase';
+import { HsrAuthService } from './firebase-auth.service';
 import UploadTask = firebase.storage.UploadTask;
 
 @Injectable()
@@ -31,15 +31,10 @@ export class HsrStorageService {
     return manualsStorageRef.put(file);
   }
 
-  deleteManual(filename: string) {
+  deleteManual(key: string, filename: string) {
     const manualsStorageRef = this.firebaseApp.storage().ref('manuals/' + filename);
     manualsStorageRef.delete();
-    this.angularFireDatabase.list('manuals', {
-      query: {
-        orderByChild: 'name',
-        equalTo: filename
-      }
-    }).remove();
+    this.angularFireDatabase.list('manuals').remove(key);
   }
 
   uploadCover(file: File): UploadTask {
