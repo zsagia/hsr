@@ -29,73 +29,10 @@
         "../node_modules/froala-editor/css/plugins/line_breaker.min.css",
         "../node_modules/froala-editor/css/plugins/quick_insert.min.css",
         "../node_modules/froala-editor/css/plugins/video.min.css",
-        "../node_modules/codemirror/lib/codemirror.css",
-        {
-          "input": "../node_modules/froala-editor/css/froala_editor.min.css",
-          "lazy": true
-        },
-        {
-          "input": "../node_modules/froala-editor/css/themes/dark.min.css",
-          "lazy": true
-        },
-        {
-          "input": "../node_modules/froala-editor/css/plugins/code_view.min.css",
-          "lazy": true
-        },
-        {
-          "input": "../node_modules/froala-editor/css/plugins/colors.min.css",
-          "lazy": true
-        },
-        {
-          "input": "../node_modules/froala-editor/css/plugins/draggable.min.css",
-          "lazy": true
-        },
-        {
-          "input": "../node_modules/froala-editor/css/plugins/emoticons.min.css",
-          "lazy": true
-        },
-        {
-          "input": "../node_modules/froala-editor/css/plugins/image.min.css",
-          "lazy": true
-        },
-        {
-          "input": "../node_modules/froala-editor/css/plugins/line_breaker.min.css",
-          "lazy": true
-        },
-        {
-          "input": "../node_modules/froala-editor/css/plugins/quick_insert.min.css",
-          "lazy": true
-        },
-        {
-          "input": "../node_modules/froala-editor/css/plugins/video.min.css",
-          "lazy": true
-        },
-        {
-          "input": "../node_modules/codemirror/lib/codemirror.css",
-          "lazy": true
-        }
+        "../node_modules/codemirror/lib/codemirror.css"
       ],
       "scripts": [
         "../node_modules/jquery/dist/jquery.min.js",
-        "../node_modules/tinymce/tinymce.js",
-        "../node_modules/tinymce/plugins/advlist/plugin.js",
-        "../node_modules/tinymce/plugins/autolink/plugin.js",
-        "../node_modules/tinymce/plugins/lists/plugin.js",
-        "../node_modules/tinymce/plugins/link/plugin.js",
-        "../node_modules/tinymce/plugins/imagetools/plugin.js",
-        "../node_modules/tinymce/plugins/image/plugin.js",
-        "../node_modules/tinymce/plugins/charmap/plugin.js",
-        "../node_modules/tinymce/plugins/preview/plugin.js",
-        "../node_modules/tinymce/plugins/code/plugin.js",
-        "../node_modules/tinymce/plugins/media/plugin.js",
-        "../node_modules/tinymce/plugins/table/plugin.js",
-        "../node_modules/tinymce/plugins/contextmenu/plugin.js",
-        "../node_modules/tinymce/plugins/paste/plugin.js",
-        "../node_modules/tinymce/plugins/colorpicker/plugin.js",
-        "../node_modules/tinymce/plugins/emoticons/plugin.js",
-        "../node_modules/tinymce/plugins/tabfocus/plugin.js",
-        "../node_modules/tinymce/plugins/textcolor/plugin.js",
-        "../node_modules/tinymce/themes/modern/theme.js",
         "../node_modules/dropzone/dist/dropzone.js",
         "../node_modules/codemirror/lib/codemirror.js",
         "../node_modules/froala-editor/js/froala_editor.min.js",

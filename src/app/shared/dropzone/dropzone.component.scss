@@ -1,0 +1,40 @@
+.dropzone-container {
+  padding-bottom: 40px;
+  position: relative;
+  width: 100%;
+}
+
+.dropzone-drop-area {
+  align-items: flex-start;
+  border: dashed 2px grey;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  min-height: 120px;
+  position: relative;
+  width: 100%;
+  &:hover {
+    border-color: darkorange;
+    color: darkorange;
+    transition: color .2s, border-color .1s;
+  }
+}
+
+.error-messages {
+  color: red;
+  float: left;
+  font-size: medium;
+  padding: 16px;
+}
+
+.file-limit-reached {
+  border-color: darkorange !important;
+}
+
+.file-limit-exceeded {
+  border-color: red !important;
+}
+

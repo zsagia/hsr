@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import {
   MdButtonModule,
@@ -24,27 +24,20 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import 'hammerjs';
-import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
 import { AppComponent } from './app.component';
-import { ChatComponent } from './components/chat/chat.component';
-import { FotosComponent } from './components/fotos/fotos.component';
 import { HomeComponent } from './components/home/home.component';
-import { LinkAccountComponent } from './components/link-account/link-account.component';
 import { LoginComponent } from './components/login/login.component';
-import { ManualsComponent } from './components/manuals/manuals.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { PlattenDetailsComponent } from './components/platten/platten-details/platten-details.component';
 import { PlattenComponent } from './components/platten/platten.component';
 import { RegisterComponent } from './components/register/register.component';
 import { FIREBASE_CONFIG } from './config/firebase.config';
 import { ROUTES_CONFIG } from './config/routes.config';
-import { StickyDirective } from './directives/sticky.directive';
-import { DropzoneComponent } from './dropzone/dropzone.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { PipesModule } from './pipes/pipes.module';
-import { HsrAuthService } from './services/firebase-auth.service';
-import { HsrDatabaseService } from './services/firebase-database.service';
-import { HsrStorageService } from './services/firebase-storage.service';
-import { TinyMceComponent } from './tinymce/tinymce.component';
+import { StickyDirective } from './shared/directives/sticky.directive';
+import { PipesModule } from './shared/pipes/pipes.module';
+import { HsrAuthService } from './shared/services/firebase-auth.service';
+import { HsrDatabaseService } from './shared/services/firebase-database.service';
+import { HsrStorageService } from './shared/services/firebase-storage.service';
 
 @NgModule({
   declarations: [
@@ -52,16 +45,9 @@ import { TinyMceComponent } from './tinymce/tinymce.component';
     RegisterComponent,
     LoginComponent,
     HomeComponent,
-    FotosComponent,
-    FotosComponent,
-    ManualsComponent,
-    TinyMceComponent,
     PlattenComponent,
     PlattenDetailsComponent,
     PageNotFoundComponent,
-    LinkAccountComponent,
-    DropzoneComponent,
-    ChatComponent,
     StickyDirective
   ],
   imports: [
@@ -79,8 +65,6 @@ import { TinyMceComponent } from './tinymce/tinymce.component';
     AngularFireModule.initializeApp(FIREBASE_CONFIG, 'hsr'),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
-    // ng2 Slim Loading Bar
-    SlimLoadingBarModule.forRoot(),
     FlexLayoutModule,
     BrowserAnimationsModule,
     MdButtonModule,
@@ -100,8 +84,7 @@ import { TinyMceComponent } from './tinymce/tinymce.component';
   providers: [
     HsrAuthService,
     HsrDatabaseService,
-    HsrStorageService,
-    FormBuilder
+    HsrStorageService
   ],
   entryComponents: [AppComponent],
   bootstrap: [AppComponent]

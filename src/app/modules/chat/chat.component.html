@@ -1,0 +1,39 @@
+<md-card *ngFor="let message of chatMessages | async"
+         style="margin-top: 8px; padding: 0 8px 8px 8px; width: 85%;clear: both;"
+         [style.float]="isAuthor(message.author) ? 'right' : 'left'"
+         [style.background-color]="isAuthor(message.author) ? 'white' : '#ffeb3b'">
+  <div style="display: flex; flex-direction: row; align-items: center;">
+    <div style="font-size: x-small;color: gray;">{{message.author}}</div>
+    <div style="flex: 1 1 auto;"></div>
+    <button md-button
+            *ngIf="isAuthor(message.author)"
+            (click)="editMessage(message.$key)"
+            style=" min-width: 36px; width: 36px;padding: 2px;height: 36px; font-size: large;">
+      <i class="fa fa-pencil"></i>
+    </button>
+    <button md-button
+            *ngIf="isAuthor(message.author)"
+            (click)="deleteMessage(message.$key)"
+            style="min-width: 36px; width: 36px; padding: 2px; height: 36px; font-size: large;">
+      <i class="fa fa-trash-o"></i>
+    </button>
+  </div>
+  <div [innerHTML]="message.message | linky"></div>
+</md-card>
+<div style="clear: both; height: 72px;"></div>
+
+
+<md-card class="message-input">
+  <md-input-container>
+    <input mdInput
+           style="flex: 1 1 auto;"
+           type="text"
+           placeholder="Nachricht eingeben..."
+           id="message"
+           name="message"
+           (keydown.enter)="sendMessage()"
+           [(ngModel)]="currentMessage.message">
+  </md-input-container>
+  <button md-raised-button (click)="sendMessage()" [disabled]="!currentMessage.message || currentMessage.message == ''">Senden
+  </button>
+</md-card>

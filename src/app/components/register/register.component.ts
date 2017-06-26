@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { HsrAuthService } from '../../services/firebase-auth.service';
+import { HsrAuthService } from '../../shared/services/firebase-auth.service';
 
 @Component({
   selector: 'hsr-register',

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { HsrAuthService } from './services/firebase-auth.service';
 import { ROUTES_CONFIG } from './config/routes.config';
+import { HsrAuthService } from './shared/services/firebase-auth.service';
 
 @Component({
   selector: 'hsr-root',

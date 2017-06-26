@@ -1,0 +1,62 @@
+<md-card style="max-width: 100%">
+  <form [formGroup]="manualForm">
+    <md-input-container>
+      <input mdInput formControlName="title" placeholder="Titel">
+    </md-input-container>
+  </form>
+  <hsr-dropzone [acceptedFiles]="'application/pdf'" (fileAdded)="onManualAdded($event)" [autoUpload]="false">
+    <i class="fa fa-upload fa-3x"></i>
+    <p style="margin: 6px 0 0 0; font-weight: bold;">Hier klicken oder Datei ablegen!!!</p>
+  </hsr-dropzone>
+
+  <md-card-actions align="end">
+    <button md-raised-button [disabled]="manualForm.controls['title'].value == ''" (click)="onSubmit()">Speichern</button>
+  </md-card-actions>
+
+
+  <md-button-toggle-group name="view" [value]="view" (change)="setView($event)">
+    <md-button-toggle value="list">
+      <i class="fa fa-list"></i>
+    </md-button-toggle>
+    <md-button-toggle value="grid">
+      <i class="fa fa-th"></i>
+    </md-button-toggle>
+  </md-button-toggle-group>
+</md-card>
+
+<div style="padding-top: 16px;" *ngIf="view === 'list'">
+  <md-nav-list class="card">
+    <a md-list-item style="border-bottom: solid 1px lightgray" *ngFor="let manual of manualsList | async" [href]="manual.url" target="_blank">
+      <span class="fa-stack fa-lg">
+      <i class="fa fa-file-text fa-stack-1x"></i>
+      <i class="fa fa-square-o fa-stack-2x"></i>
+        </span>
+      {{manual.title}}
+    </a>
+  </md-nav-list>
+</div>
+
+<div style="padding-top: 16px;box-sizing: border-box;" *ngIf="view === 'grid'">
+  <div style="display:flex; flex-direction: column; align-items: center;">
+    <div style="width: 100%;max-width: 1200px; padding: 16px; box-sizing: border-box;">
+      <md-grid-list cols="4" rowHeight="156px" gutterSize="16px">
+        <a [href]="manual.url" target="_blank" *ngFor="let manual of manualsList | async">
+          <md-grid-tile class="card card-interactive">
+            <button md-button
+                    *ngIf="isAuthor(manual.author)" (click)="onDeleteManual($event, manual.$key, manual.name)"
+                    style="position: absolute; top:0; right: 0; min-width: 36px; width: 36px; height: 36px;">
+              <i class="fa fa-trash-o"></i>
+            </button>
+            <div class="centered noselect clickthrough">
+              <span class="fa-stack fa-2x">
+  <i class="fa fa-square fa-stack-2x"></i>
+  <i class="fa fa-file-pdf-o fa-stack-1x fa-inverse"></i>
+</span>
+              <p>{{manual.title}}</p>
+            </div>
+          </md-grid-tile>
+        </a>
+      </md-grid-list>
+    </div>
+  </div>
+</div>

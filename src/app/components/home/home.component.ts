@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FirebaseListObservable } from 'angularfire2/database';
-import { HsrDatabaseService } from '../../services/firebase-database.service';
+import { HsrDatabaseService } from '../../shared/services/firebase-database.service';
 
 @Component({
   selector: 'hsr-home',
