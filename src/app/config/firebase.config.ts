@@ -6,3 +6,4 @@ export const FIREBASE_CONFIG = {
   storageBucket: 'hsr-site.appspot.com',
   messagingSenderId: '222824394735'
 };
+// TODO: move to env variable
