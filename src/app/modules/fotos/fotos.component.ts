@@ -30,6 +30,8 @@ export class FotosComponent implements OnInit, OnDestroy {
   // TODO: implement folders;) + treeview
   ngOnInit() {
     this.hsrDatabaseService.getFotosReverse().subscribe((fotos) => {
+      this.fotosList = [];
+      this.galleryImages = [];
       fotos.forEach((foto) => {
         this.fotosList.push({thumb: foto.url, img: foto.url, description: foto.name});
         this.galleryImages.push({src: foto.url, text: foto.name});
