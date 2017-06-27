@@ -7,8 +7,7 @@ import { HsrStorageService } from '../../../shared/services/firebase-storage.ser
 
 @Component({
   selector: 'hsr-platten-details',
-  templateUrl: 'platten-details.component.html',
-  styleUrls: ['platten-details.component.scss']
+  templateUrl: './platten-details.component.html'
 })
 export class PlattenDetailsComponent implements OnInit, OnDestroy {
   plattenDetailsForm: FormGroup;
@@ -17,7 +16,7 @@ export class PlattenDetailsComponent implements OnInit, OnDestroy {
   isSaved = false;
   resetFileInput = false;
 
-  constructor(private route: ActivatedRoute, private formBuilder: FormBuilder, private database: HsrDatabaseService, private storage: HsrStorageService) {
+  constructor(private route: ActivatedRoute, private formBuilder: FormBuilder, private hsrDatabaseService: HsrDatabaseService, private hsrStorageService: HsrStorageService) {
   }
 
   ngOnInit() {
@@ -34,7 +33,7 @@ export class PlattenDetailsComponent implements OnInit, OnDestroy {
 
     this.route.params
         .subscribe(params => {
-          this.platte = this.database.getPlatte(params['key']);
+          this.platte = this.hsrDatabaseService.getPlatte(params['key']);
           this.platte.subscribe(platte => {
             this.plattenDetailsForm.patchValue(platte);
           });
@@ -43,13 +42,13 @@ export class PlattenDetailsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     if (!this.isSaved && this.plattenDetailsForm.controls['cover'].touched) {
-      this.storage.deleteCover(this.coverFileName);
+      this.hsrStorageService.deleteCover(this.coverFileName);
     }
   }
 
   onFileSelected(files: File[]): void {
     this.resetFileInput = false;
-    this.storage.uploadCover(files[0]).then((snapshot) => {
+    this.hsrStorageService.uploadCover(files[0]).then((snapshot) => {
       const url = snapshot.metadata.downloadURLs[0];
       this.coverFileName = snapshot.metadata.name;
       this.plattenDetailsForm.controls['cover'].setValue(url);
@@ -58,7 +57,7 @@ export class PlattenDetailsComponent implements OnInit, OnDestroy {
 
   deleteCover() {
     this.plattenDetailsForm.controls['cover'].reset('');
-    this.storage.deleteCover(this.coverFileName);
+    this.hsrStorageService.deleteCover(this.coverFileName);
     this.resetFileInput = true;
   }
 

@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { ROUTES_CONFIG } from './config/routes.config';
 import { HsrAuthService } from './shared/services/firebase-auth.service';
 
 @Component({
@@ -8,28 +7,31 @@ import { HsrAuthService } from './shared/services/firebase-auth.service';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent {
-  routes = ROUTES_CONFIG;
 
-  constructor(private firebaseAuthService: HsrAuthService) {
+  ROUTES = [
+    {path: 'blog', text: 'Blog', icon: 'newspaper-o'},
+    {path: 'fotos', text: 'Fotos', icon: 'camera-retro'},
+    {path: 'chat', text: 'Chat', icon: 'comments'},
+    {path: 'manual', text: 'Handbücher', icon: 'book'},
+    {path: 'platten', text: 'Platten', icon: 'headphones'}
+  ];
+
+  constructor(private hsrAuthService: HsrAuthService) {
   }
 
   get isAuthenticated(): boolean {
-    return this.firebaseAuthService.isAuthenticated;
+    return this.hsrAuthService.isAuthenticated;
   }
 
   get isAnonymous(): boolean {
-    return this.firebaseAuthService.isAnonymous;
+    return this.hsrAuthService.isAnonymous;
   }
 
-  get email():string {
-    return this.firebaseAuthService.email;
+  get email(): string {
+    return this.hsrAuthService.email;
   }
 
   onLogout() {
-    this.firebaseAuthService.logout();
-  }
-
-  get routesDisplay() {
-    return this.routes.filter((value, index, array) => value.text);
+    this.hsrAuthService.logout();
   }
 }

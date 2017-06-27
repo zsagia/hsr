@@ -2,15 +2,15 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MdButtonModule, MdButtonToggleModule, MdCardModule, MdGridListModule, MdInputModule, MdListModule } from '@angular/material';
-import { RouterModule } from '@angular/router';
-import { MyRoute } from '../../config/routes.config';
+import { Route, RouterModule } from '@angular/router';
 import { DropzoneModule } from '../../shared/dropzone/dropzone.module';
 import { ManualsComponent } from './manuals.component';
 
-const ROUTES: MyRoute[] = [
+const ROUTES: Route[] = [
   {path: '', component: ManualsComponent}
 ];
 
+// noinspection JSUnusedGlobalSymbols
 @NgModule({
   imports: [
     CommonModule,

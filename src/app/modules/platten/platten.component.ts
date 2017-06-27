@@ -6,8 +6,7 @@ import { HsrStorageService } from '../../shared/services/firebase-storage.servic
 
 @Component({
   selector: 'hsr-platten',
-  templateUrl: 'platten.component.html',
-  styleUrls: ['platten.component.scss']
+  templateUrl: './platten.component.html'
 })
 export class PlattenComponent implements OnInit, OnDestroy {
 
@@ -17,7 +16,7 @@ export class PlattenComponent implements OnInit, OnDestroy {
   isSaved = false;
   resetFileInput = false;
 
-  constructor(private formBuilder: FormBuilder, private database: HsrDatabaseService, private storage: HsrStorageService) {
+  constructor(private formBuilder: FormBuilder, private hsrDatabaseService: HsrDatabaseService, private hsrStorageService: HsrStorageService) {
   }
 
   ngOnInit() {
@@ -31,29 +30,29 @@ export class PlattenComponent implements OnInit, OnDestroy {
       year: [''],
       cover: ['']
     });
-    this.platten = this.database.getPlatten();
+    this.platten = this.hsrDatabaseService.getPlatten();
   }
 
   ngOnDestroy() {
     if (!this.isSaved && this.platteForm.controls['cover'].touched) {
-      this.storage.deleteCover(this.coverFileName);
+      this.hsrStorageService.deleteCover(this.coverFileName);
     }
   }
 
-  onFileSelected(files: File[]) {
-    this.resetFileInput = false;
-    this.storage.uploadCover(files[0]).then((snapshot) => {
-      const url = snapshot.metadata.downloadURLs[0];
-      this.coverFileName = snapshot.metadata.name;
-      this.platteForm.controls['cover'].patchValue(url);
-    });
-  }
-
-  deleteCover() {
-    this.platteForm.controls['cover'].reset('');
-    this.storage.deleteCover(this.coverFileName);
-    this.resetFileInput = true;
-  }
+  // onFileSelected(files: File[]) {
+  //   this.resetFileInput = false;
+  //   this.hsrStorageService.uploadCover(files[0]).then((snapshot) => {
+  //     const url = snapshot.metadata.downloadURLs[0];
+  //     this.coverFileName = snapshot.metadata.name;
+  //     this.platteForm.controls['cover'].patchValue(url);
+  //   });
+  // }
+  //
+  // deleteCover() {
+  //   this.platteForm.controls['cover'].reset('');
+  //   this.hsrStorageService.deleteCover(this.coverFileName);
+  //   this.resetFileInput = true;
+  // }
 
   onSubmit(event) {
     this.platten.push(this.platteForm.value);

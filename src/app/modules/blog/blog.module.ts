@@ -2,17 +2,17 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MdButtonModule, MdCardModule, MdCheckboxModule, MdCoreModule, MdInputModule, MdSnackBarModule } from '@angular/material';
-import { RouterModule } from '@angular/router';
-import { MyRoute } from '../../config/routes.config';
+import { Route, RouterModule } from '@angular/router';
 import { PipesModule } from '../../shared/pipes/pipes.module';
 import { BlogComponent } from './blog.component';
 import { BlogService } from './blog.service';
 import { FroalaEditorDirective, FroalaViewDirective } from './froala/froala.directives';
 
-const ROUTES: MyRoute[] = [
+const ROUTES: Route[] = [
   {path: '', component: BlogComponent}
 ];
 
+// noinspection JSUnusedGlobalSymbols
 @NgModule({
   imports: [
     CommonModule,
@@ -23,6 +23,7 @@ const ROUTES: MyRoute[] = [
     MdInputModule,
     MdButtonModule,
     MdCheckboxModule,
+    MdSnackBarModule,
     MdCardModule,
     RouterModule.forChild(ROUTES)
   ],

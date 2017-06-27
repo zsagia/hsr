@@ -49,6 +49,10 @@ export class BlogComponent implements OnInit {
     return author === this.hsrAuthService.email;
   }
 
+  get isAuthenticated(): boolean {
+    return this.hsrAuthService.isAuthenticated;
+  }
+
   onSave() {
     const now = Date.now();
 

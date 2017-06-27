@@ -1,7 +1,0 @@
-<div class="medium-card" *ngFor="let blog of blogEntries | async">
-  <div *ngIf="blog.showPublic" class="card padding">
-    <h4>{{blog.title}}</h4>
-    <div [innerHTML]="blog.content | safe"></div>
-  </div>
-</div>
-
