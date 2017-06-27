@@ -2,7 +2,7 @@ import { Route } from '@angular/router';
 import { LoginComponent } from '../components/login/login.component';
 import { PageNotFoundComponent } from '../components/page-not-found/page-not-found.component';
 import { RegisterComponent } from '../components/register/register.component';
-import { HsrAuthService } from '../shared/services/firebase-auth.service';
+import { HsrAuthService } from '../shared/services/hsr-auth.service';
 
 export const ROUTES_CONFIG: Route[] = [
   {path: '', redirectTo: 'blog', pathMatch: 'full'},

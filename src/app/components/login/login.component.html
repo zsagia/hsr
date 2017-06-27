@@ -1,5 +1,5 @@
 <div style="display: flex; flex-direction: row;justify-content: center;padding-top: 64px;">
-  <md-card style="width: 600px;" class="app-input-section" *ngIf="!isAuthenticated">
+  <md-card style="width: 600px;" class="app-input-section" *ngIf="!hsrAuthService.isLoggedIn">
     <h1>Login</h1>
     <form #registerForm="ngForm" fxLayout="column">
       <md-input-container>
@@ -19,5 +19,5 @@
       <button fxFlexAlign="end" md-raised-button (click)="onLogin()">Einloggen</button>
     </form>
   </md-card>
-  <div *ngIf="isAuthenticated">DU BIST EINGELOGGT</div>
+  <div *ngIf="hsrAuthService.isLoggedIn">DU BIST EINGELOGGT</div>
 </div>

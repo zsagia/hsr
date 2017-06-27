@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FirebaseListObservable } from 'angularfire2/database';
-import { HsrAuthService } from '../../shared/services/firebase-auth.service';
-import { HsrDatabaseService } from '../../shared/services/firebase-database.service';
-import { HsrStorageService } from '../../shared/services/firebase-storage.service';
+import { HsrAuthService } from '../../shared/services/hsr-auth.service';
+import { HsrDatabaseService } from '../../shared/services/hsr-database.service';
+import { HsrStorageService } from '../../shared/services/hsr-storage.service';
 
 @Component({
   selector: 'hsr-manuals',
-  templateUrl: './manuals.component.html',
-  styleUrls: ['./manuals.component.scss']
+  templateUrl: './manuals.component.html'
 })
 export class ManualsComponent implements OnInit {
 
@@ -20,13 +19,13 @@ export class ManualsComponent implements OnInit {
   manualsList: FirebaseListObservable<any>;
 
   constructor(private formBuilder: FormBuilder,
-    private firebaseStorageService: HsrStorageService,
-    private firebaseDatabaseService: HsrDatabaseService,
-    private firebaseAuthService: HsrAuthService) {
+    private hsrStorageService: HsrStorageService,
+    private hsrDatabaseService: HsrDatabaseService,
+    public hsrAuthService: HsrAuthService) {
   }
 
   ngOnInit() {
-    this.manualsList = this.firebaseDatabaseService.getManuals();
+    this.manualsList = this.hsrDatabaseService.getManuals();
     this.manualForm = this.formBuilder.group({
       title: ['', Validators.required]
       // TODO: disable when no title / make validation work for input-file
@@ -39,7 +38,7 @@ export class ManualsComponent implements OnInit {
   }
 
   onSubmit() {
-    this.firebaseStorageService.uploadManual(this.currentManual).then((snapshot) => {
+    this.hsrStorageService.uploadManual(this.currentManual).then((snapshot) => {
       const now = Date.now();
       const data = {
         name: snapshot.metadata.name,
@@ -48,7 +47,7 @@ export class ManualsComponent implements OnInit {
         fullPath: snapshot.metadata.fullPath,
         timeCreated: snapshot.metadata.timeCreated,
         size: snapshot.metadata.size,
-        author: this.firebaseAuthService.email,
+        author: this.hsrAuthService.stateSnapshot.email,
         date: now,
         reverseDate: 0 - now,
         title: this.manualForm.controls['title'].value
@@ -61,11 +60,7 @@ export class ManualsComponent implements OnInit {
   onDeleteManual(event: Event, key: string, filename: string) {
     event.stopPropagation();
     event.preventDefault();
-    this.firebaseStorageService.deleteManual(key, filename);
-  }
-
-  isAuthor(author) {
-    return author === this.firebaseAuthService.email;
+    this.hsrStorageService.deleteManual(key, filename);
   }
 
   setView(data) {

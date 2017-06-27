@@ -1,4 +1,4 @@
-<div *ngIf="isAuthenticated">
+<div *ngIf="hsrAuthService.isLoggedIn">
   <md-card class="medium-card">
     <div style="padding:8px 12px;" fxLayout="row" fxLayoutAlign="center center">
       <button md-button (click)="editorOpened=!editorOpened">
@@ -15,11 +15,11 @@
           <md-checkbox id="showPublic" name="showPublic" [(ngModel)]="currentEntry.showPublic">Öffentlich</md-checkbox>
           <md-checkbox id="editEveryone"
                        name="editEveryone"
-                       *ngIf="isAuthor(currentEntry.author) || !currentEntry.author"
+                       *ngIf="hsrAuthService.isAuthor(currentEntry.author) || !currentEntry.author"
                        [(ngModel)]="currentEntry.editEveryone">Jeder darf bearbeiten
           </md-checkbox>
         </div>
-        <button md-button (click)="onSave()" [disabled]="!currentEntry.content|| currentEntry.content == ''">
+        <button md-button (click)="onSave(currentEntry)" [disabled]="!currentEntry.content|| currentEntry.content == ''">
           <i class="fa fa-floppy-o fa-lg"></i>
           Speichern
         </button>
@@ -32,10 +32,10 @@
     <h5 style="margin-top: 2px; color: darkgrey;">{{entry.author}}</h5>
     <div [innerHTML]="entry.content | safe"></div>
     <div style="position: absolute; top: 8px; right: 8px;">
-      <button md-button *ngIf="isAuthor(entry.author) || entry.editEveryone" (click)="editEntry(entry.$key)">
+      <button md-button *ngIf="hsrAuthService.isAuthor(entry.author) || entry.editEveryone" (click)="editEntry(entry.$key)">
         <i class="fa fa-pencil fa-lg"></i>
       </button>
-      <button md-button *ngIf="isAuthor(entry.author)" (click)="deleteEntry(entry.$key)">
+      <button md-button *ngIf="hsrAuthService.isAuthor(entry.author)" (click)="deleteEntry(entry.$key)">
 
         <i class="fa fa-trash-o fa-lg"></i>
       </button>
@@ -43,7 +43,7 @@
   </md-card>
 </div>
 
-<div *ngIf="!isAuthenticated">
+<div *ngIf="!hsrAuthService.isLoggedIn">
   <md-card class="medium-card" *ngFor="let entry of blogEntries | async">
     <div *ngIf="entry.showPublic">
       <h4>{{entry.title}}</h4>

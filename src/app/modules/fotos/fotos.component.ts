@@ -1,10 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { GalleryImage, GalleryService } from 'ng-gallery';
 import { SlimLoadingBarService } from 'ng2-slim-loading-bar';
-import { HsrAuthService } from '../../shared/services/firebase-auth.service';
-import { HsrDatabaseService } from '../../shared/services/firebase-database.service';
-import { HsrStorageService } from '../../shared/services/firebase-storage.service';
+import { HsrAuthService } from '../../shared/services/hsr-auth.service';
+import { HsrDatabaseService } from '../../shared/services/hsr-database.service';
+import { HsrStorageService } from '../../shared/services/hsr-storage.service';
 import { ProgressHelper } from './shared/progress.helper';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'hsr-fotos',
@@ -21,6 +22,8 @@ export class FotosComponent implements OnInit, OnDestroy {
   openModalWindow = false;
   imagePointer: number;
 
+  subscription: Subscription;
+
   constructor(private progressBar: SlimLoadingBarService,
     private hsrAuthService: HsrAuthService,
     private hsrStorageService: HsrStorageService,
@@ -29,7 +32,7 @@ export class FotosComponent implements OnInit, OnDestroy {
 
   // TODO: implement folders;) + treeview
   ngOnInit() {
-    this.hsrDatabaseService.getFotosReverse().subscribe((fotos) => {
+    this.subscription = this.hsrDatabaseService.getFotosReverse().subscribe((fotos) => {
       this.fotosList = [];
       this.galleryImages = [];
       fotos.forEach((foto) => {
@@ -71,6 +74,7 @@ export class FotosComponent implements OnInit, OnDestroy {
     this.progressBar.start();
     for (const file of files) {
       this.hsrStorageService.uploadFoto(file).then((snapshot) => {
+        // TODO: use firebase.database.ServerValue.TIMESTAMP
         const now = Date.now();
         const data = {
           name: snapshot.metadata.name,
@@ -79,7 +83,7 @@ export class FotosComponent implements OnInit, OnDestroy {
           fullPath: snapshot.metadata.fullPath,
           timeCreated: snapshot.metadata.timeCreated,
           size: snapshot.metadata.size,
-          author: this.hsrAuthService.email,
+          author: this.hsrAuthService.stateSnapshot.email,
           date: now,
           reverseDate: 0 - now
         };
@@ -101,7 +105,9 @@ export class FotosComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.hsrDatabaseService.getFotosReverse();
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 }
 

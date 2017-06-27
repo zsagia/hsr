@@ -1,15 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MdSnackBar } from '@angular/material';
 import { FirebaseListObservable } from 'angularfire2/database';
-import { HsrAuthService } from '../../shared/services/firebase-auth.service';
+import { HsrAuthService } from '../../shared/services/hsr-auth.service';
 import { BlogService } from './blog.service';
 import { BlogEntry } from './blog.types';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'hsr-blog',
   templateUrl: './blog.component.html'
 })
-export class BlogComponent implements OnInit {
+export class BlogComponent implements OnInit, OnDestroy {
+
+  subscription: Subscription;
 
   OPTIONS = {
     height: 400,
@@ -37,7 +40,7 @@ export class BlogComponent implements OnInit {
   currentEntry: BlogEntry;
   editorOpened = false;
 
-  constructor(private blogService: BlogService, private hsrAuthService: HsrAuthService, public snackBar: MdSnackBar) {
+  constructor(private blogService: BlogService, public hsrAuthService: HsrAuthService, public snackBar: MdSnackBar) {
   }
 
   ngOnInit() {
@@ -45,31 +48,24 @@ export class BlogComponent implements OnInit {
     this.blogEntries = this.blogService.getBlogEntries();
   }
 
-  isAuthor(author) {
-    return author === this.hsrAuthService.email;
-  }
-
-  get isAuthenticated(): boolean {
-    return this.hsrAuthService.isAuthenticated;
-  }
-
-  onSave() {
+  onSave(entry: BlogEntry) {
     const now = Date.now();
 
-    if (!this.currentEntry.$key) {
-      this.currentEntry.author = this.hsrAuthService.email;
+    if (!entry.$key) {
+      this.currentEntry.author = this.hsrAuthService.stateSnapshot.email;
       this.currentEntry.date = now;
       this.currentEntry.reverseDate = 0 - now;
-      this.blogEntries.push(this.currentEntry);
+      this.blogEntries.push(entry);
     } else {
-      this.blogService.getBlogEntry(this.currentEntry.$key).update(this.currentEntry);
+      const remoteEntry = this.blogService.getBlogEntry(entry.$key);
+      delete(entry.$key);
+      remoteEntry.update(entry).then(() => {
+        this.resetEditor();
+        this.snackBar.open('Blogeintrag gespeichert', 'OK', {
+          duration: 3000
+        });
+      });
     }
-
-    this.snackBar.open('Blogeintrag gespeichert', 'OK', {
-      duration: 3000
-    });
-
-    this.resetEditor();
   }
 
   resetEditor() {
@@ -78,22 +74,31 @@ export class BlogComponent implements OnInit {
   }
 
   deleteEntry(key) {
-    this.blogEntries.remove(key);
-    this.snackBar.open('Blogeintrag gelöscht', 'OK', {
-      duration: 3000
+    this.blogEntries.remove(key).then(() => {
+      this.snackBar.open('Blogeintrag gelöscht', 'OK', {
+        duration: 3000
+      });
     });
   }
 
   editEntry(key) {
     this.editorOpened = true;
-    this.blogService.getBlogEntry(key).subscribe((entry) => {
-      this.currentEntry.$key = entry.$key;
-      this.currentEntry.title = entry.title;
-      this.currentEntry.content = entry.content;
-      this.currentEntry.showPublic = entry.showPublic;
-      this.currentEntry.editEveryone = entry.editEveryone;
-      this.currentEntry.author = entry.author;
+    this.subscription = this.blogService.getBlogEntry(key).subscribe((entry) => {
+      this.currentEntry = {
+        $key: entry.$key,
+        title: entry.title,
+        content: entry.content,
+        showPublic: entry.showPublic,
+        editEveryone: entry.editEveryone,
+        author: entry.author,
+      };
     });
+  }
+
+  ngOnDestroy(): void {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 
 }

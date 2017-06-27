@@ -17,9 +17,9 @@ import { RegisterComponent } from './components/register/register.component';
 import { FIREBASE_CONFIG } from './config/firebase.config';
 import { ROUTES_CONFIG } from './config/routes.config';
 import { StickyDirective } from './shared/directives/sticky.directive';
-import { HsrAuthService } from './shared/services/firebase-auth.service';
-import { HsrDatabaseService } from './shared/services/firebase-database.service';
-import { HsrStorageService } from './shared/services/firebase-storage.service';
+import { HsrAuthService } from './shared/services/hsr-auth.service';
+import { HsrDatabaseService } from './shared/services/hsr-database.service';
+import { HsrStorageService } from './shared/services/hsr-storage.service';
 
 @NgModule({
   declarations: [
