@@ -18,7 +18,7 @@
       "prefix": "app",
       "styles": [
         "styles/styles.scss",
-        "../node_modules/font-awesome/scss/font-awesome.scss",
+        "styles/theme.scss",
         "../node_modules/froala-editor/css/froala_editor.min.css",
         "../node_modules/froala-editor/css/themes/dark.min.css",
         "../node_modules/froala-editor/css/plugins/code_view.min.css",
@@ -28,13 +28,11 @@
         "../node_modules/froala-editor/css/plugins/image.min.css",
         "../node_modules/froala-editor/css/plugins/line_breaker.min.css",
         "../node_modules/froala-editor/css/plugins/quick_insert.min.css",
-        "../node_modules/froala-editor/css/plugins/video.min.css",
-        "../node_modules/codemirror/lib/codemirror.css"
+        "../node_modules/froala-editor/css/plugins/video.min.css"
       ],
       "scripts": [
         "../node_modules/jquery/dist/jquery.min.js",
         "../node_modules/dropzone/dist/dropzone.js",
-        "../node_modules/codemirror/lib/codemirror.js",
         "../node_modules/froala-editor/js/froala_editor.min.js",
         "../node_modules/froala-editor/js/plugins/align.min.js",
         "../node_modules/froala-editor/js/plugins/url.min.js",
