@@ -28,11 +28,13 @@
         "../node_modules/froala-editor/css/plugins/image.min.css",
         "../node_modules/froala-editor/css/plugins/line_breaker.min.css",
         "../node_modules/froala-editor/css/plugins/quick_insert.min.css",
-        "../node_modules/froala-editor/css/plugins/video.min.css"
+        "../node_modules/froala-editor/css/plugins/video.min.css",
+        "../node_modules/codemirror/lib/codemirror.css"
       ],
       "scripts": [
         "../node_modules/jquery/dist/jquery.min.js",
         "../node_modules/dropzone/dist/dropzone.js",
+        "../node_modules/codemirror/lib/codemirror.js",
         "../node_modules/froala-editor/js/froala_editor.min.js",
         "../node_modules/froala-editor/js/plugins/align.min.js",
         "../node_modules/froala-editor/js/plugins/url.min.js",
