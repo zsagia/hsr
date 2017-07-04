@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { HsrAuthService } from './shared/services/firebase-auth.service';
+import { HsrAuthService } from './shared/services/hsr-auth.service';
 
 @Component({
   selector: 'hsr-root',
@@ -16,19 +16,7 @@ export class AppComponent {
     {path: 'platten', text: 'Platten', icon: 'headphones'}
   ];
 
-  constructor(private hsrAuthService: HsrAuthService) {
-  }
-
-  get isAuthenticated(): boolean {
-    return this.hsrAuthService.isAuthenticated;
-  }
-
-  get isAnonymous(): boolean {
-    return this.hsrAuthService.isAnonymous;
-  }
-
-  get email(): string {
-    return this.hsrAuthService.email;
+  constructor(public hsrAuthService: HsrAuthService) {
   }
 
   onLogout() {

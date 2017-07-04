@@ -1,22 +1,20 @@
-import { Component, OnInit } from '@angular/core';
-import { FirebaseListObservable } from 'angularfire2/database';
-import { HsrAuthService } from '../../shared/services/firebase-auth.service';
-import { HsrDatabaseService } from '../../shared/services/firebase-database.service';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
+import { HsrAuthService } from '../../shared/services/hsr-auth.service';
+import { HsrDatabaseService } from '../../shared/services/hsr-database.service';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'hsr-chat',
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.scss']
 })
-export class ChatComponent implements OnInit {
-
+export class ChatComponent implements OnInit, OnDestroy {
+  subscription: Subscription;
   currentMessage: ChatMessage;
-
   chatMessages: FirebaseListObservable<any>;
 
-  editingKey: number;
-
-  constructor(private hsrDatabaseService: HsrDatabaseService, private hsrAuthService: HsrAuthService) {
+  constructor(private hsrDatabaseService: HsrDatabaseService, public hsrAuthService: HsrAuthService) {
     this.chatMessages = hsrDatabaseService.getChatMessages();
   }
 
@@ -26,38 +24,41 @@ export class ChatComponent implements OnInit {
     };
   }
 
-  isAuthor(author) {
-    return author === this.hsrAuthService.email;
-  }
-
-  sendMessage() {
+  sendMessage(message: ChatMessage) {
     const now = Date.now();
 
-    if (!this.editingKey) {
-      this.currentMessage.author = this.hsrAuthService.email;
+    if (!message.$key) {
+      this.currentMessage.author = this.hsrAuthService.stateSnapshot.email;
       this.currentMessage.date = now;
       this.currentMessage.reverseDate = 0 - now;
       this.chatMessages.push(this.currentMessage);
     } else {
-      this.hsrDatabaseService.getChatMessage(this.editingKey).update(this.currentMessage);
+      const remoteMessage: FirebaseObjectObservable<ChatMessage> = this.hsrDatabaseService.getChatMessage(message.$key)
+      delete(message.$key);
+      remoteMessage.update(message);
     }
-    this.currentMessage = {message: null};
-    this.editingKey = null;
-    // TODO: scroll with jquery
-    window.scrollTo(0, 99999);
+    this.resetMessage();
   }
 
   deleteMessage(key) {
     this.chatMessages.remove(key);
+    this.resetMessage();
+  }
+
+  resetMessage() {
     this.currentMessage = {message: null};
-    this.editingKey = null;
   }
 
   editMessage(key) {
-    this.hsrDatabaseService.getChatMessage(key).subscribe((message) => {
-      this.editingKey = message.$key;
-      this.currentMessage.message = message.message;
+    this.subscription = this.hsrDatabaseService.getChatMessage(key).subscribe((message) => {
+      this.currentMessage = message;
     });
+  }
+
+  ngOnDestroy(): void {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 
 }

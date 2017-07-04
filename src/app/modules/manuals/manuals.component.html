@@ -43,7 +43,7 @@
         <a [href]="manual.url" target="_blank" *ngFor="let manual of manualsList | async">
           <md-grid-tile class="card card-interactive">
             <button md-button
-                    *ngIf="isAuthor(manual.author)" (click)="onDeleteManual($event, manual.$key, manual.name)"
+                    *ngIf="hsrAuthService.isAuthor(manual.author)" (click)="onDeleteManual($event, manual.$key, manual.name)"
                     style="position: absolute; top:0; right: 0; min-width: 36px; width: 36px; height: 36px;">
               <i class="fa fa-trash-o"></i>
             </button>

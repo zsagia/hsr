@@ -19,7 +19,7 @@
       "serviceWorker": true,
       "styles": [
         "styles/styles.scss",
-        "../node_modules/font-awesome/scss/font-awesome.scss",
+        "styles/theme.scss",
         "../node_modules/froala-editor/css/froala_editor.min.css",
         "../node_modules/froala-editor/css/themes/dark.min.css",
         "../node_modules/froala-editor/css/plugins/code_view.min.css",

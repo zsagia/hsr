@@ -2,8 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { FirebaseObjectObservable } from 'angularfire2/database';
-import { HsrDatabaseService } from '../../../shared/services/firebase-database.service';
-import { HsrStorageService } from '../../../shared/services/firebase-storage.service';
+import { HsrDatabaseService } from '../../../shared/services/hsr-database.service';
+import { HsrStorageService } from '../../../shared/services/hsr-storage.service';
 
 @Component({
   selector: 'hsr-platten-details',

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { HsrAuthService } from '../../shared/services/firebase-auth.service';
+import { HsrAuthService } from '../../shared/services/hsr-auth.service';
 
 @Component({
   selector: 'hsr-register',
@@ -9,11 +9,7 @@ export class RegisterComponent {
   email: string;
   password: string;
 
-  constructor(private hsrAuthService: HsrAuthService) {
-  }
-
-  get isAuthenticated(): boolean {
-    return this.hsrAuthService.isAuthenticated;
+  constructor(public hsrAuthService: HsrAuthService) {
   }
 
   onRegister() {

@@ -6,7 +6,7 @@ export const GALLERY_CONFIG: GalleryConfig = {
     'width': '1000px',
     'height': '600px'
   },
-  'animation': 'none',
+  'animation': 'fade',
   'loader': {
     'width': '50px',
     'height': '50px',
