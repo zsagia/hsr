@@ -38,7 +38,8 @@ export class BlogComponent implements OnInit, OnDestroy {
   };
   blogEntries: FirebaseListObservable<BlogEntry[]>;
   currentEntry: BlogEntry;
-  editorOpened = false;
+  editorTitle = 'Neuer Blog-Eintrag';
+  editorExpanded = false;
 
   constructor(private blogService: BlogService, public hsrAuthService: HsrAuthService, public snackBar: MdSnackBar) {
   }
@@ -55,22 +56,24 @@ export class BlogComponent implements OnInit, OnDestroy {
       this.currentEntry.author = this.hsrAuthService.stateSnapshot.email;
       this.currentEntry.date = now;
       this.currentEntry.reverseDate = 0 - now;
-      this.blogEntries.push(entry);
+      this.blogEntries.push(entry).then(() => this.saved());
     } else {
       const remoteEntry = this.blogService.getBlogEntry(entry.$key);
       delete(entry.$key);
-      remoteEntry.update(entry).then(() => {
-        this.resetEditor();
-        this.snackBar.open('Blogeintrag gespeichert', 'OK', {
-          duration: 3000
-        });
-      });
+      remoteEntry.update(entry).then(() => this.saved());
     }
   }
 
+  saved() {
+    this.snackBar.open('Blogeintrag gespeichert', 'OK', {
+      duration: 3000
+    });
+    this.resetEditor();
+  }
   resetEditor() {
+    this.editorExpanded = false;
+    this.editorTitle = 'Neuer Blog-Eintrag';
     this.currentEntry = {title: null, content: '', showPublic: false, editEveryone: false};
-    this.editorOpened = false;
   }
 
   deleteEntry(key) {
@@ -82,7 +85,8 @@ export class BlogComponent implements OnInit, OnDestroy {
   }
 
   editEntry(key) {
-    this.editorOpened = true;
+    this.editorTitle = 'Blog-Eintrag bearbeiten';
+    this.editorExpanded = true;
     this.subscription = this.blogService.getBlogEntry(key).subscribe((entry) => {
       this.currentEntry = {
         $key: entry.$key,

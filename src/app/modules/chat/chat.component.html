@@ -18,21 +18,22 @@
       <i class="fa fa-trash-o"></i>
     </button>
   </div>
-  <div [innerHTML]="message.message | linky"></div>
+  <div [innerHTML]="message.message | linky : {truncate: { length: 32, location: 'middle' }}"></div>
 </md-card>
 <div style="clear: both; height: 72px;"></div>
 
 
-<md-card class="message-input">
-  <md-input-container>
+<md-card class="message-input" fxLayout="row" fxLayoutAlign="start center">
+  <md-input-container fxFlex>
     <input mdInput
-           style="flex: 1 1 auto;"
            placeholder="Nachricht eingeben..."
            id="message"
            name="message"
            (keydown.enter)="sendMessage(currentMessage)"
            [(ngModel)]="currentMessage.message">
   </md-input-container>
-  <button md-icon-button (click)="sendMessage(currentMessage)" [disabled]="!currentMessage.message">
+  <button md-icon-button color="accent" (click)="sendMessage(currentMessage)" [disabled]="!currentMessage.message" style="width: 48px;">
+    <!--<md-icon fontSet="fa" fontIcon="fa-send" style="width: 36px; height: 36px;"></md-icon>-->
+    <md-icon class="fa fa-comment fa-2x"></md-icon>
   </button>
 </md-card>

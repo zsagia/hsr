@@ -1,42 +1,39 @@
 <div *ngIf="hsrAuthService.isLoggedIn">
-  <md-card class="medium-card">
-    <div style="padding:8px 12px;" fxLayout="row" fxLayoutAlign="center center">
-      <button md-button (click)="editorOpened=!editorOpened">
-        <i class="fa fa-lg" [ngClass]="{'fa-plus': !editorOpened, 'fa-minus': editorOpened}"></i>
+
+  <md-expansion-panel [expanded]="editorExpanded">
+    <md-expansion-panel-header>
+      <mat-panel-title>{{editorTitle}}</mat-panel-title>
+    </md-expansion-panel-header>
+    <md-input-container style="margin-left: 16px;">
+      <input mdInput placeholder="Titel" id="title" name="title" [(ngModel)]="currentEntry.title">
+    </md-input-container>
+    <div [froalaEditor]="OPTIONS" [(froalaModel)]="currentEntry.content"></div>
+
+    <md-action-row fxLayout="row" fxLayoutAlign="start center" fxLayoutWrap>
+
+      <md-checkbox id="showPublic" name="showPublic" [(ngModel)]="currentEntry.showPublic" style="margin-right: 8px;">Öffentlich</md-checkbox>
+      <md-checkbox id="editEveryone"
+                   name="editEveryone"
+                   *ngIf="hsrAuthService.isAuthor(currentEntry.author) || !currentEntry.author"
+                   [(ngModel)]="currentEntry.editEveryone">Jeder darf bearbeiten
+      </md-checkbox>
+      <div fxFlex></div>
+      <button fx md-raised-button color="accent" (click)="onSave(currentEntry)" [disabled]="!currentEntry.content|| currentEntry.content == ''">
+        <i class="fa fa-floppy-o fa-lg"></i>
+        Speichern
       </button>
-    </div>
-    <div [hidden]="!editorOpened">
-      <md-input-container style="margin-left: 16px;">
-        <input mdInput placeholder="Titel" id="title" name="title" [(ngModel)]="currentEntry.title">
-      </md-input-container>
-      <div [froalaEditor]="OPTIONS" [(froalaModel)]="currentEntry.content"></div>
-      <div style="padding: 16px; display: flex; flex-direction: row; justify-content: space-between;">
-        <div style="flex-direction: column; display: flex;">
-          <md-checkbox id="showPublic" name="showPublic" [(ngModel)]="currentEntry.showPublic">Öffentlich</md-checkbox>
-          <md-checkbox id="editEveryone"
-                       name="editEveryone"
-                       *ngIf="hsrAuthService.isAuthor(currentEntry.author) || !currentEntry.author"
-                       [(ngModel)]="currentEntry.editEveryone">Jeder darf bearbeiten
-          </md-checkbox>
-        </div>
-        <button md-button (click)="onSave(currentEntry)" [disabled]="!currentEntry.content|| currentEntry.content == ''">
-          <i class="fa fa-floppy-o fa-lg"></i>
-          Speichern
-        </button>
-      </div>
-    </div>
-  </md-card>
+    </md-action-row>
+  </md-expansion-panel>
 
   <md-card class="medium-card" *ngFor="let entry of blogEntries | async" style="animation: flyin 0.4s ease; overflow-x: auto; margin-top: 8px;">
     <h4 style="margin-bottom: 0;">{{entry.title}}</h4>
     <h5 style="margin-top: 2px; color: darkgrey;">{{entry.author}}</h5>
     <div [innerHTML]="entry.content | safe"></div>
     <div style="position: absolute; top: 8px; right: 8px;">
-      <button md-button *ngIf="hsrAuthService.isAuthor(entry.author) || entry.editEveryone" (click)="editEntry(entry.$key)">
+      <button md-icon-button *ngIf="hsrAuthService.isAuthor(entry.author) || entry.editEveryone" (click)="editEntry(entry.$key)">
         <i class="fa fa-pencil fa-lg"></i>
       </button>
-      <button md-button *ngIf="hsrAuthService.isAuthor(entry.author)" (click)="deleteEntry(entry.$key)">
-
+      <button md-icon-button *ngIf="hsrAuthService.isAuthor(entry.author)" (click)="deleteEntry(entry.$key)">
         <i class="fa fa-trash-o fa-lg"></i>
       </button>
     </div>

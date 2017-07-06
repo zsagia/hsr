@@ -32,14 +32,9 @@ export class HsrDatabaseService {
   }
 
   getFotos(): FirebaseListObservable<any> {
-    return this.angularFireDatabase.list('fotos');
-  }
-
-  // TODO: remove and use BlogService
-  getFotosReverse(): FirebaseListObservable<any> {
     return this.angularFireDatabase.list('fotos', {
       query: {
-        orderByChild: 'reverseDate'
+        orderByChild: 'date'
       }
     });
   }
