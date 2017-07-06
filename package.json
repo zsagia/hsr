@@ -12,7 +12,6 @@
     "test": "ng test",
     "e2e": "ng e2e",
     "compodoc": "compodoc --tsconfig src/tsconfig.app.json --output docs --serve",
-    "postinstall": "typings install",
     "update-webdriver": "webdriver-manager update",
     "repl": "protractor --elementExplorer",
     "phantom": "phantomjs --webdriver=9515",
@@ -74,7 +73,6 @@
     "protractor-html-screenshot-reporter": "0.0.21",
     "ts-node": "^3.2.0",
     "tslint": "^5.5.0",
-    "typescript": "^2.4.1",
-    "typings": "^2.1.1"
+    "typescript": "^2.4.1"
   }
 }
