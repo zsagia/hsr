@@ -6,17 +6,19 @@ import { HsrDatabaseService } from '../../shared/services/hsr-database.service';
 import { HsrStorageService } from '../../shared/services/hsr-storage.service';
 
 @Component({
-  selector: 'hsr-manuals',
-  templateUrl: './manuals.component.html'
+  selector: 'hsr-files',
+  templateUrl: './files.component.html'
 })
-export class ManualsComponent implements OnInit {
+export class FilesComponent implements OnInit {
 
-  manualForm: FormGroup;
+  fileForm: FormGroup;
   view = 'grid';
 
-  currentManual: File;
+  currentFile: File;
 
-  manualsList: FirebaseListObservable<any>;
+  filesList: FirebaseListObservable<any>;
+
+  ACCEPTED_FILETYPES = 'application/pdf;audio/mpeg;audio/mp3;application/zip;application/octet-stream';
 
   constructor(private formBuilder: FormBuilder,
     private hsrStorageService: HsrStorageService,
@@ -25,20 +27,20 @@ export class ManualsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.manualsList = this.hsrDatabaseService.getManuals();
-    this.manualForm = this.formBuilder.group({
+    this.filesList = this.hsrDatabaseService.getManuals();
+    this.fileForm = this.formBuilder.group({
       title: ['', Validators.required]
       // TODO: disable when no title / make validation work for input-file
       // manualFile: [{value: '', disabled: true}, Validators.required]
     });
   }
 
-  onManualAdded(file: File) {
-    this.currentManual = file;
+  onFileAdded(file: File) {
+    this.currentFile = file;
   }
 
   onSubmit() {
-    this.hsrStorageService.uploadManual(this.currentManual).then((snapshot) => {
+    this.hsrStorageService.uploadFile(this.currentFile).then((snapshot) => {
       const now = Date.now();
       const data = {
         name: snapshot.metadata.name,
@@ -50,17 +52,17 @@ export class ManualsComponent implements OnInit {
         author: this.hsrAuthService.stateSnapshot.email,
         date: now,
         reverseDate: 0 - now,
-        title: this.manualForm.controls['title'].value
+        title: this.fileForm.controls['title'].value
       };
-      this.manualsList.push(data);
-      this.manualForm.controls['title'].setValue('');
+      this.filesList.push(data);
+      this.fileForm.controls['title'].setValue('');
     });
   }
 
-  onDeleteManual(event: Event, key: string, filename: string) {
+  onFileDelete(event: Event, key: string, filename: string) {
     event.stopPropagation();
     event.preventDefault();
-    this.hsrStorageService.deleteManual(key, filename);
+    this.hsrStorageService.deleteFile(key, filename);
   }
 
   setView(data) {

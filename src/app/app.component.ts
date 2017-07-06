@@ -12,7 +12,7 @@ export class AppComponent {
     {path: 'blog', text: 'Blog', icon: 'newspaper-o'},
     {path: 'fotos', text: 'Fotos', icon: 'camera-retro'},
     {path: 'chat', text: 'Chat', icon: 'comments'},
-    {path: 'manual', text: 'Handbücher', icon: 'book'},
+    {path: 'files', text: 'Dateien', icon: 'file'},
     {path: 'platten', text: 'Platten', icon: 'headphones'}
   ];
 

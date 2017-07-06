@@ -1,16 +1,16 @@
 <md-card style="max-width: 100%">
-  <form [formGroup]="manualForm">
+  <form [formGroup]="fileForm">
     <md-input-container>
       <input mdInput formControlName="title" placeholder="Titel">
     </md-input-container>
   </form>
-  <hsr-dropzone [acceptedFiles]="'application/pdf'" (fileAdded)="onManualAdded($event)" [autoUpload]="false">
+  <hsr-dropzone [acceptedFiles]="ACCEPTED_FILETYPES" (fileAdded)="onFileAdded($event)" [autoUpload]="false">
     <i class="fa fa-upload fa-3x"></i>
     <p style="margin: 6px 0 0 0; font-weight: bold;">Hier klicken oder Datei ablegen!!!</p>
   </hsr-dropzone>
 
   <md-card-actions align="end">
-    <button md-raised-button [disabled]="manualForm.controls['title'].value == ''" (click)="onSubmit()">Speichern</button>
+    <button md-raised-button [disabled]="fileForm.controls['title'].value == ''" (click)="onSubmit()">Speichern</button>
   </md-card-actions>
 
 
@@ -26,12 +26,12 @@
 
 <div style="padding-top: 16px;" *ngIf="view === 'list'">
   <md-nav-list class="card">
-    <a md-list-item style="border-bottom: solid 1px lightgray" *ngFor="let manual of manualsList | async" [href]="manual.url" target="_blank">
+    <a md-list-item style="border-bottom: solid 1px lightgray" *ngFor="let file of filesList | async" [href]="file.url" target="_blank">
       <span class="fa-stack fa-lg">
       <i class="fa fa-file-text fa-stack-1x"></i>
       <i class="fa fa-square-o fa-stack-2x"></i>
         </span>
-      {{manual.title}}
+      {{file.title}}
     </a>
   </md-nav-list>
 </div>
@@ -40,10 +40,10 @@
   <div style="display:flex; flex-direction: column; align-items: center;">
     <div style="width: 100%;max-width: 1200px; padding: 16px; box-sizing: border-box;">
       <md-grid-list cols="4" rowHeight="156px" gutterSize="16px">
-        <a [href]="manual.url" target="_blank" *ngFor="let manual of manualsList | async">
+        <a [href]="file.url" target="_blank" *ngFor="let file of filesList | async">
           <md-grid-tile class="card card-interactive">
             <button md-icon-button
-                    *ngIf="hsrAuthService.isAuthor(manual.author)" (click)="onDeleteManual($event, manual.$key, manual.name)"
+                    *ngIf="hsrAuthService.isAuthor(file.author)" (click)="onFileDelete($event, file.$key, file.name)"
                     style="position: absolute; top:0; right: 0; min-width: 36px; width: 36px; height: 36px;">
               <i class="fa fa-trash-o"></i>
             </button>
@@ -52,7 +52,7 @@
   <i class="fa fa-square fa-stack-2x"></i>
   <i class="fa fa-file-pdf-o fa-stack-1x fa-inverse"></i>
 </span>
-              <p>{{manual.title}}</p>
+              <p>{{file.title}}</p>
             </div>
           </md-grid-tile>
         </a>

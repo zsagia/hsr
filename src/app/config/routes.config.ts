@@ -11,7 +11,7 @@ export const ROUTES_CONFIG: Route[] = [
   {path: 'blog', loadChildren: './modules/blog/blog.module#BlogModule'},
   {path: 'fotos', loadChildren: './modules/fotos/fotos.module#FotosModule', canActivate: [HsrAuthService]},
   {path: 'chat', loadChildren: './modules/chat/chat.module#ChatModule', canActivate: [HsrAuthService]},
-  {path: 'manual', loadChildren: './modules/manuals/manuals.module#ManualsModule', canActivate: [HsrAuthService]},
+  {path: 'files', loadChildren: './modules/files/files.module#FilesModule', canActivate: [HsrAuthService]},
   {path: 'platten', loadChildren: './modules/platten/platten.module#PlattenModule', canActivate: [HsrAuthService]},
   {path: '**', component: PageNotFoundComponent}
 ];

@@ -26,12 +26,12 @@ export class HsrStorageService {
     return fotosStorageRef.put(file);
   }
 
-  uploadManual(file: File): UploadTask {
+  uploadFile(file: File): UploadTask {
     const manualsStorageRef = this.firebaseApp.storage().ref('manuals/' + file.name + HsrStorageService.generateRandomId());
     return manualsStorageRef.put(file);
   }
 
-  deleteManual(key: string, filename: string) {
+  deleteFile(key: string, filename: string) {
     const manualsStorageRef = this.firebaseApp.storage().ref('manuals/' + filename);
     manualsStorageRef.delete();
     this.angularFireDatabase.list('manuals').remove(key);

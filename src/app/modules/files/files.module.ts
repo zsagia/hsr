@@ -4,13 +4,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MdButtonModule, MdButtonToggleModule, MdCardModule, MdGridListModule, MdInputModule, MdListModule } from '@angular/material';
 import { Route, RouterModule } from '@angular/router';
 import { DropzoneModule } from '../../shared/dropzone/dropzone.module';
-import { ManualsComponent } from './manuals.component';
+import { FilesComponent } from './files.component';
 
 const ROUTES: Route[] = [
-  {path: '', component: ManualsComponent}
+  {path: '', component: FilesComponent}
 ];
 
-// noinspection JSUnusedGlobalSymbols
 @NgModule({
   imports: [
     CommonModule,
@@ -25,8 +24,8 @@ const ROUTES: Route[] = [
     RouterModule.forChild(ROUTES)
   ],
   declarations: [
-    ManualsComponent
+    FilesComponent
   ]
 })
-export class ManualsModule {
+export class FilesModule {
 }

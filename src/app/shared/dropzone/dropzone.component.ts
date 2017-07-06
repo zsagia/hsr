@@ -34,7 +34,8 @@ export class DropzoneComponent implements AfterViewInit, OnDestroy {
     return false;
   }
 
-  @Input() set fileToRemove(file: File) {
+  @Input()
+  set fileToRemove(file: File) {
     if (file) {
       this.dropzone.removeFile(file);
     }
