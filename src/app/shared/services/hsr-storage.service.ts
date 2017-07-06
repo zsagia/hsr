@@ -27,14 +27,14 @@ export class HsrStorageService {
   }
 
   uploadFile(file: File): UploadTask {
-    const manualsStorageRef = this.firebaseApp.storage().ref('manuals/' + file.name + HsrStorageService.generateRandomId());
+    const manualsStorageRef = this.firebaseApp.storage().ref('files/' + file.name + HsrStorageService.generateRandomId());
     return manualsStorageRef.put(file);
   }
 
   deleteFile(key: string, filename: string) {
-    const manualsStorageRef = this.firebaseApp.storage().ref('manuals/' + filename);
+    const manualsStorageRef = this.firebaseApp.storage().ref('files/' + filename);
     manualsStorageRef.delete();
-    this.angularFireDatabase.list('manuals').remove(key);
+    this.angularFireDatabase.list('files').remove(key);
   }
 
   uploadCover(file: File): UploadTask {
