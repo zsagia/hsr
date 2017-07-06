@@ -3,9 +3,11 @@
   "short_name": "HSR",
   "lang": "de",
   "start_url": "/",
-  "display": "fullscreen",
-  "theme_color": "#000000",
+  "display": "standalone",
+  "theme_color": "#e6e300",
   "background_color": "#000000",
+  "orientation": "any",
+  "dir": "ltr",
   "description": "HSR Fr33t3k",
   "icons": [
     {

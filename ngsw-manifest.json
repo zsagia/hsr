@@ -1,0 +1,20 @@
+{
+  "routing": {
+    "index": "/index.html",
+    "routes": {
+      "/": {
+        "match": "prefix"
+      }
+    }
+  },
+  "external": {
+    "urls": [
+      {
+        "url": "https://fonts.googleapis.com/css?family=Material+Icons"
+      },
+      {
+        "url": "https://fonts.googleapis.com/css?family=Special+Elite"
+      }
+    ]
+  }
+}
