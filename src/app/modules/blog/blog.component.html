@@ -41,10 +41,10 @@
 </div>
 
 <div *ngIf="!hsrAuthService.isLoggedIn">
-  <md-card class="medium-card" *ngFor="let entry of blogEntries | async">
-    <div *ngIf="entry.showPublic">
+  <div  *ngFor="let entry of blogEntries | async">
+    <md-card class="medium-card" *ngIf="entry.showPublic">
       <h4>{{entry.title}}</h4>
       <div [innerHTML]="entry.content | safe"></div>
-    </div>
-  </md-card>
+    </md-card>
+  </div>
 </div>
