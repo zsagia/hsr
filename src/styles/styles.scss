@@ -236,35 +236,6 @@ img.card {
   border-radius: 4px;
 }
 
-.flex-fill {
-  flex: 1 1 auto;
-}
-
-// Sticky
-.reverse-sticky {
-  position: fixed;
-  top: 0;
-  height: 128px;
-}
-
-.sticky {
-  position: fixed;
-  z-index: 99;
-  top: 0;
-  &.reverse-sticky {
-    position: relative;
-  }
-  md-toolbar-row:last-child:not(:first-child) {
-    max-height: 0;
-    overflow: hidden;
-  }
-}
-
-md-toolbar md-toolbar-row:last-child:not(:first-child) {
-  max-height: 64px;
-  transition: max-height 0.2s ease-out;
-}
-
 .medium-card {
   max-width: 900px;
   margin: 6px auto;

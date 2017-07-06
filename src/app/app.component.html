@@ -1,6 +1,4 @@
-<div class="reverse-sticky" hsrSticky></div>
-
-<md-toolbar hsrSticky class="toolbar">
+<md-toolbar ngui-sticky class="toolbar">
 
 <span fxHide.gt-sm *ngIf="hsrAuthService.isLoggedIn">
  <i style="padding-right: 6px;" md-button [mdMenuTriggerFor]="navMenu" class="fa fa-bars fa-2x"></i>
@@ -20,7 +18,7 @@
 
   <img class="logo" routerLink="" src="assets/hsr_banner1.jpg" alt="HSR"/>
 
-  <span class="flex-fill"></span>
+  <span fxFlex></span>
 
   <span *ngIf="hsrAuthService.isLoggedIn" class="toolbar-right">
     <a id="logout_button" style="cursor: pointer;" (click)="onLogout()">

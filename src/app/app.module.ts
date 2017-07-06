@@ -16,18 +16,17 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { RegisterComponent } from './components/register/register.component';
 import { FIREBASE_CONFIG } from './config/firebase.config';
 import { ROUTES_CONFIG } from './config/routes.config';
-import { StickyDirective } from './shared/directives/sticky.directive';
 import { HsrAuthService } from './shared/services/hsr-auth.service';
 import { HsrDatabaseService } from './shared/services/hsr-database.service';
 import { HsrStorageService } from './shared/services/hsr-storage.service';
+import { NguiStickyModule } from '@ngui/sticky';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
     LoginComponent,
-    PageNotFoundComponent,
-    StickyDirective
+    PageNotFoundComponent
   ],
   imports: [
     RouterModule.forRoot(ROUTES_CONFIG),
@@ -47,7 +46,8 @@ import { HsrStorageService } from './shared/services/hsr-storage.service';
     MdInputModule,
     MdRippleModule,
     MdMenuModule,
-    MdToolbarModule
+    MdToolbarModule,
+    NguiStickyModule
   ],
   providers: [
     HsrAuthService,
