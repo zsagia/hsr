@@ -27,7 +27,7 @@ export class FilesComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.filesList = this.hsrDatabaseService.getManuals();
+    this.filesList = this.hsrDatabaseService.getFiles();
     this.fileForm = this.formBuilder.group({
       title: ['', Validators.required]
       // TODO: disable when no title / make validation work for input-file

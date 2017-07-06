@@ -39,7 +39,7 @@ export class HsrDatabaseService {
     });
   }
 
-  getManuals(): FirebaseListObservable<any> {
-    return this.angularFireDatabase.list('manuals');
+  getFiles(): FirebaseListObservable<any> {
+    return this.angularFireDatabase.list('files');
   }
 }
