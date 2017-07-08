@@ -8,6 +8,7 @@ import { ProgressHelper } from './shared/progress.helper';
 import { Subscription } from 'rxjs/Subscription';
 import { FirebaseListObservable } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
+import { MdSnackBar } from '@angular/material';
 
 @Component({
   selector: 'hsr-fotos',
@@ -28,7 +29,7 @@ export class FotosComponent implements OnInit, OnDestroy {
   constructor(private progressBar: SlimLoadingBarService,
     public hsrAuthService: HsrAuthService,
     private hsrStorageService: HsrStorageService,
-    private hsrDatabaseService: HsrDatabaseService, private galleryService: GalleryService) {
+    private hsrDatabaseService: HsrDatabaseService, private galleryService: GalleryService, private snackBar: MdSnackBar) {
   }
 
   // TODO: implement folders;) + treeview
@@ -56,6 +57,7 @@ export class FotosComponent implements OnInit, OnDestroy {
 
   onFilesUploading(files: File[]): void {
     this.uploadProgress = new ProgressHelper(files.length);
+    let waitingSnackBarRef = this.snackBar.open('Bilder werden hochgeladen...' + this.uploadProgress.percent + '\%');
     this.progressBar.reset();
     this.progressBar.start();
     for (const file of files) {
@@ -80,8 +82,12 @@ export class FotosComponent implements OnInit, OnDestroy {
           this.fileToRemove = file;
           this.uploadProgress.done++;
           this.progressBar.progress = this.uploadProgress.percent;
+          waitingSnackBarRef.dismiss();
+          waitingSnackBarRef = this.snackBar.open('Bilder werden hochgeladen...' + this.uploadProgress.percent + '\%');
           console.log(this.uploadProgress.percent + '\%');
           if (this.uploadProgress.done === this.uploadProgress.total) {
+            waitingSnackBarRef.dismiss();
+            this.snackBar.open('Hochladen abgeschlossen!', '', {duration: 3000});
             console.log('FINISHED UPLOAD');
             this.uploadProgress = null;
             this.progressBar.complete();

@@ -5,7 +5,8 @@ import { HsrPlayerService } from './hsr-player.service';
 
 @Component({
   selector: 'hsr-player',
-  templateUrl: './player.component.html'
+  templateUrl: './player.component.html',
+  styleUrls: ['./player.component.scss']
 })
 export class PlayerComponent implements OnInit, OnDestroy {
 
@@ -55,6 +56,10 @@ export class PlayerComponent implements OnInit, OnDestroy {
 
   playPause() {
     this.hsrPlayerService.playPause();
+  }
+
+  playAtIndex(index: number) {
+    this.hsrPlayerService.playAtIndex(index);
   }
 
 }

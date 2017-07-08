@@ -22,11 +22,7 @@
 <div style="padding-top: 16px;" *ngIf="view === 'list'">
   <md-nav-list class="card">
     <a md-list-item style="border-bottom: solid 1px lightgray" *ngFor="let file of filesList | async" [href]="file.url" target="_blank">
-      <span class="fa-stack fa-lg">
-      <i class="fa fa-file-text fa-stack-1x"></i>
-      <i class="fa fa-square-o fa-stack-2x"></i>
-        </span>
-      {{file.title}}
+      <i class="fa fa-file"></i> <div style="padding-left: 6px;">{{file.title}}</div>
     </a>
   </md-nav-list>
 </div>

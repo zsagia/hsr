@@ -1,0 +1,38 @@
+.player {
+  position: fixed;
+  bottom: 48px;
+  transition: 1s;
+  max-height: 204px;
+  &.opened {
+    left: 0;
+  }
+  &.closed {
+    left: -292px;
+    &:hover {
+      left: -250px;
+    }
+  }
+
+}
+
+.playlist {
+  max-width: 260px;
+  background-color: white;
+  color: black;
+  overflow-y: auto;
+}
+
+.opener {
+  z-index: -1;
+  position: absolute;
+  top: 80px;
+  right: -20px;
+  background-color: black;
+  color: white;
+  border-radius: 50%;
+}
+
+.player-nav {
+  background-color: black;
+  color: white;
+}

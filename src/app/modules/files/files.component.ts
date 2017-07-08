@@ -4,6 +4,7 @@ import { HsrAuthService } from '../../shared/services/hsr-auth.service';
 import { HsrDatabaseService } from '../../shared/services/hsr-database.service';
 import { HsrStorageService } from '../../shared/services/hsr-storage.service';
 import { HsrPlayerService } from '../../components/player/hsr-player.service';
+import { MdSnackBar, MdSnackBarRef } from '@angular/material';
 
 export interface StorageFile {
   name: string;
@@ -34,7 +35,7 @@ export class FilesComponent implements OnInit {
 
   constructor(private hsrStorageService: HsrStorageService,
     private hsrDatabaseService: HsrDatabaseService,
-    public hsrAuthService: HsrAuthService, private hsrPlayerService: HsrPlayerService) {
+    public hsrAuthService: HsrAuthService, private hsrPlayerService: HsrPlayerService, private snackBar: MdSnackBar) {
   }
 
   ngOnInit() {
@@ -46,6 +47,7 @@ export class FilesComponent implements OnInit {
   }
 
   onSubmit() {
+    const waitingSnackBarRef = this.snackBar.open('Datei wird hochgeladen...');
     this.hsrStorageService.uploadFile(this.currentFile).then((snapshot) => {
       const now = Date.now();
       const data: StorageFile = {
@@ -61,6 +63,8 @@ export class FilesComponent implements OnInit {
         title: this.currentFile.name
       };
       this.filesList.push(data);
+      waitingSnackBarRef.dismiss();
+      this.snackBar.open('Hochladen abgeschlossen!', '', {duration: 3000});
     });
   }
 

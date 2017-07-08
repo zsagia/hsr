@@ -1,19 +1,13 @@
-<div fxLayout="row" class="mat-elevation-z16" style="position: fixed; left: 0; bottom: 128px; background-color: black; color: white;">
-  <div *ngIf="opened">
-    <div *ngFor="let track of hsrPlayerService.playList">
-      <p [ngStyle]="{'color': track.songPlaying ? '#ffeb3b' : 'white'}">{{track.id}}</p>
-    </div>
+<div fxLayout="row" class="mat-elevation-z16 player" [ngClass]="{'opened': opened, 'closed': !opened}">
+  <div class="playlist">
+    <md-nav-list dense>
+      <md-list-item *ngFor="let track of hsrPlayerService.playList; let i = index" (click)="playAtIndex(i)"
+                    [ngStyle]="{'color': track.songPlaying ? '#ffeb3b' : '', 'background-color': track.songPlaying ? 'black' : ''}">
+        <p style="font-size: small;">{{track.id}}</p>
+      </md-list-item>
+    </md-nav-list>
   </div>
-  <div fxLayout="column">
-
-    <button *ngIf="!opened" md-icon-button style="color: white;" (click)="open()">
-      <md-icon>keyboard_arrow_right</md-icon>
-    </button>
-
-    <button *ngIf="opened" md-icon-button style="color: white;" (click)="close()">
-      <md-icon>keyboard_arrow_left</md-icon>
-    </button>
-
+  <div fxLayout="column" class="player-nav">
     <button md-icon-button style="color: white;" (click)="previous()">
       <md-icon>skip_previous</md-icon>
     </button>
@@ -31,5 +25,18 @@
     <button md-icon-button style="color: white;" (click)="toggleLoop()">
       <md-icon [ngStyle]="{'color': hsrPlayerService.loopList ? '#ffeb3b' : 'white'}">loop</md-icon>
     </button>
+
+  </div>
+
+
+  <div class="opener">
+    <button *ngIf="!opened" md-icon-button style="color: white;" (click)="open()">
+      <md-icon style="padding-left: 16px;">keyboard_arrow_right</md-icon>
+    </button>
+
+    <button *ngIf="opened" md-icon-button style="color: white;" (click)="close()">
+      <md-icon style="padding-left: 12px;">keyboard_arrow_left</md-icon>
+    </button>
   </div>
 </div>
+
