@@ -6,7 +6,9 @@
     "baseUrl": "",
     "types": [
       "hammerjs",
-      "jquery"
+      "request",
+      "jquery",
+      "howler"
     ]
   },
   "exclude": [

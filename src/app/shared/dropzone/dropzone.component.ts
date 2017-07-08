@@ -1,4 +1,5 @@
-import { AfterViewInit, Component, EventEmitter, Input, OnDestroy, Output } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnDestroy, Output } from '@angular/core';
+import * as Dropzone from 'dropzone';
 
 @Component({
   selector: 'hsr-dropzone',
@@ -19,8 +20,9 @@ export class DropzoneComponent implements AfterViewInit, OnDestroy {
   @Input() acceptedFiles: string;
   @Input() maxFiles: number;
   @Input() autoUpload: boolean;
+  @Input() height: number;
 
-  constructor() {
+  constructor(private elementRef: ElementRef) {
   }
 
   countFiles(): number {
@@ -42,15 +44,15 @@ export class DropzoneComponent implements AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit() {
-    this.dropzone = new Dropzone('div#my_dropzone', {
+    this.dropzone = new Dropzone(this.elementRef.nativeElement, {
       url: '/',
       autoProcessQueue: this.autoUpload || false,
       uploadMultiple: true,
       parallelUploads: 20,
-      hiddenInputContainer: '#dropzone-drop-area',
+      // hiddenInputContainer: '#dropzone-drop-area',
       dictDefaultMessage: '',
       maxFiles: this.maxFiles || 100,
-      acceptedFiles: this.acceptedFiles || 'image/*,application/pdf',
+      acceptedFiles: this.acceptedFiles || '*/*',
       clickable: '#dropzone-drop-area',
       previewsContainer: '#dropzone-drop-area',
       previewTemplate: `

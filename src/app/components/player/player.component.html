@@ -1,0 +1,9 @@
+<div class="mat-elevation-z16" style="position: fixed; left: 0; bottom: 48px; background-color: black;" fxLayout="column">
+  <button md-icon-button style="color: white;" (click)="previous()"><md-icon>skip_previous</md-icon></button>
+  <button md-icon-button style="color: white;" (click)="next()"><md-icon>skip_next</md-icon></button>
+  <button md-icon-button style="color: white;" (click)="stop()"><md-icon>stop</md-icon></button>
+  <button md-icon-button style="color: white;" (click)="playPause()">
+    <md-icon *ngIf="hsrPlayerService.playerEvents.playing$ | async">pause</md-icon>
+    <md-icon *ngIf="!(hsrPlayerService.playerEvents.playing$ | async)">play_arrow</md-icon>
+  </button>
+</div>

@@ -14,7 +14,6 @@ const ROUTES: Route[] = [
   imports: [
     CommonModule,
     DropzoneModule,
-    ReactiveFormsModule,
     MdCardModule,
     MdInputModule,
     MdButtonModule,

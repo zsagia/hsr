@@ -1,16 +1,11 @@
 <md-card style="max-width: 100%">
-  <form [formGroup]="fileForm">
-    <md-input-container>
-      <input mdInput formControlName="title" placeholder="Datei-Titel">
-    </md-input-container>
-  </form>
   <hsr-dropzone [acceptedFiles]="ACCEPTED_FILETYPES" (fileAdded)="onFileAdded($event)" [autoUpload]="false">
     <p *ngIf="!currentFile">Hier klicken oder Datei ablegen...</p>
-    <p *ngIf="currentFile">{{currentFile.name}}</p>
+    <p *ngIf="currentFile" style="color: black; font-weight: bold;">{{currentFile.name}}</p>
   </hsr-dropzone>
 
   <md-card-actions align="end">
-    <button md-raised-button [disabled]="fileForm.controls['title'].value == ''" (click)="onSubmit()">Speichern</button>
+    <button md-raised-button [disabled]="!currentFile" (click)="onSubmit()">Speichern</button>
   </md-card-actions>
 
 
@@ -50,7 +45,7 @@
             <div class="centered noselect clickthrough">
               <span class="fa-stack fa-2x">
   <i class="fa fa-square fa-stack-2x"></i>
-  <i class="fa fa-file-pdf-o fa-stack-1x fa-inverse"></i>
+  <i class="fa fa-file fa-stack-1x fa-inverse"></i>
 </span>
               <p>{{file.title}}</p>
             </div>

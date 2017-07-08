@@ -20,7 +20,8 @@
       "jasmine",
       "hammerjs",
       "request",
-      "jquery"
+      "jquery",
+      "howler"
     ]
   }
 }

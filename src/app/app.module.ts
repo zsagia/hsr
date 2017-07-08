@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { MdButtonModule, MdCardModule, MdCommonModule, MdCoreModule, MdInputModule, MdListModule, MdMenuModule, MdRippleModule, MdToolbarModule } from '@angular/material';
+import { MdButtonModule, MdCardModule, MdCommonModule, MdCoreModule, MdIconModule, MdInputModule, MdListModule, MdMenuModule, MdRippleModule, MdSnackBarModule, MdToolbarModule } from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
@@ -20,13 +20,16 @@ import { HsrAuthService } from './shared/services/hsr-auth.service';
 import { HsrDatabaseService } from './shared/services/hsr-database.service';
 import { HsrStorageService } from './shared/services/hsr-storage.service';
 import { NguiStickyModule } from '@ngui/sticky';
+import { HsrPlayerService } from './components/player/hsr-player.service';
+import { PlayerComponent } from './components/player/player.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
     LoginComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    PlayerComponent
   ],
   imports: [
     RouterModule.forRoot(ROUTES_CONFIG),
@@ -43,16 +46,19 @@ import { NguiStickyModule } from '@ngui/sticky';
     MdCommonModule,
     MdCoreModule,
     MdListModule,
+    MdIconModule,
     MdInputModule,
     MdRippleModule,
     MdMenuModule,
     MdToolbarModule,
+    MdSnackBarModule,
     NguiStickyModule
   ],
   providers: [
     HsrAuthService,
     HsrDatabaseService,
-    HsrStorageService
+    HsrStorageService,
+    HsrPlayerService
   ],
   entryComponents: [AppComponent],
   bootstrap: [AppComponent]

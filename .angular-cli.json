@@ -36,6 +36,7 @@
         "../node_modules/jquery/dist/jquery.min.js",
         "../node_modules/dropzone/dist/dropzone.js",
         "../node_modules/codemirror/lib/codemirror.js",
+        "../node_modules/howler/dist/howler.js",
         "../node_modules/froala-editor/js/froala_editor.min.js",
         "../node_modules/froala-editor/js/plugins/align.min.js",
         "../node_modules/froala-editor/js/plugins/url.min.js",

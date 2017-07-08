@@ -1,6 +1,7 @@
-<div class="dropzone-container" id="my_dropzone">
+<div class="dropzone-container">
   <div id="dropzone-drop-area"
        class="dropzone-drop-area"
+       [style.height.px]="height"
        [ngClass]="{'file-limit-reached': fileLimitReached && !fileLimitExceeded, 'file-limit-exceeded': fileLimitExceeded}">
     <div class="noselect clickthrough" style="width: 100%;">
       <ng-content></ng-content>

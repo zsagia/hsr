@@ -12,12 +12,13 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-start;
-  min-height: 120px;
+  min-height: 24px;
   position: relative;
   width: 100%;
+  color: grey;
   &:hover {
     border-color: darkorange;
-    color: darkorange;
+    color: darkorange !important;
     transition: color .2s, border-color .1s;
   }
 }

@@ -5,11 +5,7 @@
     "module": "commonjs",
     "target": "es5",
     "baseUrl": "",
-    "types": [
-      "jasmine",
-      "hammerjs",
-      "jquery"
-    ]
+    "types": []
   },
   "files": [
     "test.ts"

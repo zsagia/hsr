@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { HsrAuthService } from './shared/services/hsr-auth.service';
+import { HsrPlayerService } from './components/player/hsr-player.service';
+import { Subscription } from 'rxjs/Subscription';
+import { HsrDatabaseService } from './shared/services/hsr-database.service';
 
 @Component({
   selector: 'hsr-root',
@@ -18,7 +21,6 @@ export class AppComponent {
 
   constructor(public hsrAuthService: HsrAuthService) {
   }
-
   onLogout() {
     this.hsrAuthService.logout();
   }

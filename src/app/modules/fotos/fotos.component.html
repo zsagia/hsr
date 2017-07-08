@@ -4,7 +4,8 @@
                 [maxFiles]="300"
                 [fileToRemove]="fileToRemove"
                 (areFilesInList)="onFilesChanged($event)"
-                (filesUploading)="onFilesUploading($event)">
+                (filesUploading)="onFilesUploading($event)"
+                [height]="120">
     <div class="centered">
       <i *ngIf="!areFilesInList" class="fa fa-upload fa-3x"></i>
       <p *ngIf="!areFilesInList" style="margin: 6px 0 0 0; font-weight: bold;">Hier klicken oder Dateien ablegen...</p>
@@ -23,7 +24,8 @@
     <md-grid-list fxHide.xs fxHide.sm cols="3" rowHeight="4:3" gutterSize="8px">
       <md-grid-tile *ngFor="let foto of reversedFotosList | async; let i = index">
         <img (click)="openInGallery(i)" class="card card-interactive" [src]="foto.url">
-        <button md-icon-button color="accent"
+        <button md-icon-button
+                color="accent"
                 *ngIf="hsrAuthService.isAuthor(foto.author)"
                 (click)="deleteFoto($event, foto.$key)"
                 style="position: absolute; top:0; right: 0; min-width: 36px; width: 36px; height: 36px;">
@@ -35,7 +37,8 @@
     <md-grid-list fxHide.gt-sm cols="2" rowHeight="1:1" gutterSize="6px">
       <md-grid-tile *ngFor="let foto of reversedFotosList | async; let i = index">
         <img (click)="openInGallery(i)" class="card card-interactive" [src]="foto.url">
-        <button md-icon-button color="accent"
+        <button md-icon-button
+                color="accent"
                 *ngIf="hsrAuthService.isAuthor(foto.author)"
                 (click)="deleteFoto($event, foto.$key)"
                 style="position: absolute; top:0; right: 0; min-width: 36px; width: 36px; height: 36px;">

@@ -1,8 +1,8 @@
 import { Inject, Injectable } from '@angular/core';
 import { FirebaseApp } from 'angularfire2';
 import { AngularFireDatabase } from 'angularfire2/database';
-import * as firebase from 'firebase';
 import { HsrAuthService } from './hsr-auth.service';
+import 'firebase';
 import UploadTask = firebase.storage.UploadTask;
 
 @Injectable()
@@ -18,7 +18,7 @@ export class HsrStorageService {
     return '__' + text;
   }
 
-  constructor(private angularFireDatabase: AngularFireDatabase, private auth: HsrAuthService, @Inject(FirebaseApp) private firebaseApp: firebase.app.App) {
+  constructor(private angularFireDatabase: AngularFireDatabase, private auth: HsrAuthService, @Inject(FirebaseApp) private firebaseApp: FirebaseApp) {
   }
 
   uploadFoto(file: File): UploadTask {
@@ -27,13 +27,13 @@ export class HsrStorageService {
   }
 
   uploadFile(file: File): UploadTask {
-    const manualsStorageRef = this.firebaseApp.storage().ref('files/' + file.name + HsrStorageService.generateRandomId());
-    return manualsStorageRef.put(file);
+    const filesStorageRef = this.firebaseApp.storage().ref('files/' + file.name);
+    return filesStorageRef.put(file);
   }
 
   deleteFile(key: string, filename: string) {
-    const manualsStorageRef = this.firebaseApp.storage().ref('files/' + filename);
-    manualsStorageRef.delete();
+    const filesStorageRef = this.firebaseApp.storage().ref('files/' + filename);
+    filesStorageRef.delete();
     this.angularFireDatabase.list('files').remove(key);
   }
 
