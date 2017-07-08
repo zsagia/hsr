@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { MdButtonModule, MdGridListModule, MdSnackBarModule } from '@angular/material';
+import { MdButtonModule, MdCardModule, MdGridListModule, MdSnackBarModule } from '@angular/material';
 import { Route, RouterModule } from '@angular/router';
 import { GalleryModule } from 'ng-gallery';
 import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
@@ -23,6 +23,7 @@ const ROUTES: Route[] = [
     FlexLayoutModule,
     MdGridListModule,
     MdSnackBarModule,
+    MdCardModule,
     MdButtonModule,
     GalleryModule.forRoot(GALLERY_CONFIG)
   ],

@@ -19,7 +19,7 @@ import { HsrAuthService } from './shared/services/hsr-auth.service';
 import { HsrDatabaseService } from './shared/services/hsr-database.service';
 import { HsrStorageService } from './shared/services/hsr-storage.service';
 import { NguiStickyModule } from '@ngui/sticky';
-import { PlayerModule } from './components/player/player.module';
+import { PlayerModule } from './shared/player/player.module';
 
 @NgModule({
   declarations: [

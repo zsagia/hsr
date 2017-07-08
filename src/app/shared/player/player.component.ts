@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
-import { HsrDatabaseService } from '../../shared/services/hsr-database.service';
+import { HsrDatabaseService } from '../services/hsr-database.service';
 import { HsrPlayerService } from './hsr-player.service';
 
 @Component({
@@ -12,7 +12,7 @@ export class PlayerComponent implements OnInit, OnDestroy {
 
   subscription: Subscription;
 
-  opened = true;
+  opened = false;
 
   constructor(private hsrDatabaseService: HsrDatabaseService, public hsrPlayerService: HsrPlayerService) {
   }

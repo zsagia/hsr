@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { HsrAuthService } from './shared/services/hsr-auth.service';
-import { HsrPlayerService } from './components/player/hsr-player.service';
+import { HsrPlayerService } from './shared/player/hsr-player.service';
 import { Subscription } from 'rxjs/Subscription';
 import { HsrDatabaseService } from './shared/services/hsr-database.service';
 

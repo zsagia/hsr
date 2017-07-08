@@ -32,11 +32,7 @@ export class HsrDatabaseService {
   }
 
   getFotos(): FirebaseListObservable<any> {
-    return this.angularFireDatabase.list('fotos', {
-      query: {
-        orderByChild: 'date'
-      }
-    });
+    return this.angularFireDatabase.list('fotos');
   }
 
   getFiles(): FirebaseListObservable<any> {

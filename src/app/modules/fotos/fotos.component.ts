@@ -18,7 +18,7 @@ import { MdSnackBar } from '@angular/material';
 export class FotosComponent implements OnInit, OnDestroy {
 
   fotosList: FirebaseListObservable<any[]>;
-  reversedFotosList: Observable<any[]>;
+  reversedFotosList: any[] = [];
   galleryImages: GalleryImage[] = [];
   uploadProgress: ProgressHelper;
   fileToRemove: File;
@@ -34,10 +34,9 @@ export class FotosComponent implements OnInit, OnDestroy {
 
   // TODO: implement folders;) + treeview
   ngOnInit() {
-    this.fotosList = this.hsrDatabaseService.getFotos();
-    // TODO: find out why it reverses itself on push or delete
-    this.reversedFotosList = Object.assign(this.fotosList.map((array) => array.reverse()));
-    this.subscription = this.reversedFotosList.subscribe((fotos) => {
+     this.fotosList = this.hsrDatabaseService.getFotos();
+    this.subscription = this.fotosList.subscribe((fotos) => {
+      this.reversedFotosList = fotos.reverse();
       this.galleryImages = [];
       fotos.forEach((foto) => {
         this.galleryImages.push({src: foto.url, text: foto.name});

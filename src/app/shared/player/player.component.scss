@@ -1,13 +1,21 @@
 .player {
   position: fixed;
-  bottom: 48px;
-  transition: 1s;
+  bottom: 10%;
+  transition: 0.4s;
   max-height: 204px;
+  &:hover {
+    .opener {
+      opacity: 1;
+    }
+  }
   &.opened {
     left: 0;
+    .opener {
+      opacity: 1;
+    }
   }
   &.closed {
-    left: -302px;
+    left: -300px;
     &:hover {
       left: -260px;
     }
@@ -23,13 +31,24 @@
 }
 
 .opener {
+  opacity: 0.5;
+  transition: 0.4s;
   z-index: -1;
   position: absolute;
   top: 80px;
-  right: -20px;
+  right: -24px;
+  width: 48px;
+  height: 48px;
   background-color: black;
   color: white;
   border-radius: 50%;
+  &:hover {
+    opacity: 1;
+  }
+  md-icon {
+    font-size: 28px;
+    line-height: 32px;
+  }
 }
 
 .player-nav {

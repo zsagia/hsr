@@ -3,7 +3,7 @@ import { FirebaseListObservable } from 'angularfire2/database';
 import { HsrAuthService } from '../../shared/services/hsr-auth.service';
 import { HsrDatabaseService } from '../../shared/services/hsr-database.service';
 import { HsrStorageService } from '../../shared/services/hsr-storage.service';
-import { HsrPlayerService } from '../../components/player/hsr-player.service';
+import { HsrPlayerService } from '../../shared/player/hsr-player.service';
 import { MdSnackBar, MdSnackBarRef } from '@angular/material';
 
 export interface StorageFile {
