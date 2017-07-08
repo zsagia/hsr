@@ -25,7 +25,7 @@ export interface StorageFile {
 })
 export class FilesComponent implements OnInit {
 
-  view = 'grid';
+  view = 'list';
 
   currentFile: File;
 
@@ -42,7 +42,11 @@ export class FilesComponent implements OnInit {
     this.filesList = this.hsrDatabaseService.getFiles();
   }
 
-  onFileAdded(file: File) {
+  openFile(url) {
+    window.open(url);
+  }
+
+  addFile(file: File) {
     this.currentFile = file;
   }
 
@@ -68,7 +72,7 @@ export class FilesComponent implements OnInit {
     });
   }
 
-  onFileDelete(event: Event, key: string, filename: string) {
+  deleteFile(event: Event, key: string, filename: string) {
     event.stopPropagation();
     event.preventDefault();
     this.hsrStorageService.deleteFile(key, filename);

@@ -16,7 +16,6 @@
       "tsconfig": "tsconfig.app.json",
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "hsr",
-      "serviceWorker": true,
       "styles": [
         "styles/styles.scss",
         "styles/theme.scss",

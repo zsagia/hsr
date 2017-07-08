@@ -2,12 +2,12 @@ import { Injectable, OnDestroy } from '@angular/core';
 import 'howler';
 import { StorageFile } from '../../modules/files/files.component';
 import { Subject } from 'rxjs/Subject';
-import { Subscription } from 'rxjs/Subscription';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { MdSnackBar } from '@angular/material';
 
 interface PlayListItem {
   id: string;
+  url: string;
   songPlaying: boolean;
   sound: Howl;
 }
@@ -33,8 +33,6 @@ export class HsrPlayerService implements OnDestroy {
   public currentPlaying: CurrentPlaying = {index: 0, id: '', sound: null}; // keep track of current playing index
   public playerEvents: PlayerEvents;
 
-  subscription: Subscription;
-
   anyPlaying = false;
 
   public loopList = true;
@@ -48,6 +46,12 @@ export class HsrPlayerService implements OnDestroy {
       onPause$: new Subject(),
       playing$: new BehaviorSubject<boolean>(false)
     };
+  }
+
+  ngOnDestroy() {
+    this.playList.forEach((item) => {
+      item.sound.unload();
+    })
   }
 
   init(tracks: StorageFile[]) {
@@ -90,10 +94,6 @@ export class HsrPlayerService implements OnDestroy {
     this.playPauseSong(this.playList[this.currentPlaying.index]);
   }
 
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
-  }
-
   private newSong(playlist: PlayListItem[], i: number, index: number): PlayListItem[] {
     const currentSong = playlist[index];
     const nSong = playlist[i];
@@ -119,6 +119,10 @@ export class HsrPlayerService implements OnDestroy {
       song.songPlaying = false;
       this.showSnack('\u23F8', song);
     } else {
+      if (!song.sound) {
+        song.sound = new Howl({src: [song.url], html5: true});
+        this.setEvents(song, this.playerEvents);
+      }
       song.sound.play();
       song.songPlaying = true;
       this.showSnack('\u25B6', song);
@@ -134,7 +138,7 @@ export class HsrPlayerService implements OnDestroy {
   }
 
   private initPlaylist(tracks: StorageFile[], playerEvents, playNext): PlayListItem[] {
-    return this.setEvents(this.toPlaylist(tracks), playerEvents, playNext);
+    return this.toPlaylist(tracks);
   }
 
   private toPlaylist(tracks: StorageFile[]): PlayListItem[] {
@@ -145,47 +149,88 @@ export class HsrPlayerService implements OnDestroy {
     const isPlaying = this.currentPlaying.id === file.name;
     return <PlayListItem>({
       id: file.name,
+      url: file.url,
       songPlaying: isPlaying,
-      sound: isPlaying ? this.currentPlaying.sound : new Howl({src: [file.url], pool: 1})
+      sound: isPlaying ? this.currentPlaying.sound : null
     });
   }
 
-  private setEvents(playList: PlayListItem[], playerEvents: PlayerEvents, playNext): PlayListItem[] {
-    playList.forEach((item) => {
-      item.sound.on('end', () => {
-        this.playNext();
-        playerEvents.onEnd$.next(null);
-        playerEvents.playing$.next(this.anyPlaying);
-      });
-      item.sound.on('stop', () => {
-        this.anyPlaying = false;
-        playerEvents.onStop$.next(null);
-        playerEvents.playing$.next(this.anyPlaying);
-      });
-      item.sound.on('play', () => {
-        this.currentPlaying.id = this.playList[this.currentPlaying.index].id;
-        this.currentPlaying.sound = this.playList[this.currentPlaying.index].sound;
-        console.log('playing:');
-        console.log(this.currentPlaying);
-        this.anyPlaying = true;
-        playerEvents.onPlay$.next(this.currentPlaying);
-        playerEvents.playing$.next(this.anyPlaying);
-      });
-      item.sound.on('pause', () => {
-        this.anyPlaying = false;
-        playerEvents.onPause$.next(null);
-        playerEvents.playing$.next(this.anyPlaying);
-      });
-      item.sound.on('load', () => {
-        console.log('loaded')
-        playerEvents.onLoad$.next(null);
-        playerEvents.playing$.next(this.anyPlaying);
-      });
-      item.sound.on('seek', () => {
-        console.log('seek')
-      });
+  private setEvents(playListItem: PlayListItem, playerEvents: PlayerEvents): PlayListItem {
+    playListItem.sound.on('end', () => {
+      this.currentPlaying.sound.unload();
+      this.playNext();
+      playerEvents.onEnd$.next(null);
+      playerEvents.playing$.next(this.anyPlaying);
     });
+    playListItem.sound.on('stop', () => {
+      this.anyPlaying = false;
+      this.currentPlaying.sound.unload();
+      playerEvents.onStop$.next(null);
+      playerEvents.playing$.next(this.anyPlaying);
+    });
+    playListItem.sound.on('play', () => {
+      this.currentPlaying.id = this.playList[this.currentPlaying.index].id;
+      this.currentPlaying.sound = this.playList[this.currentPlaying.index].sound;
+      console.log('playing:');
+      console.log(this.currentPlaying);
+      this.anyPlaying = true;
+      playerEvents.onPlay$.next(this.currentPlaying);
+      playerEvents.playing$.next(this.anyPlaying);
+    });
+    playListItem.sound.on('pause', () => {
+      this.anyPlaying = false;
+      playerEvents.onPause$.next(null);
+      playerEvents.playing$.next(this.anyPlaying);
+    });
+    playListItem.sound.on('load', () => {
+      console.log('loaded')
+      playerEvents.onLoad$.next(null);
+      playerEvents.playing$.next(this.anyPlaying);
+    });
+    playListItem.sound.on('seek', () => {
+      console.log('seek')
+    });
+
     console.log('Events added');
-    return playList;
+    return playListItem;
   }
+
+  // private setEvents(playList: PlayListItem[], playerEvents: PlayerEvents, playNext): PlayListItem[] {
+  //   playList.forEach((item) => {
+  //     item.sound.on('end', () => {
+  //       this.playNext();
+  //       playerEvents.onEnd$.next(null);
+  //       playerEvents.playing$.next(this.anyPlaying);
+  //     });
+  //     item.sound.on('stop', () => {
+  //       this.anyPlaying = false;
+  //       playerEvents.onStop$.next(null);
+  //       playerEvents.playing$.next(this.anyPlaying);
+  //     });
+  //     item.sound.on('play', () => {
+  //       this.currentPlaying.id = this.playList[this.currentPlaying.index].id;
+  //       this.currentPlaying.sound = this.playList[this.currentPlaying.index].sound;
+  //       console.log('playing:');
+  //       console.log(this.currentPlaying);
+  //       this.anyPlaying = true;
+  //       playerEvents.onPlay$.next(this.currentPlaying);
+  //       playerEvents.playing$.next(this.anyPlaying);
+  //     });
+  //     item.sound.on('pause', () => {
+  //       this.anyPlaying = false;
+  //       playerEvents.onPause$.next(null);
+  //       playerEvents.playing$.next(this.anyPlaying);
+  //     });
+  //     item.sound.on('load', () => {
+  //       console.log('loaded')
+  //       playerEvents.onLoad$.next(null);
+  //       playerEvents.playing$.next(this.anyPlaying);
+  //     });
+  //     item.sound.on('seek', () => {
+  //       console.log('seek')
+  //     });
+  //   });
+  //   console.log('Events added');
+  //   return playList;
+  // }
 }
