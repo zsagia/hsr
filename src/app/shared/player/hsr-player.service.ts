@@ -55,6 +55,9 @@ export class HsrPlayerService implements OnDestroy {
   }
 
   init(tracks: StorageFile[]) {
+    if (this.currentPlaying.sound) {
+      this.stop();
+    }
     this.playList = this.initPlaylist(tracks, this.playerEvents);
     console.log('Init playlist');
     console.log('Tracks:');
@@ -120,7 +123,7 @@ export class HsrPlayerService implements OnDestroy {
       this.showSnack('\u23F8', song);
     } else {
       if (!song.sound) {
-        song.sound = new Howl({src: [song.url], html5: true});
+        song.sound = new Howl({src: [song.url], html5: true, format: 'mp3'});
         this.setEvents(song, this.playerEvents);
       }
       song.sound.play();
@@ -146,19 +149,18 @@ export class HsrPlayerService implements OnDestroy {
   }
 
   private toPlaylistItem(file: StorageFile): PlayListItem {
-    const isPlaying = this.currentPlaying.id === file.name;
     return <PlayListItem>({
       id: file.name,
       url: file.url,
-      songPlaying: isPlaying,
-      sound: isPlaying ? this.currentPlaying.sound : null
+      songPlaying: false,
+      sound: null
     });
   }
 
   private setEvents(playListItem: PlayListItem, playerEvents: PlayerEvents): PlayListItem {
     playListItem.sound.on('end', () => {
       console.log('EVENT end');
-      this.currentPlaying.sound.unload();
+     this.unload();
       this.playNext();
       playerEvents.onEnd$.next(null);
       playerEvents.playing$.next(this.anyPlaying);
@@ -166,7 +168,7 @@ export class HsrPlayerService implements OnDestroy {
     playListItem.sound.on('stop', () => {
       console.log('EVENT stop');
       this.anyPlaying = false;
-      this.currentPlaying.sound.unload();
+      this.unload();
       playerEvents.onStop$.next(null);
       playerEvents.playing$.next(this.anyPlaying);
     });
@@ -195,5 +197,12 @@ export class HsrPlayerService implements OnDestroy {
     });
 
     return playListItem;
+  }
+
+  private unload() {
+    console.log('unload');
+    if (this.currentPlaying.sound.state() === 'loaded') {
+      this.currentPlaying.sound.unload();
+    }
   }
 }

@@ -1,7 +1,7 @@
 <md-toolbar ngui-sticky class="toolbar">
 
 <span fxHide.gt-sm *ngIf="hsrAuthService.isLoggedIn">
- <i style="padding-right: 6px;" md-button [mdMenuTriggerFor]="navMenu" class="fa fa-bars fa-2x"></i>
+  <button style="margin-right: 16px;" md-icon-button [mdMenuTriggerFor]="navMenu"><md-icon> <i class="fa fa-bars fa-2x"></i></md-icon></button>
   <md-menu #navMenu="mdMenu" class="nav-menu">
       <button *ngFor="let route of ROUTES"
               md-menu-item

@@ -5,12 +5,12 @@
         <md-nav-list dense>
           <md-list-item *ngFor="let track of hsrPlayerService.playList; let i = index"
                         (click)="playAtIndex(i)"
-                        [ngStyle]="{'color': track.songPlaying ? '#ffeb3b' : '', 'background-color': track.songPlaying ? 'black' : ''}">
+                        [ngClass]="{'playing': track.songPlaying}">
             <p style="font-size: small;">{{track.id}}</p>
           </md-list-item>
         </md-nav-list>
       </div>
-      <md-divider style="background-color: lightgrey;"></md-divider>
+      <md-divider style="background-color: #f2f2f2;"></md-divider>
       <div fxLayout="row" fxLayoutAlign="start center" class="slider">
         <md-slider style="width: 100%;" [tick-interval]="60" [max]="duration" [min]="0" [value]="position" (change)="setPosition($event)"></md-slider>
       </div>
@@ -31,10 +31,10 @@
       </button>
 
       <button md-icon-button style="color: white;" (click)="toggleLoop()">
-        <md-icon [ngStyle]="{'color': hsrPlayerService.loopList ? '#ffeb3b' : 'white'}">loop</md-icon>
+        <md-icon [ngStyle]="{'color': hsrPlayerService.loopList ? '#fdd835' : 'white'}">loop</md-icon>
       </button>
       <div fxFlex></div>
-      <div style="font-family: Roboto, 'Helvetica Neue', sans-serif; font-size: small; color: white; text-align: center;">
+      <div style="font-family: Roboto, 'Helvetica Neue', sans-serif; font-size: small; font-weight: bold; color: white; text-align: center;">
         <p>{{position | time}}</p>
       </div>
     </div>

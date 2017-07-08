@@ -12,8 +12,8 @@
     <div *ngIf="fileLimitExceeded">Maximale Dateianzahl überschritten! Entferne {{countFiles() - maxFiles}} Dateien.</div>
   </div>
 
-  <button md-raised-button style="float: right;" *ngIf="fileDropped && !autoUpload" [disabled]="fileLimitExceeded" (click)="upload()">
-    <i class="fa fa-upload fa-lg"></i>
+  <button md-raised-button color="accent" style="float: right;" *ngIf="fileDropped && !autoUpload" [disabled]="fileLimitExceeded" (click)="upload()">
+   Hochladen
   </button>
 </div>
 

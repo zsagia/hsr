@@ -15,7 +15,7 @@
     }
   }
   &.closed {
-    left: -296px;
+    left: -300px;
     &:hover {
       left: -260px;
     }
@@ -24,7 +24,10 @@
 }
 
 .playlist {
+  min-width: 260px;
+  width: 260px;
   max-width: 260px;
+  box-sizing: border-box;
   max-height: 204px;
   background-color: white;
   color: black;
@@ -60,4 +63,26 @@
 .slider {
   background-color: white;
   max-height: 24px;
+}
+
+.playing {
+  color: #fdd835;
+  background-color: black;
+  font-weight: bold;
+}
+
+::-webkit-scrollbar-track {
+  background: #ffffff;
+  border: 0 none #ffffff;
+  border-radius: 50px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #000000;
+  border: 0 none #ffffff;
+  border-radius: 50px;
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: #000000;
 }

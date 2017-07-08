@@ -19,12 +19,12 @@ body {
 
 /* Selection */
 ::selection {
-  background-color: #ffeb3b;
+  background-color: $hsr-yellow;
   color: black;
 }
 
 ::-moz-selection {
-  background-color: #ffeb3b;
+  background-color: $hsr-yellow;
   color: black;
 }
 
@@ -59,7 +59,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #ffeb3b;
+  background: $hsr-yellow;
   border: 0px none #000000;
   border-radius: 50px;
 }
@@ -69,7 +69,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb:active {
-  background: #ffeb3b;
+  background: $hsr-yellow;
 }
 
 ::-webkit-scrollbar-track {
@@ -92,7 +92,7 @@ body {
 
 a {
   color: black;
-  text-decoration: underline #ffeb3b;
+  text-decoration: underline $hsr-yellow;
 }
 
 a:hover {

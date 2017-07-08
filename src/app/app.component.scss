@@ -1,3 +1,5 @@
+@import "../styles/variables";
+
 .toolbar {
   background-color: black;
   z-index: 999;
@@ -8,10 +10,10 @@
     color: white;
     text-decoration: none;
     .active-route {
-      color: #ffeb3b;
+      color: $hsr-yellow;
     }
     &:hover {
-      color: #ffeb3b;
+      color: $hsr-yellow;
       text-decoration: none;
     }
   }
