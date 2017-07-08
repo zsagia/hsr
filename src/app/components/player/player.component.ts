@@ -2,7 +2,6 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { HsrDatabaseService } from '../../shared/services/hsr-database.service';
 import { HsrPlayerService } from './hsr-player.service';
-import { MdSnackBar } from '@angular/material';
 
 @Component({
   selector: 'hsr-player',
@@ -11,6 +10,8 @@ import { MdSnackBar } from '@angular/material';
 export class PlayerComponent implements OnInit, OnDestroy {
 
   subscription: Subscription;
+
+  opened = true;
 
   constructor(private hsrDatabaseService: HsrDatabaseService, public hsrPlayerService: HsrPlayerService) {
   }
@@ -26,6 +27,18 @@ export class PlayerComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
+  }
+
+  toggleLoop() {
+    this.hsrPlayerService.loopList = !this.hsrPlayerService.loopList
+  }
+
+  open() {
+    this.opened = true;
+  }
+
+  close() {
+    this.opened = false;
   }
 
   next() {

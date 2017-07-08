@@ -20,16 +20,14 @@ import { HsrAuthService } from './shared/services/hsr-auth.service';
 import { HsrDatabaseService } from './shared/services/hsr-database.service';
 import { HsrStorageService } from './shared/services/hsr-storage.service';
 import { NguiStickyModule } from '@ngui/sticky';
-import { HsrPlayerService } from './components/player/hsr-player.service';
-import { PlayerComponent } from './components/player/player.component';
+import { PlayerModule } from './components/player/player.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
     LoginComponent,
-    PageNotFoundComponent,
-    PlayerComponent
+    PageNotFoundComponent
   ],
   imports: [
     RouterModule.forRoot(ROUTES_CONFIG),
@@ -51,14 +49,13 @@ import { PlayerComponent } from './components/player/player.component';
     MdRippleModule,
     MdMenuModule,
     MdToolbarModule,
-    MdSnackBarModule,
-    NguiStickyModule
+    NguiStickyModule,
+    PlayerModule,
   ],
   providers: [
     HsrAuthService,
     HsrDatabaseService,
-    HsrStorageService,
-    HsrPlayerService
+    HsrStorageService
   ],
   entryComponents: [AppComponent],
   bootstrap: [AppComponent]

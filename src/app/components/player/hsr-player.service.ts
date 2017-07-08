@@ -7,7 +7,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { MdSnackBar } from '@angular/material';
 
 interface PlayListItem {
-  id: number;
+  id: string;
   songPlaying: boolean;
   sound: Howl;
 }
@@ -22,13 +22,15 @@ interface PlayerEvents {
 
 @Injectable()
 export class HsrPlayerService implements OnDestroy {
-  private playList: PlayListItem[];
+  public playList: PlayListItem[];
   private currentPlayingIndex: number; // keep track of current playing index
   public playerEvents: PlayerEvents;
 
   subscription: Subscription;
 
   anyPlaying = false;
+
+  public loopList = true;
 
   constructor(public snackBar: MdSnackBar) {
     this.currentPlayingIndex = 0; // set initial index
@@ -62,6 +64,8 @@ export class HsrPlayerService implements OnDestroy {
     const index = this.currentPlayingIndex + 1;
     if (index < this.playList.length) {
       this.playAtIndex(index);
+    } else if (this.loopList) {
+      this.playAtIndex(0);
     }
   }
 
@@ -69,6 +73,8 @@ export class HsrPlayerService implements OnDestroy {
     const index = this.currentPlayingIndex - 1;
     if (index >= 0) {
       this.playAtIndex(index);
+    } else if (this.loopList) {
+      this.playAtIndex(this.playList.length - 1);
     }
   }
 
@@ -84,6 +90,45 @@ export class HsrPlayerService implements OnDestroy {
     this.subscription.unsubscribe();
   }
 
+  private newSong(playlist: PlayListItem[], i: number, index: number): PlayListItem[] {
+    const currentSong = playlist[index];
+    const nSong = playlist[i];
+    if (currentSong.songPlaying) {
+      this.stopSong(currentSong)
+    }
+    this.playPauseSong(nSong);
+    return playlist;
+  }
+
+  private stopSong(song: PlayListItem): PlayListItem {
+    if(song.songPlaying){
+      song.sound.stop();
+      song.songPlaying = false;
+      this.showSnack('\u23F9', song);
+      return song;
+    }
+  }
+
+  private playPauseSong(song: PlayListItem): PlayListItem {
+    if (song.songPlaying) {
+      song.sound.pause();
+      song.songPlaying = false;
+      this.showSnack('\u23F8', song);
+    } else {
+      song.sound.play();
+      song.songPlaying = true;
+      this.showSnack('\u25B6', song);
+    }
+
+    return song;
+  }
+
+  private showSnack(symbol: string, song) {
+    this.snackBar.open(symbol + '  ' + song.id, '', {
+      duration: 3000
+    });
+  }
+
   private initPlaylist(tracks: StorageFile[], playerEvents, playNext): PlayListItem[] {
     return this.setEvents(this.toPlaylist(tracks), playerEvents, playNext);
   }
@@ -94,7 +139,7 @@ export class HsrPlayerService implements OnDestroy {
 
   private toPlaylistItem(file: StorageFile): PlayListItem {
     return <PlayListItem>({
-      id: file.date,
+      id: file.name,
       songPlaying: false,
       sound: new Howl({
         src: [file.url],
@@ -128,32 +173,5 @@ export class HsrPlayerService implements OnDestroy {
     });
     console.log('Events added');
     return playList;
-  }
-
-  private newSong(playlist: PlayListItem[], i: number, index: number): PlayListItem[] {
-    const currentSong = playlist[index];
-    const nSong = playlist[i];
-    if (currentSong.songPlaying) {
-      this.stopSong(currentSong)
-    }
-    this.playPauseSong(nSong);
-    return playlist;
-  }
-
-  private stopSong(song: PlayListItem): PlayListItem {
-    song.sound.stop();
-    song.songPlaying = false;
-    return song;
-  }
-
-  private playPauseSong(song: PlayListItem): PlayListItem {
-    if (song.songPlaying) {
-      song.sound.pause();
-      song.songPlaying = false;
-    } else {
-      song.sound.play();
-      song.songPlaying = true;
-    }
-    return song;
   }
 }
