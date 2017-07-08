@@ -173,7 +173,7 @@ export class HsrPlayerService implements OnDestroy {
     playListItem.sound.on('play', () => {
       this.currentPlaying.id = this.playList[this.currentPlaying.index].id;
       this.currentPlaying.sound = this.playList[this.currentPlaying.index].sound;
-      console.log('playing:');
+      console.log('EVENT play');
       console.log(this.currentPlaying);
       this.anyPlaying = true;
       playerEvents.onPlay$.next(this.currentPlaying);
@@ -191,10 +191,9 @@ export class HsrPlayerService implements OnDestroy {
       playerEvents.playing$.next(this.anyPlaying);
     });
     playListItem.sound.on('seek', () => {
-      console.log('seek')
+      console.log('EVENT seek');
     });
 
-    console.log('Events added');
     return playListItem;
   }
 }
