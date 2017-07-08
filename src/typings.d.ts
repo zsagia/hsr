@@ -2,3 +2,4 @@
 // https://www.typescriptlang.org/docs/handbook/writing-declaration-files.html
 
 declare var $: JQueryStatic;
+declare var moment: any;

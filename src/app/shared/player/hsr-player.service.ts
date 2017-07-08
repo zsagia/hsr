@@ -21,7 +21,8 @@ interface CurrentPlaying {
 interface PlayerEvents {
   onEnd$: Subject<any>;
   onStop$: Subject<any>;
-  onPlay$: Subject<any>;
+  onPlay$: Subject<CurrentPlaying>;
+  onLoad$: Subject<any>;
   onPause$: Subject<any>;
   playing$: BehaviorSubject<any>;
 }
@@ -29,7 +30,7 @@ interface PlayerEvents {
 @Injectable()
 export class HsrPlayerService implements OnDestroy {
   public playList: PlayListItem[];
-  private currentPlaying: CurrentPlaying = {index: 0, id: '', sound: null}; // keep track of current playing index
+  public currentPlaying: CurrentPlaying = {index: 0, id: '', sound: null}; // keep track of current playing index
   public playerEvents: PlayerEvents;
 
   subscription: Subscription;
@@ -43,6 +44,7 @@ export class HsrPlayerService implements OnDestroy {
       onEnd$: new Subject(),
       onStop$: new Subject(),
       onPlay$: new Subject(),
+      onLoad$: new Subject(),
       onPause$: new Subject(),
       playing$: new BehaviorSubject<boolean>(false)
     };
@@ -59,7 +61,7 @@ export class HsrPlayerService implements OnDestroy {
 
   playAtIndex(index) {
     this.newSong(this.playList, index, this.currentPlaying.index);
-    this.currentPlaying = {index: index, id: this.playList[index].id, sound: this.playList[index].sound}
+    this.currentPlaying.index = index;
   }
 
   playNext() {
@@ -161,14 +163,26 @@ export class HsrPlayerService implements OnDestroy {
         playerEvents.playing$.next(this.anyPlaying);
       });
       item.sound.on('play', () => {
+        this.currentPlaying.id = this.playList[this.currentPlaying.index].id;
+        this.currentPlaying.sound = this.playList[this.currentPlaying.index].sound;
+        console.log('playing:');
+        console.log(this.currentPlaying);
         this.anyPlaying = true;
-        playerEvents.onPlay$.next(null);
+        playerEvents.onPlay$.next(this.currentPlaying);
         playerEvents.playing$.next(this.anyPlaying);
       });
       item.sound.on('pause', () => {
         this.anyPlaying = false;
         playerEvents.onPause$.next(null);
         playerEvents.playing$.next(this.anyPlaying);
+      });
+      item.sound.on('load', () => {
+        console.log('loaded')
+        playerEvents.onLoad$.next(null);
+        playerEvents.playing$.next(this.anyPlaying);
+      });
+      item.sound.on('seek', () => {
+        console.log('seek')
       });
     });
     console.log('Events added');

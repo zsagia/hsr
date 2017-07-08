@@ -2,7 +2,7 @@
   position: fixed;
   bottom: 10%;
   transition: 0.4s;
-  max-height: 204px;
+  max-height: 260px;
   &:hover {
     .opener {
       opacity: 1;
@@ -25,6 +25,7 @@
 
 .playlist {
   max-width: 260px;
+  max-height: 204px;
   background-color: white;
   color: black;
   overflow-y: auto;
@@ -54,4 +55,9 @@
 .player-nav {
   background-color: black;
   color: white;
+}
+
+.slider {
+  background-color: white;
+  max-height: 24px;
 }
