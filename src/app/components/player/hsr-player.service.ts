@@ -12,6 +12,12 @@ interface PlayListItem {
   sound: Howl;
 }
 
+interface CurrentPlaying {
+  id: string;
+  index: number;
+  sound: Howl;
+}
+
 interface PlayerEvents {
   onEnd$: Subject<any>;
   onStop$: Subject<any>;
@@ -23,7 +29,7 @@ interface PlayerEvents {
 @Injectable()
 export class HsrPlayerService implements OnDestroy {
   public playList: PlayListItem[];
-  private currentPlayingIndex: number; // keep track of current playing index
+  private currentPlaying: CurrentPlaying = {index: 0, id: '', sound: null}; // keep track of current playing index
   public playerEvents: PlayerEvents;
 
   subscription: Subscription;
@@ -33,7 +39,6 @@ export class HsrPlayerService implements OnDestroy {
   public loopList = true;
 
   constructor(public snackBar: MdSnackBar) {
-    this.currentPlayingIndex = 0; // set initial index
     this.playerEvents = {
       onEnd$: new Subject(),
       onStop$: new Subject(),
@@ -44,9 +49,6 @@ export class HsrPlayerService implements OnDestroy {
   }
 
   init(tracks: StorageFile[]) {
-    if (this.anyPlaying) {
-      this.stop();
-    }
     this.playList = this.initPlaylist(tracks, this.playerEvents, this.playNext);
     console.log('Init playlist');
     console.log('Tracks:');
@@ -56,12 +58,12 @@ export class HsrPlayerService implements OnDestroy {
   }
 
   playAtIndex(index) {
-    this.newSong(this.playList, index, this.currentPlayingIndex);
-    this.currentPlayingIndex = index;
+    this.newSong(this.playList, index, this.currentPlaying.index);
+    this.currentPlaying = {index: index, id: this.playList[index].id, sound: this.playList[index].sound}
   }
 
   playNext() {
-    const index = this.currentPlayingIndex + 1;
+    const index = this.currentPlaying.index + 1;
     if (index < this.playList.length) {
       this.playAtIndex(index);
     } else if (this.loopList) {
@@ -70,7 +72,7 @@ export class HsrPlayerService implements OnDestroy {
   }
 
   playPrevious() {
-    const index = this.currentPlayingIndex - 1;
+    const index = this.currentPlaying.index - 1;
     if (index >= 0) {
       this.playAtIndex(index);
     } else if (this.loopList) {
@@ -79,11 +81,11 @@ export class HsrPlayerService implements OnDestroy {
   }
 
   stop() {
-    this.stopSong(this.playList[this.currentPlayingIndex]);
+    this.stopSong(this.playList[this.currentPlaying.index]);
   }
 
   playPause() {
-    this.playPauseSong(this.playList[this.currentPlayingIndex]);
+    this.playPauseSong(this.playList[this.currentPlaying.index]);
   }
 
   ngOnDestroy() {
@@ -101,7 +103,7 @@ export class HsrPlayerService implements OnDestroy {
   }
 
   private stopSong(song: PlayListItem): PlayListItem {
-    if(song.songPlaying){
+    if (song.songPlaying) {
       song.sound.stop();
       song.songPlaying = false;
       this.showSnack('\u23F9', song);
@@ -134,24 +136,22 @@ export class HsrPlayerService implements OnDestroy {
   }
 
   private toPlaylist(tracks: StorageFile[]): PlayListItem[] {
-    return tracks.map(this.toPlaylistItem);
+    return tracks.map(this.toPlaylistItem.bind(this));
   }
 
   private toPlaylistItem(file: StorageFile): PlayListItem {
+    const isPlaying = this.currentPlaying.id === file.name;
     return <PlayListItem>({
       id: file.name,
-      songPlaying: false,
-      sound: new Howl({
-        src: [file.url],
-        html5: true
-      })
+      songPlaying: isPlaying,
+      sound: isPlaying ? this.currentPlaying.sound : new Howl({src: [file.url], html5: true})
     });
   }
 
   private setEvents(playList: PlayListItem[], playerEvents: PlayerEvents, playNext): PlayListItem[] {
     playList.forEach((item) => {
       item.sound.on('end', () => {
-        this.anyPlaying = false;
+        this.playNext();
         playerEvents.onEnd$.next(null);
         playerEvents.playing$.next(this.anyPlaying);
       });
