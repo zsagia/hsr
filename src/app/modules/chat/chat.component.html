@@ -1,7 +1,7 @@
 <md-card *ngFor="let message of chatMessages | async"
          style="margin-top: 8px; padding: 8px; width: 90%;clear: both;"
          [style.float]="hsrAuthService.isAuthor(message.author) ? 'left' : 'right'"
-         [style.background-color]="hsrAuthService.isAuthor(message.author) ? 'white' : '#fdd835'">
+         [style.background-color]="hsrAuthService.isAuthor(message.author) ? '#fdd835' : 'white'">
   <div fxLayout="row" fxLayoutAlign="start start">
     <div style="font-size: x-small;color: gray;">{{message.author}}</div>
     <div style="flex: 1 1 auto;"></div>
