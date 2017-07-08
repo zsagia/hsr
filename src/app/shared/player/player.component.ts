@@ -34,8 +34,8 @@ export class PlayerComponent implements OnInit, OnDestroy {
       this.position = currentPlaying.sound ? <number>currentPlaying.sound.seek() : 0;
     })
     setInterval(() => {
-      this.position = this.hsrPlayerService.currentPlaying.sound ? <number>this.hsrPlayerService.currentPlaying.sound.seek() : 0;
-    }, 1000);
+      this.position = this.hsrPlayerService.currentPlaying.sound && this.hsrPlayerService.currentPlaying.sound.state() === 'loaded' ? <number>this.hsrPlayerService.currentPlaying.sound.seek() : 0;
+    }, 200);
   }
 
   ngOnDestroy() {

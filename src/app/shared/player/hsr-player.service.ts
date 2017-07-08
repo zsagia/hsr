@@ -55,7 +55,7 @@ export class HsrPlayerService implements OnDestroy {
   }
 
   init(tracks: StorageFile[]) {
-    this.playList = this.initPlaylist(tracks, this.playerEvents, this.playNext);
+    this.playList = this.initPlaylist(tracks, this.playerEvents);
     console.log('Init playlist');
     console.log('Tracks:');
     console.log(tracks);
@@ -137,7 +137,7 @@ export class HsrPlayerService implements OnDestroy {
     });
   }
 
-  private initPlaylist(tracks: StorageFile[], playerEvents, playNext): PlayListItem[] {
+  private initPlaylist(tracks: StorageFile[], playerEvents): PlayListItem[] {
     return this.toPlaylist(tracks);
   }
 
@@ -157,12 +157,14 @@ export class HsrPlayerService implements OnDestroy {
 
   private setEvents(playListItem: PlayListItem, playerEvents: PlayerEvents): PlayListItem {
     playListItem.sound.on('end', () => {
+      console.log('EVENT end');
       this.currentPlaying.sound.unload();
       this.playNext();
       playerEvents.onEnd$.next(null);
       playerEvents.playing$.next(this.anyPlaying);
     });
     playListItem.sound.on('stop', () => {
+      console.log('EVENT stop');
       this.anyPlaying = false;
       this.currentPlaying.sound.unload();
       playerEvents.onStop$.next(null);
@@ -178,12 +180,13 @@ export class HsrPlayerService implements OnDestroy {
       playerEvents.playing$.next(this.anyPlaying);
     });
     playListItem.sound.on('pause', () => {
+      console.log('EVENT pause');
       this.anyPlaying = false;
       playerEvents.onPause$.next(null);
       playerEvents.playing$.next(this.anyPlaying);
     });
     playListItem.sound.on('load', () => {
-      console.log('loaded')
+      console.log('EVENT load');
       playerEvents.onLoad$.next(null);
       playerEvents.playing$.next(this.anyPlaying);
     });
@@ -194,43 +197,4 @@ export class HsrPlayerService implements OnDestroy {
     console.log('Events added');
     return playListItem;
   }
-
-  // private setEvents(playList: PlayListItem[], playerEvents: PlayerEvents, playNext): PlayListItem[] {
-  //   playList.forEach((item) => {
-  //     item.sound.on('end', () => {
-  //       this.playNext();
-  //       playerEvents.onEnd$.next(null);
-  //       playerEvents.playing$.next(this.anyPlaying);
-  //     });
-  //     item.sound.on('stop', () => {
-  //       this.anyPlaying = false;
-  //       playerEvents.onStop$.next(null);
-  //       playerEvents.playing$.next(this.anyPlaying);
-  //     });
-  //     item.sound.on('play', () => {
-  //       this.currentPlaying.id = this.playList[this.currentPlaying.index].id;
-  //       this.currentPlaying.sound = this.playList[this.currentPlaying.index].sound;
-  //       console.log('playing:');
-  //       console.log(this.currentPlaying);
-  //       this.anyPlaying = true;
-  //       playerEvents.onPlay$.next(this.currentPlaying);
-  //       playerEvents.playing$.next(this.anyPlaying);
-  //     });
-  //     item.sound.on('pause', () => {
-  //       this.anyPlaying = false;
-  //       playerEvents.onPause$.next(null);
-  //       playerEvents.playing$.next(this.anyPlaying);
-  //     });
-  //     item.sound.on('load', () => {
-  //       console.log('loaded')
-  //       playerEvents.onLoad$.next(null);
-  //       playerEvents.playing$.next(this.anyPlaying);
-  //     });
-  //     item.sound.on('seek', () => {
-  //       console.log('seek')
-  //     });
-  //   });
-  //   console.log('Events added');
-  //   return playList;
-  // }
 }
