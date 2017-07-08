@@ -146,7 +146,7 @@ export class HsrPlayerService implements OnDestroy {
     return <PlayListItem>({
       id: file.name,
       songPlaying: isPlaying,
-      sound: isPlaying ? this.currentPlaying.sound : new Howl({src: [file.url], html5: true})
+      sound: isPlaying ? this.currentPlaying.sound : new Howl({src: [file.url], pool: 1})
     });
   }
 
