@@ -8,7 +8,7 @@ import { MdSnackBar } from '@angular/material';
 
 interface PlayListItem {
   id: number;
-  playing: boolean;
+  songPlaying: boolean;
   sound: Howl;
 }
 
@@ -40,7 +40,7 @@ export class HsrPlayerService implements OnDestroy {
   }
 
   init(tracks: StorageFile[]) {
-    if (playing) {
+    if (anyPlaying) {
       this.stop();
     }
     this.playList = initPlaylist(tracks, this.playerEvents, this.playNext);
@@ -71,11 +71,11 @@ export class HsrPlayerService implements OnDestroy {
   }
 
   stop() {
-    stop(this.playList[this.currentPlayingIndex]);
+    stopSong(this.playList[this.currentPlayingIndex]);
   }
 
   playPause() {
-    playPause(this.playList[this.currentPlayingIndex]);
+    playPauseSong(this.playList[this.currentPlayingIndex]);
   }
 
   ngOnDestroy() {
@@ -84,7 +84,7 @@ export class HsrPlayerService implements OnDestroy {
 
 }
 
-let playing = false;
+let anyPlaying = false;
 
 function initPlaylist(tracks: StorageFile[], playerEvents, playNext): PlayListItem[] {
   return setEvents(toPlaylist(tracks), playerEvents, playNext);
@@ -97,7 +97,7 @@ function toPlaylist(tracks: StorageFile[]): PlayListItem[] {
 function toPlaylistItem(file: StorageFile): PlayListItem {
   return <PlayListItem>({
     id: file.date,
-    playing: false,
+    songPlaying: false,
     sound: new Howl({
       src: [file.url],
       html5: true
@@ -108,24 +108,24 @@ function toPlaylistItem(file: StorageFile): PlayListItem {
 function setEvents(playList: PlayListItem[], playerEvents: PlayerEvents, playNext): PlayListItem[] {
   playList.forEach((item) => {
     item.sound.on('end', () => {
-      playing = false;
+      anyPlaying = false;
       playerEvents.onEnd$.next(null);
-      playerEvents.playing$.next(playing);
+      playerEvents.playing$.next(anyPlaying);
     });
     item.sound.on('stop', () => {
-      playing = false;
+      anyPlaying = false;
       playerEvents.onStop$.next(null);
-      playerEvents.playing$.next(playing);
+      playerEvents.playing$.next(anyPlaying);
     });
     item.sound.on('play', () => {
-      playing = true;
+      anyPlaying = true;
       playerEvents.onPlay$.next(null);
-      playerEvents.playing$.next(playing);
+      playerEvents.playing$.next(anyPlaying);
     });
     item.sound.on('pause', () => {
-      playing = false;
+      anyPlaying = false;
       playerEvents.onPause$.next(null);
-      playerEvents.playing$.next(playing);
+      playerEvents.playing$.next(anyPlaying);
     });
   });
   console.log('Events added');
@@ -135,26 +135,26 @@ function setEvents(playList: PlayListItem[], playerEvents: PlayerEvents, playNex
 function newSong(playlist: PlayListItem[], i: number, index: number): PlayListItem[] {
   const currentSong = playlist[index];
   const nSong = playlist[i];
-  if (currentSong.playing) {
-    stop(currentSong)
+  if (currentSong.songPlaying) {
+    stopSong(currentSong)
   }
-  playPause(nSong);
+  playPauseSong(nSong);
   return playlist;
 }
 
-function stop(song: PlayListItem): PlayListItem {
+function stopSong(song: PlayListItem): PlayListItem {
   song.sound.stop();
-  song.playing = false;
+  song.songPlaying = false;
   return song;
 }
 
-function playPause(song: PlayListItem): PlayListItem {
-  if (song.playing) {
+function playPauseSong(song: PlayListItem): PlayListItem {
+  if (song.songPlaying) {
     song.sound.pause();
-    song.playing = false;
+    song.songPlaying = false;
   } else {
     song.sound.play();
-    song.playing = true;
+    song.songPlaying = true;
   }
   return song;
 }
